@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# testing
+coverage/
+
+# environment variables
+.env
+.env.test
+.env.production
+
+# misc
+*.pem

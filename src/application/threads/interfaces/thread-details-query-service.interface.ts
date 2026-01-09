@@ -1,0 +1,13 @@
+import { CommentId } from 'src/domain/entities/comment';
+import { ThreadId } from '../../../domain/entities/thread';
+import {
+  CommentDetails,
+  ReplyDetails,
+  ThreadDetails,
+} from '../query/results/thread-details.result';
+
+export interface ThreadDetailsQueryService {
+  getById(id: ThreadId): Promise<ThreadDetails | null>;
+  getCommentsByThreadId(id: ThreadId): Promise<CommentDetails[]>;
+  getRepliesByCommentIds(ids: CommentId[]): Promise<ReplyDetails[]>;
+}
