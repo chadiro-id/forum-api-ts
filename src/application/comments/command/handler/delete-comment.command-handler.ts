@@ -15,6 +15,6 @@ export class DeleteCommentCommandHandler {
     comment.verifyAccessRights(command.userId);
     comment.markAsDeleted();
 
-    await this.commentRepository.updateById(comment.id, { isDelete: true });
+    await this.commentRepository.softDelete(comment);
   }
 }
