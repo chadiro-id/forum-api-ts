@@ -5,4 +5,5 @@ export interface CommentRepository {
   findById(id: CommentId): Promise<Comment | null>;
   updateById(id: CommentId, changes: Partial<Comment>): Promise<void>;
   existsBy(criteria: Partial<Comment>): Promise<boolean>;
+  softDelete(comment: Comment): Promise<void>;
 }
