@@ -27,7 +27,7 @@ export class Comment extends DomainEntity<CommentId> {
 
   private _isDelete: boolean;
 
-  constructor(
+  private constructor(
     id: CommentId,
     threadId: ThreadId,
     ownerId: UserId,
@@ -36,12 +36,13 @@ export class Comment extends DomainEntity<CommentId> {
     createdAt: Date,
   ) {
     super(id);
-    this.threadId = this.validateThreadId(threadId);
-    this.ownerId = this.validateOwnerId(ownerId);
-    this.content = this.validateContent(content);
-    this.createdAt = this.validateCreatedAt(createdAt);
 
-    this._isDelete = this.validateIsDelete(isDelete);
+    this.threadId = threadId;
+    this.ownerId = ownerId;
+    this.content = content;
+    this.createdAt = createdAt;
+
+    this._isDelete = isDelete;
   }
 
   static create(
@@ -49,54 +50,14 @@ export class Comment extends DomainEntity<CommentId> {
     threadId: ThreadId,
     ownerId: UserId,
     content: string,
+    isDelete: boolean = false,
+    createdAt: Date = new Date(),
   ) {
-    const date = new Date();
-    return new Comment(id, threadId, ownerId, content, false, date);
+    return new Comment(id, threadId, ownerId, content, isDelete, createdAt);
   }
 
   get isDelete() {
     return this._isDelete;
-  }
-
-  private validateThreadId(value: unknown): ThreadId {
-    if (value instanceof ThreadId === false) {
-      throw new DomainError(undefined, 'COMMENT_INVALID_THREAD_ID');
-    }
-    return value;
-  }
-
-  private validateOwnerId(value: unknown): UserId {
-    if (value instanceof UserId === false) {
-      throw new DomainError(undefined, 'COMMENT_INVALID_OWNER_ID');
-    }
-    return value;
-  }
-
-  private validateContent(value: unknown): string {
-    if (!value || typeof value !== 'string') {
-      throw new DomainError('Content cannot empty', 'COMMENT_INVALID_CONTENT');
-    }
-    return value;
-  }
-
-  private validateCreatedAt(value: unknown): Date {
-    if (
-      value instanceof Date === false ||
-      Number.isNaN(Date.parse(value.toString()))
-    ) {
-      throw new DomainError(undefined, 'INVALID_CREATION_DATE');
-    }
-    return value;
-  }
-
-  private validateIsDelete(value: unknown): boolean {
-    if (typeof value !== 'boolean') {
-      throw new DomainError(
-        'Is delete value must be boolean',
-        'INVALID_COMMENT_IS_DELETE',
-      );
-    }
-    return value;
   }
 
   markAsDeleted() {
