@@ -106,16 +106,14 @@ describe('PostgresThreadDetailsQueryService', () => {
         commentB.is_delete,
         commentB.created_at,
       );
-      const comments =
-        await threadDetailsQueryService.getCommentsByThreadId(id);
 
+      const comments = await threadDetailsQueryService.getCommentsById(id);
       expect(comments).toStrictEqual([commentDetailsA, commentDetailsB]);
     });
 
     it('should return empty array when thread has no comments', async () => {
       const id = new ThreadId(threadData.id);
-      const comments =
-        await threadDetailsQueryService.getCommentsByThreadId(id);
+      const comments = await threadDetailsQueryService.getCommentsById(id);
       expect(comments).toStrictEqual([]);
     });
   });

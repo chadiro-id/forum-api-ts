@@ -45,7 +45,7 @@ export class PostgresThreadDetailsQueryService implements ThreadDetailsQueryServ
       : null;
   }
 
-  async getCommentsByThreadId(threadId: ThreadId): Promise<CommentDetails[]> {
+  async getCommentsById(id: ThreadId): Promise<CommentDetails[]> {
     const query = {
       text: `
       SELECT
@@ -61,7 +61,7 @@ export class PostgresThreadDetailsQueryService implements ThreadDetailsQueryServ
       ORDER BY
         c.created_at ASC
       `,
-      values: [threadId.value],
+      values: [id.value],
     };
 
     const result = await this.pool.query<CommentDetailsRow>(query);
