@@ -19,32 +19,20 @@ export class ReplyId extends EntityId {
 }
 
 export class Reply extends DomainEntity<ReplyId> {
-  public readonly threadId: ThreadId;
-  public readonly commentId: CommentId;
-  public readonly ownerId: UserId;
-  public readonly content: string;
-  public readonly createdAt: Date;
-
   private _isDelete: boolean;
 
-  constructor(
+  private constructor(
     id: ReplyId,
-    threadId: ThreadId,
-    commentId: CommentId,
-    ownerId: UserId,
-    content: string,
+    public readonly threadId: ThreadId,
+    public readonly commentId: CommentId,
+    public readonly ownerId: UserId,
+    public readonly content: string,
     isDelete: boolean,
-    createdAt: Date,
+    public readonly createdAt: Date,
   ) {
     super(id);
 
-    this.threadId = this.validateThreadId(threadId);
-    this.commentId = this.validateCommentId(commentId);
-    this.ownerId = this.validateOwnerId(ownerId);
-    this.content = this.validateContent(content);
-    this.createdAt = this.validateCreatedAt(createdAt);
-
-    this._isDelete = this.validateIsDelete(isDelete);
+    this._isDelete = isDelete;
   }
 
   static create(
@@ -53,61 +41,22 @@ export class Reply extends DomainEntity<ReplyId> {
     commentId: CommentId,
     ownerId: UserId,
     content: string,
+    isDelete: boolean = false,
+    createdAt: Date = new Date(),
   ) {
-    const date = new Date();
-    return new Reply(id, threadId, commentId, ownerId, content, false, date);
+    return new Reply(
+      id,
+      threadId,
+      commentId,
+      ownerId,
+      content,
+      isDelete,
+      createdAt,
+    );
   }
 
   get isDelete() {
     return this._isDelete;
-  }
-
-  private validateThreadId(value: unknown): ThreadId {
-    if (value instanceof ThreadId === false) {
-      throw new DomainError(undefined, 'REPLY_INVALID_THREAD_ID');
-    }
-    return value;
-  }
-
-  private validateCommentId(value: unknown): CommentId {
-    if (value instanceof CommentId === false) {
-      throw new DomainError(undefined, 'REPLY_INVALID_COMMENT_ID');
-    }
-    return value;
-  }
-
-  private validateOwnerId(value: unknown): UserId {
-    if (value instanceof UserId === false) {
-      throw new DomainError(undefined, 'REPLY_INVALID_OWNER_ID');
-    }
-    return value;
-  }
-
-  private validateContent(value: unknown): string {
-    if (!value || typeof value !== 'string') {
-      throw new DomainError(
-        'Content must be non-empty string',
-        'REPLY_INVALID_CONTENT',
-      );
-    }
-    return value;
-  }
-
-  private validateCreatedAt(value: unknown): Date {
-    if (
-      value instanceof Date === false ||
-      Number.isNaN(Date.parse(value.toString()))
-    ) {
-      throw new DomainError(undefined, 'REPLY_INVALID_CREATION_DATE');
-    }
-    return value;
-  }
-
-  private validateIsDelete(value: unknown): boolean {
-    if (typeof value !== 'boolean') {
-      throw new DomainError(undefined, 'REPLY_INVALID_IS_DELETE');
-    }
-    return value;
   }
 
   markAsDeleted() {
