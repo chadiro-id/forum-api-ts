@@ -91,4 +91,27 @@ describe('PostgresCommentRepository', () => {
       expect(comment).toBeNull();
     });
   });
+
+  describe('existsBy', () => {
+    it('should return true when criteria match', async () => {
+      const data = createCommentData({
+        thread_id: threadData.id,
+        owner_id: userData.id,
+      });
+      await pgTest.comments().add(data);
+
+      const id = new CommentId(data.id);
+      const threadId = new ThreadId(data.thread_id);
+
+      const exists = await commentRepository.existsBy({ id, threadId });
+      expect(exists).toBe(true);
+    });
+
+    it('should return false when criteria not match', async () => {
+      const id = new CommentId('non-existence-id');
+
+      const exists = await commentRepository.existsBy({ id });
+      expect(exists).toBe(false);
+    });
+  });
 });
