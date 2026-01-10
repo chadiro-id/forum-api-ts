@@ -28,23 +28,34 @@ describe('Reply Entity', () => {
   const content = 'Sebuah balasan';
   const creationDate = new Date();
 
-  describe('constructor', () => {
-    const reply = new Reply(
-      id,
-      threadId,
-      commentId,
-      ownerId,
-      content,
-      false,
-      creationDate,
-    );
+  describe('create', () => {
+    it('should initialize with valid data', () => {
+      const reply = Reply.create(
+        id,
+        threadId,
+        commentId,
+        ownerId,
+        content,
+        false,
+        creationDate,
+      );
 
-    expect(reply.id).toStrictEqual(id);
-    expect(reply.threadId).toStrictEqual(threadId);
-    expect(reply.commentId).toStrictEqual(commentId);
-    expect(reply.ownerId).toStrictEqual(ownerId);
-    expect(reply.content).toBe(content);
-    expect(reply.isDelete).toBe(false);
-    expect(reply.createdAt).toStrictEqual(creationDate);
+      expect(reply.id).toStrictEqual(id);
+      expect(reply.threadId).toStrictEqual(threadId);
+      expect(reply.commentId).toStrictEqual(commentId);
+      expect(reply.ownerId).toStrictEqual(ownerId);
+      expect(reply.content).toBe(content);
+      expect(reply.isDelete).toBe(false);
+      expect(reply.createdAt).toStrictEqual(creationDate);
+    });
+
+    it('should have default value isDelete "false" and creation date', () => {
+      const reply = Reply.create(id, threadId, commentId, ownerId, content);
+
+      const timeDiff = Math.abs(Date.now() - reply.createdAt.getTime());
+
+      expect(reply.isDelete).toBe(false);
+      expect(timeDiff < 10000).toBe(true);
+    });
   });
 });
