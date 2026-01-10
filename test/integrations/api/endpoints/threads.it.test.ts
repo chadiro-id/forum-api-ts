@@ -37,16 +37,15 @@ describe('Threads Endpoint', () => {
 
   describe('POST /threads', () => {
     let accessToken: string;
-    const payload = {
-      title: 'Sebuah thread',
-      body: 'Isi thread',
-    };
-
     beforeEach(async () => {
       accessToken = await authTokenService.createAccessToken({
         id: userData.id,
         username: userData.username,
       });
+    });
+
+    afterAll(async () => {
+      await pgTest.threads().cleanup();
     });
 
     it('should response 201 and added thread data', async () => {
@@ -61,6 +60,7 @@ describe('Threads Endpoint', () => {
         },
       };
 
+      const payload = { title: 'Sebuah thread', body: 'Isi thread' };
       const response = await serverTest
         .request()
         .post('/threads')
@@ -72,6 +72,7 @@ describe('Threads Endpoint', () => {
     });
 
     it('should response 401 when request with no authentication', async () => {
+      const payload = { title: 'Sebuah thread', body: 'Isi thread' };
       const response = await serverTest
         .request()
         .post('/threads')
@@ -89,7 +90,7 @@ describe('Threads Endpoint', () => {
         .request()
         .post('/threads')
         .auth(accessToken, { type: 'bearer' })
-        .send({ body: payload.body });
+        .send({ body: 'Isi thread' });
 
       expect(response.statusCode).toBe(400);
       expect(response.body).toStrictEqual({
@@ -103,7 +104,7 @@ describe('Threads Endpoint', () => {
         .request()
         .post('/threads')
         .auth(accessToken, { type: 'bearer' })
-        .send({ title: 123, body: payload.body });
+        .send({ title: 123, body: 'Isi thread' });
 
       expect(response.statusCode).toBe(400);
       expect(response.body).toStrictEqual({
@@ -117,7 +118,7 @@ describe('Threads Endpoint', () => {
         .request()
         .post('/threads')
         .auth(accessToken, { type: 'bearer' })
-        .send({ title: 'a'.repeat(256), body: payload.body });
+        .send({ title: 'a'.repeat(256), body: 'Isi thread' });
 
       expect(response.statusCode).toBe(400);
       expect(response.body).toStrictEqual({
