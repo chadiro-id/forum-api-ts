@@ -18,7 +18,7 @@ export class User extends DomainEntity<UserId> {
   public readonly fullname: string;
   public readonly createdAt: Date;
 
-  constructor(
+  private constructor(
     id: UserId,
     username: string,
     password: string,
@@ -38,31 +38,21 @@ export class User extends DomainEntity<UserId> {
     username: string,
     password: string,
     fullname: string,
+    createdAt: Date = new Date(),
   ) {
-    const now = new Date();
-    return new User(id, username, password, fullname, now);
-  }
-
-  private validateUsername(value: string) {
-    if (!value) {
+    if (username.length > 50) {
       throw new DomainError(
-        'Username cannot be empty',
+        'username max 50 character',
         'USER_INVALID_USERNAME',
       );
     }
 
-    if (value.length > 50) {
+    if (!username.match(/^[\w]+$/)) {
       throw new DomainError(
-        'Username max 50 character',
+        'username contain restricted character',
         'USER_INVALID_USERNAME',
       );
     }
-
-    if (!value.match(/^[\w]+$/)) {
-      throw new DomainError(
-        'Username contain restricted character',
-        'USER_INVALID_USERNAME',
-      );
-    }
+    return new User(id, username, password, fullname, createdAt);
   }
 }
