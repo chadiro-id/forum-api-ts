@@ -1,4 +1,4 @@
-import { DomainError } from '@main/domain/common/domain-error';
+import { DomainError } from '../../../domain/common/domain-error';
 import { CommentForbiddenAccessError } from './comment-forbidden-access.error';
 
 describe('CommentForbiddenAccessError', () => {

@@ -1,4 +1,4 @@
-import { DomainError } from '@main/domain/common/domain-error';
+import { DomainError } from '../../../domain/common/domain-error';
 import { CommentDeceptiveAccessError } from './comment-deceptive-access.error';
 
 describe('CommentDeceptiveAccessError', () => {
