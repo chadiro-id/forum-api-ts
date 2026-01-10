@@ -52,11 +52,12 @@ describe('PostgresUserRepository', () => {
   describe('findByUsername', () => {
     it('should return User entity', async () => {
       const userData = createUserData();
-      const expectedUser = User.create(
+      const expectedUser = new User(
         new UserId(userData.id),
         userData.username,
         userData.password,
         userData.fullname,
+        new Date(userData.created_at),
       );
 
       await pgTest.users().add(userData);
