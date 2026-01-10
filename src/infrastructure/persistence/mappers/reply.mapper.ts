@@ -20,7 +20,7 @@ export class ReplyMapper {
     const commentId = new CommentId(row.comment_id);
     const ownerId = new UserId(row.owner_id);
 
-    return new Reply(
+    return Reply.create(
       id,
       threadId,
       commentId,
