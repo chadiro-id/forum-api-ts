@@ -40,16 +40,6 @@ export class PostgresCommentRepository implements CommentRepository {
     return CommentMapper.toDomain(result.rows[0]);
   }
 
-  async updateById(id: CommentId, changes: Partial<Comment>): Promise<void> {
-    const { sql, values } = QueryHelper.buildUpdateQuery(
-      'comments',
-      { id: id.value },
-      CommentMapper.toPersistence(changes),
-    );
-
-    await this.pool.query(sql, values);
-  }
-
   async existsBy(criteria: Partial<Comment>): Promise<boolean> {
     const { sql, values } = QueryHelper.buildSelectQuery(
       'comments',
