@@ -26,21 +26,32 @@ describe('Comment Entity', () => {
   const content = 'Sebuah komentar';
   const creationDate = new Date();
 
-  describe('constructor', () => {
-    const comment = new Comment(
-      id,
-      threadId,
-      ownerId,
-      content,
-      false,
-      creationDate,
-    );
+  describe('create', () => {
+    it('should initialize with valid data', () => {
+      const comment = Comment.create(
+        id,
+        threadId,
+        ownerId,
+        content,
+        false,
+        creationDate,
+      );
 
-    expect(comment.id).toStrictEqual(id);
-    expect(comment.threadId).toStrictEqual(threadId);
-    expect(comment.ownerId).toStrictEqual(ownerId);
-    expect(comment.content).toBe(content);
-    expect(comment.isDelete).toBe(false);
-    expect(comment.createdAt).toStrictEqual(creationDate);
+      expect(comment.id).toStrictEqual(id);
+      expect(comment.threadId).toStrictEqual(threadId);
+      expect(comment.ownerId).toStrictEqual(ownerId);
+      expect(comment.content).toBe(content);
+      expect(comment.isDelete).toBe(false);
+      expect(comment.createdAt).toStrictEqual(creationDate);
+    });
+
+    it('should have default value isDelete "false" and creation date', () => {
+      const comment = Comment.create(id, threadId, ownerId, content);
+
+      const timeDiff = Math.abs(Date.now() - comment.createdAt.getTime());
+
+      expect(comment.isDelete).toBe(false);
+      expect(timeDiff < 10000).toBe(true);
+    });
   });
 });
