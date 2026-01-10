@@ -22,9 +22,15 @@ describe('User Entity', () => {
   const fullname = 'John Doe';
   const creationDate = new Date();
 
-  describe('constructor', () => {
+  describe('create', () => {
     it('should create instance with valid data', () => {
-      const entity = new User(id, username, password, fullname, creationDate);
+      const entity = User.create(
+        id,
+        username,
+        password,
+        fullname,
+        creationDate,
+      );
 
       expect(entity.id).toStrictEqual(id);
       expect(entity.username).toBe(username);
@@ -32,14 +38,32 @@ describe('User Entity', () => {
       expect(entity.fullname).toBe(fullname);
       expect(entity.createdAt).toStrictEqual(creationDate);
     });
-  });
 
-  describe('create', () => {
-    it('should create User with correct creation date', () => {
+    it('should provide default value for creation date', () => {
       const user = User.create(id, username, password, fullname);
 
       const timeDiff = Math.abs(Date.now() - user.createdAt.getTime());
       expect(timeDiff < 10000).toBe(true);
+    });
+
+    it('should throw DomainError when username more than 50 character', () => {
+      try {
+        User.create(id, 'a'.repeat(51), password, fullname);
+      } catch (error) {
+        expect(error).toBeInstanceOf(DomainError);
+        expect(error.message).toBe('username max 50 character');
+        expect(error.code).toBe('USER_INVALID_USERNAME');
+      }
+    });
+
+    it('should throw DomainError when username contain restricted character', () => {
+      try {
+        User.create(id, 'j0hn^d03', password, fullname);
+      } catch (error) {
+        expect(error).toBeInstanceOf(DomainError);
+        expect(error.message).toBe('username contain restricted character');
+        expect(error.code).toBe('USER_INVALID_USERNAME');
+      }
     });
   });
 });
