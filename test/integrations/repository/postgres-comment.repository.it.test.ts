@@ -114,4 +114,29 @@ describe('PostgresCommentRepository', () => {
       expect(exists).toBe(false);
     });
   });
+
+  describe('softDelete', () => {
+    it('should update delete status to TRUE', async () => {
+      const data = createCommentData({
+        thread_id: threadData.id,
+        owner_id: userData.id,
+      });
+      await pgTest.comments().add(data);
+
+      const comment = CommentMapper.toDomain(data);
+      await commentRepository.softDelete(comment);
+
+      const commentList = await pgTest.comments().findById(data.id);
+      expect(commentList).toStrictEqual([
+        {
+          id: comment.id.value,
+          thread_id: comment.threadId.value,
+          owner_id: comment.ownerId.value,
+          content: comment.content,
+          is_delete: true,
+          created_at: comment.createdAt,
+        },
+      ]);
+    });
+  });
 });
