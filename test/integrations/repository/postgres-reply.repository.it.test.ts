@@ -85,7 +85,7 @@ describe('PostgresReplyRepository', () => {
       const data = await pgTest.replies().add({ ...replyData });
 
       const id = new ReplyId(data.id);
-      const expectedReply = new Reply(
+      const expectedReply = Reply.create(
         id,
         new ThreadId(threadData.id),
         new CommentId(data.comment_id),
@@ -109,27 +109,23 @@ describe('PostgresReplyRepository', () => {
 
   describe('softDelete', () => {
     it('should update delete status to TRUE', async () => {
-      const persistedReply = await pgTest
+      const data = await pgTest
         .replies()
         .add({ ...replyData, is_delete: false });
 
-      const id = new ReplyId(persistedReply.id);
-      const threadId = new ThreadId(commentData.thread_id);
-      const commentId = new CommentId(persistedReply.comment_id);
-      const ownerId = new UserId(persistedReply.owner_id);
-      const reply = new Reply(
-        id,
-        threadId,
-        commentId,
-        ownerId,
-        persistedReply.content,
-        persistedReply.is_delete,
-        persistedReply.created_at,
+      const reply = Reply.create(
+        new ReplyId(data.id),
+        new ThreadId(commentData.thread_id),
+        new CommentId(data.comment_id),
+        new UserId(data.owner_id),
+        data.content,
+        data.is_delete,
+        data.created_at,
       );
 
       await replyRepository.softDelete(reply);
 
-      const replyList = await pgTest.replies().findById(persistedReply.id);
+      const replyList = await pgTest.replies().findById(data.id);
       expect(replyList).toStrictEqual([
         {
           id: reply.id.value,
