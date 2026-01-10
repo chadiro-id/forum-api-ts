@@ -40,6 +40,10 @@ describe('PostgresReplyRepository', () => {
     thread_id: threadData.id,
     owner_id: userData.id,
   });
+  const replyData = createReplyData({
+    comment_id: commentData.id,
+    owner_id: userData.id,
+  });
 
   beforeAll(async () => {
     await pgTest.users().add(userData);
@@ -78,11 +82,7 @@ describe('PostgresReplyRepository', () => {
 
   describe('findById', () => {
     it('should return Reply entity', async () => {
-      const data = createReplyData({
-        comment_id: commentData.id,
-        owner_id: userData.id,
-      });
-      await pgTest.replies().add(data);
+      const data = await pgTest.replies().add({ ...replyData });
 
       const id = new ReplyId(data.id);
       const expectedReply = new Reply(
@@ -104,6 +104,42 @@ describe('PostgresReplyRepository', () => {
       const reply = await replyRepository.findById(id);
 
       expect(reply).toBeNull();
+    });
+  });
+
+  describe('softDelete', () => {
+    it('should update delete status to TRUE', async () => {
+      const persistedReply = await pgTest
+        .replies()
+        .add({ ...replyData, is_delete: false });
+
+      const id = new ReplyId(persistedReply.id);
+      const threadId = new ThreadId(commentData.thread_id);
+      const commentId = new CommentId(persistedReply.comment_id);
+      const ownerId = new UserId(persistedReply.owner_id);
+      const reply = new Reply(
+        id,
+        threadId,
+        commentId,
+        ownerId,
+        persistedReply.content,
+        persistedReply.is_delete,
+        persistedReply.created_at,
+      );
+
+      await replyRepository.softDelete(reply);
+
+      const replyList = await pgTest.replies().findById(persistedReply.id);
+      expect(replyList).toStrictEqual([
+        {
+          id: reply.id.value,
+          comment_id: reply.commentId.value,
+          owner_id: reply.ownerId.value,
+          content: reply.content,
+          is_delete: true,
+          created_at: reply.createdAt,
+        },
+      ]);
     });
   });
 });
