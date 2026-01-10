@@ -55,8 +55,8 @@ describe('PostgresAuthenticationRepository', () => {
       expect(authentications).toStrictEqual([
         {
           id: id.value,
-          user_id: 'user-001',
-          token: 'refresh_token',
+          user_id: authentication.userId.value,
+          token: authentication.token,
         },
       ]);
     });
