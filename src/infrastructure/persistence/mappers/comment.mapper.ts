@@ -17,7 +17,7 @@ export class CommentMapper {
     const threadId = new ThreadId(row.thread_id);
     const ownerId = new UserId(row.owner_id);
 
-    return new Comment(
+    return Comment.create(
       id,
       threadId,
       ownerId,
