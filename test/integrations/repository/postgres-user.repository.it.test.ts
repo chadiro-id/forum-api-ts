@@ -52,7 +52,7 @@ describe('PostgresUserRepository', () => {
   describe('findByUsername', () => {
     it('should return User entity', async () => {
       const userData = createUserData();
-      const expectedUser = new User(
+      const expectedUser = User.create(
         new UserId(userData.id),
         userData.username,
         userData.password,
