@@ -8,6 +8,6 @@ import {
 
 export interface ThreadDetailsQueryService {
   getById(id: ThreadId): Promise<ThreadDetails | null>;
-  getCommentsByThreadId(id: ThreadId): Promise<CommentDetails[]>;
+  getCommentsById(id: ThreadId): Promise<CommentDetails[]>;
   getRepliesByCommentIds(ids: CommentId[]): Promise<ReplyDetails[]>;
 }
