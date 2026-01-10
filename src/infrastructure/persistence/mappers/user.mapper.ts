@@ -7,10 +7,11 @@ export interface UserRow {
   fullname: string;
   created_at: Date;
 }
+
 export class UserMapper {
   static toDomain(row: UserRow): User {
     const id = new UserId(row.id);
-    return new User(
+    return User.create(
       id,
       row.username,
       row.password,
