@@ -18,7 +18,7 @@ export class Thread extends DomainEntity<ThreadId> {
   public readonly body: string;
   public readonly createdAt: Date;
 
-  constructor(
+  private constructor(
     id: ThreadId,
     ownerId: UserId,
     title: string,
@@ -27,57 +27,23 @@ export class Thread extends DomainEntity<ThreadId> {
   ) {
     super(id);
 
-    this.ownerId = this.validateOwnerId(ownerId);
-    this.title = this.validateTitle(title);
-    this.body = this.validateBody(body);
-    this.createdAt = this.validateCreatedAt(createdAt);
+    this.ownerId = ownerId;
+    this.title = title;
+    this.body = body;
+    this.createdAt = createdAt;
   }
 
-  static create(id: ThreadId, ownerId: UserId, title: string, body: string) {
-    const createdAt = new Date();
-    return new Thread(id, ownerId, title, body, createdAt);
-  }
-
-  private validateOwnerId(value: unknown): UserId {
-    if (value instanceof UserId === false) {
-      throw new DomainError(undefined, 'THREAD_INVALID_OWNER_ID');
-    }
-    return value;
-  }
-
-  private validateTitle(value: unknown): string {
-    if (!value || typeof value !== 'string') {
-      throw new DomainError(
-        'Title must be non-empty string',
-        'THREAD_INVALID_TITLE',
-      );
-    }
-
-    if (value.length > 255) {
+  static create(
+    id: ThreadId,
+    ownerId: UserId,
+    title: string,
+    body: string,
+    createdAt: Date = new Date(),
+  ) {
+    if (title.length > 255) {
       throw new DomainError('Title max 255 character', 'THREAD_INVALID_TITLE');
     }
 
-    return value;
-  }
-
-  private validateBody(value: string): string {
-    if (!value || typeof value !== 'string') {
-      throw new DomainError(
-        'Body must be non-empty string',
-        'THREAD_INVALID_BODY',
-      );
-    }
-
-    return value;
-  }
-
-  private validateCreatedAt(value: Date): Date {
-    if (
-      value instanceof Date === false ||
-      Number.isNaN(Date.parse(value.toString()))
-    ) {
-      throw new DomainError(undefined, 'INVALID_CREATION_DATE');
-    }
-    return value;
+    return new Thread(id, ownerId, title, body, createdAt);
   }
 }
