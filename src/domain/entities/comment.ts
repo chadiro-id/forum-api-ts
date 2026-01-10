@@ -8,6 +8,7 @@ import { UserId } from './user';
 
 export class CommentId extends EntityId {
   readonly __brand = 'CommentId';
+
   constructor(value: string) {
     if (!value || typeof value !== 'string') {
       throw new DomainError(
@@ -20,27 +21,17 @@ export class CommentId extends EntityId {
 }
 
 export class Comment extends DomainEntity<CommentId> {
-  public readonly threadId: ThreadId;
-  public readonly ownerId: UserId;
-  public readonly content: string;
-  public readonly createdAt: Date;
-
   private _isDelete: boolean;
 
   private constructor(
     id: CommentId,
-    threadId: ThreadId,
-    ownerId: UserId,
-    content: string,
+    public readonly threadId: ThreadId,
+    public readonly ownerId: UserId,
+    public readonly content: string,
     isDelete: boolean,
-    createdAt: Date,
+    public readonly createdAt: Date,
   ) {
     super(id);
-
-    this.threadId = threadId;
-    this.ownerId = ownerId;
-    this.content = content;
-    this.createdAt = createdAt;
 
     this._isDelete = isDelete;
   }
