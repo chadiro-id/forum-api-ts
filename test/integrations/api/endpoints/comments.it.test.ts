@@ -184,7 +184,7 @@ describe('Comments Endpoint', () => {
     });
 
     it('should response 400 when comment not belong to thread', async () => {
-      const endpoint = `/threads/xxx/comments/${commentData.id}`;
+      const endpoint = `/threads/another-thread-id/comments/${commentData.id}`;
       const response = await serverTest
         .request()
         .delete(endpoint)
