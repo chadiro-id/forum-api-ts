@@ -39,11 +39,11 @@ describe('PostgresUserRepository', () => {
       const users = await pgTest.users().findById('user-123');
       expect(users).toStrictEqual([
         {
-          id: 'user-123',
-          username: 'johndoe',
-          password: 'p455w0rd',
-          fullname: 'John Doe',
-          created_at: expect.toBeRecentDate(),
+          id: user.id.value,
+          username: user.username,
+          password: user.password,
+          fullname: user.fullname,
+          created_at: user.createdAt,
         },
       ]);
     });
