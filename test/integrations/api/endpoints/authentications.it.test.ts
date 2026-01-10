@@ -160,6 +160,66 @@ describe('Authentications Endpoint', () => {
         },
       });
     });
+
+    it('should response 400 when payload missing refreshToken', async () => {
+      const payload = { refreshTokens: 'typo key' };
+      const response = await serverTest
+        .request()
+        .put('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: '"refreshToken" wajib diisi',
+      });
+    });
+
+    it('should response 400 when refreshToken not string', async () => {
+      const payload = { refreshToken: 12345 };
+      const response = await serverTest
+        .request()
+        .put('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: '"refreshToken" harus berupa teks',
+      });
+    });
+
+    it('should response 400 when refreshToken is invalid', async () => {
+      const payload = { refreshToken: 'invalid_token' };
+      const response = await serverTest
+        .request()
+        .put('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'refresh token tidak valid',
+      });
+    });
+
+    it('should response 400 when refreshToken not exists', async () => {
+      const refreshToken = await authTokenService.createRefreshToken({
+        id: 'user-001',
+        username: 'johndoe',
+      });
+
+      const response = await serverTest
+        .request()
+        .put('/authentications')
+        .send({ refreshToken });
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'refresh token tidak ditemukan di database',
+      });
+    });
   });
 
   describe('DELETE /authentications', () => {
