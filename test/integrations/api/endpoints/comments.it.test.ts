@@ -39,7 +39,6 @@ describe('Comments Endpoint', () => {
   });
 
   describe('POST /threads/:threadId/comments', () => {
-    const endpoint = `/threads/${threadData.id}/comments`;
     const content = 'Sebuah komentar';
 
     let accessToken: string;
@@ -62,6 +61,7 @@ describe('Comments Endpoint', () => {
         },
       };
 
+      const endpoint = `/threads/${threadData.id}/comments`;
       const response = await serverTest
         .request()
         .post(endpoint)
@@ -73,6 +73,7 @@ describe('Comments Endpoint', () => {
     });
 
     it('should response 401 when request with no authentication', async () => {
+      const endpoint = `/threads/${threadData.id}/comments`;
       const response = await serverTest
         .request()
         .post(endpoint)
@@ -100,6 +101,7 @@ describe('Comments Endpoint', () => {
     });
 
     it('should response 400 when payload missing content', async () => {
+      const endpoint = `/threads/${threadData.id}/comments`;
       const response = await serverTest
         .request()
         .post(endpoint)
@@ -114,6 +116,7 @@ describe('Comments Endpoint', () => {
     });
 
     it('should response 400 when content not string', async () => {
+      const endpoint = `/threads/${threadData.id}/comments`;
       const response = await serverTest
         .request()
         .post(endpoint)
