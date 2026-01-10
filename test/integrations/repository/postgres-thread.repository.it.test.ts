@@ -42,12 +42,10 @@ describe('PostgresThreadRepository', () => {
 
   describe('add', () => {
     it('should persist Thread data', async () => {
-      const thread = Thread.create(
-        new ThreadId('thread-001'),
-        new UserId(userData.id),
-        'Sebuah thread',
-        'Isi thread',
-      );
+      const id = new ThreadId('thread-001');
+      const ownerId = new UserId(userData.id);
+
+      const thread = Thread.create(id, ownerId, 'Sebuah thread', 'Isi thread');
       await threadRepository.add(thread);
 
       const threads = await pgTest.threads().findById('thread-001');
