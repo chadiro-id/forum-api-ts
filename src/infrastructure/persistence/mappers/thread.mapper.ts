@@ -15,7 +15,7 @@ export class ThreadMapper {
     const id = new ThreadId(row.id);
     const ownerId = new UserId(row.owner_id);
 
-    return new Thread(id, ownerId, row.title, row.body, row.created_at);
+    return Thread.create(id, ownerId, row.title, row.body, row.created_at);
   }
 
   static toPersistence(entity: Thread) {
