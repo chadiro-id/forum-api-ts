@@ -6,7 +6,6 @@ import {
   Injectable,
 } from '../../../libs/my-app/common/injections/injections.decorator';
 import { ReplyMapper, ReplyRow } from '../../persistence/mappers/reply.mapper';
-import { QueryHelper } from '../../persistence/helper/query-helper';
 import { PG_POOL } from '../../database/database.module';
 
 @Injectable()
@@ -40,16 +39,6 @@ export class PostgresReplyRepository implements ReplyRepository {
     }
 
     return ReplyMapper.toDomain(result.rows[0]);
-  }
-
-  async updateById(id: ReplyId, changes: Partial<Reply>): Promise<void> {
-    const { sql, values } = QueryHelper.buildUpdateQuery(
-      'replies',
-      { id: id.value },
-      ReplyMapper.toPersistence(changes),
-    );
-
-    await this.pool.query(sql, values);
   }
 
   async softDelete(reply: Reply): Promise<void> {
