@@ -34,12 +34,9 @@ export class AuthController {
   @Put()
   async refreshAuth(@Body() dto: RefreshAuthDto) {
     const command = new RefreshAuthCommand(dto.refreshToken);
-    const { accessToken } =
-      await this.refreshAuthCommandHandler.handle(command);
+    const result = await this.refreshAuthCommandHandler.handle(command);
 
-    return {
-      accessToken,
-    };
+    return result;
   }
 
   @Delete()
