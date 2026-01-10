@@ -1,7 +1,12 @@
 import { AuthTokenService } from '@main/application/interfaces/auth-token-service.interface';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { AUTH_TOKEN_SERVICE } from '@main/shared/injections.constant';
-import { createUserData } from '@test/helper/data-factory';
+import {
+  createCommentData,
+  createReplyData,
+  createThreadData,
+  createUserData,
+} from '@test/helper/data-factory';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { createServerTest, ServerTest } from '@test/helper/server-test.helper';
 import { Pool } from 'pg';
@@ -124,6 +129,129 @@ describe('Threads Endpoint', () => {
       expect(response.body).toStrictEqual({
         status: 'fail',
         message: '"title" maksimal 255 karakter',
+      });
+    });
+  });
+
+  describe('GET /threads/:threadId', () => {
+    const threadData = createThreadData({ owner_id: userData.id });
+    const commentData = createCommentData({ thread_id: threadData.id });
+    const replyData = createReplyData();
+
+    beforeAll(async () => {
+      await pgTest.threads().add(threadData);
+    });
+
+    afterAll(async () => {
+      await pgTest.threads().cleanup();
+    });
+
+    afterEach(async () => {
+      await pgTest.comments().cleanup();
+      await pgTest.replies().cleanup();
+    });
+
+    it('should response 200 and thread details data', async () => {
+      const expectedResBody = {
+        status: 'success',
+        data: {
+          thread: {
+            id: threadData.id,
+            title: threadData.title,
+            body: threadData.body,
+            username: userData.username,
+            date: expect.stringMatching(
+              /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/,
+            ),
+            comments: [],
+          },
+        },
+      };
+
+      const response = await serverTest
+        .request()
+        .get(`/threads/${threadData.id}`);
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toStrictEqual(expectedResBody);
+    });
+
+    it('should handle all comments inculding soft-deleted ones', async () => {
+      const commentA = await pgTest
+        .comments()
+        .add({ ...commentData, id: 'comment-001', is_delete: false });
+      const commentB = await pgTest
+        .comments()
+        .add({ ...commentData, id: 'comment-002', is_delete: true });
+
+      const response = await serverTest
+        .request()
+        .get(`/threads/${threadData.id}`);
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body.data.thread.comments).toStrictEqual([
+        {
+          id: commentA.id,
+          content: commentA.content,
+          date: commentA.created_at.toISOString(),
+          username: userData.username,
+          replies: [],
+        },
+        {
+          id: commentB.id,
+          content: '**komentar telah dihapus**',
+          date: commentB.created_at.toISOString(),
+          username: userData.username,
+          replies: [],
+        },
+      ]);
+    });
+
+    it('should handle all replies including soft-deleted ones', async () => {
+      const comment = await pgTest.comments().add({ ...commentData });
+      const replyA = await pgTest.replies().add({
+        ...replyData,
+        id: 'reply-001',
+        comment_id: comment.id,
+        is_delete: false,
+      });
+      const replyB = await pgTest.replies().add({
+        ...replyData,
+        id: 'reply-002',
+        comment_id: comment.id,
+        is_delete: true,
+      });
+
+      const response = await serverTest
+        .request()
+        .get(`/threads/${threadData.id}`);
+
+      expect(response.statusCode).toBe(200);
+
+      const replies = response.body.data.thread.comments[0].replies;
+      expect(replies).toStrictEqual([
+        {
+          id: replyA.id,
+          content: replyA.content,
+          date: replyA.created_at.toISOString(),
+          username: userData.username,
+        },
+        {
+          id: replyB.id,
+          content: '**balasan telah dihapus**',
+          date: replyB.created_at.toISOString(),
+          username: userData.username,
+        },
+      ]);
+    });
+
+    it('should response 404 when thread not exists', async () => {
+      const response = await serverTest.request().get('/threads/xxx');
+
+      expect(response.statusCode).toBe(404);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'thread tidak ditemukan',
       });
     });
   });
