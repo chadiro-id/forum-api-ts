@@ -22,7 +22,7 @@ export class Authentication extends DomainEntity<AuthenticationId> {
   public readonly userId: UserId;
   public readonly token: string;
 
-  constructor(id: AuthenticationId, userId: UserId, token: string) {
+  private constructor(id: AuthenticationId, userId: UserId, token: string) {
     super(id);
     this.userId = userId;
     this.token = token;
