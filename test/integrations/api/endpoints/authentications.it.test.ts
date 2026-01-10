@@ -71,6 +71,65 @@ describe('Authentications Endpoint', () => {
       const { accessToken, refreshToken } = response.body.data;
       expect(accessToken).not.toBe(refreshToken);
     });
+
+    it('should response 400 when user not exists', async () => {
+      const payload = { username: 'non-existence-user', password: 'p455w0rd' };
+      const response = await serverTest
+        .request()
+        .post('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'pengguna tidak ada',
+      });
+    });
+
+    it('should response 401 when password is not match', async () => {
+      const hashedPassword = await passwordHasher.hashPassword('p455w0rd');
+      await pgTest.users().add({ ...userData, password: hashedPassword });
+
+      const payload = { username: userData.username, password: 'p455word' };
+      const response = await serverTest
+        .request()
+        .post('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(401);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'kredensial yang anda masukkan salah',
+      });
+    });
+
+    it('should response 400 when password not string', async () => {
+      const payload = { username: 'johndoe', password: 12345 };
+      const response = await serverTest
+        .request()
+        .post('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: '"password" harus berupa teks',
+      });
+    });
+
+    it('should response 400 when payload missing password', async () => {
+      const payload = { username: userData.username };
+      const response = await serverTest
+        .request()
+        .post('/authentications')
+        .send(payload);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: '"password" wajib diisi',
+      });
+    });
   });
 
   describe('PUT /authentications', () => {
