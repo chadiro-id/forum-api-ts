@@ -42,7 +42,7 @@ describe('Authentications Endpoint', () => {
   });
 
   describe('POST /authentications', () => {
-    it('should response 201 and return auth data', async () => {
+    it('should response 201 and auth token data', async () => {
       const hashedPassword = await passwordHasher.hashPassword(
         userData.password,
       );
@@ -70,6 +70,36 @@ describe('Authentications Endpoint', () => {
 
       const { accessToken, refreshToken } = response.body.data;
       expect(accessToken).not.toBe(refreshToken);
+    });
+  });
+
+  describe('PUT /authentications', () => {
+    it('should response 200 and new access token', async () => {
+      const hashedPassword = await passwordHasher.hashPassword('p455w0rd');
+      await pgTest.users().add({ ...userData, password: hashedPassword });
+
+      const refreshToken = await authTokenService.createRefreshToken({
+        id: userData.id,
+        username: userData.username,
+      });
+      await pgTest
+        .authentications()
+        .add({ user_id: userData.id, token: refreshToken });
+
+      const response = await serverTest
+        .request()
+        .put('/authentications')
+        .send({ refreshToken });
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toStrictEqual({
+        status: 'success',
+        data: {
+          accessToken: expect.stringMatching(
+            /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/,
+          ),
+        },
+      });
     });
   });
 
