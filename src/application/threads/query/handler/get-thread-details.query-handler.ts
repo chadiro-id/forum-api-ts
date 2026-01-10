@@ -12,7 +12,7 @@ export class GetThreadDetailsQueryHandler {
       throw new ThreadNotFoundError();
     }
 
-    const comments = await this.threadDetailsQueryService.getCommentsByThreadId(
+    const comments = await this.threadDetailsQueryService.getCommentsById(
       query.id,
     );
     if (comments.length === 0) {
