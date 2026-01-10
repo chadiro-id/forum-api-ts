@@ -35,31 +35,21 @@ describe('AuthenticationId', () => {
 });
 
 describe('Authentication Entity', () => {
-  describe('constructor', () => {
+  describe('create', () => {
     it('should create instance with valid data', () => {
-      const id = new AuthenticationId(null);
       const userId = new UserId('id-user');
-      const entity = new Authentication(id, userId, 'token');
+      const entity = Authentication.create(userId, 'token');
 
-      expect(entity.id).toStrictEqual(id);
+      expect(entity.id).toStrictEqual(new AuthenticationId(null));
       expect(entity.userId).toStrictEqual(userId);
       expect(entity.token).toBe('token');
     });
   });
 
-  describe('create', () => {
-    it('should create instance with default id null', () => {
-      const userId = new UserId('user-123');
-      const entity = Authentication.create(userId, 'token');
-      expect(entity.id.value).toBeNull();
-    });
-  });
-
   describe('assignId', () => {
     it('should correctly assign the given ID', () => {
-      const id = new AuthenticationId();
       const userId = new UserId('user-123');
-      const entity = new Authentication(id, userId, 'token');
+      const entity = Authentication.create(userId, 'token');
       const idToAssign = new AuthenticationId(1);
 
       entity.assignId(idToAssign);
@@ -67,9 +57,9 @@ describe('Authentication Entity', () => {
     });
 
     it('should throw DomainError when id already assigned', () => {
-      const id = new AuthenticationId(1);
       const userId = new UserId('user-123');
-      const entity = new Authentication(id, userId, 'token');
+      const entity = Authentication.create(userId, 'token');
+      entity.assignId(new AuthenticationId(1));
 
       try {
         entity.assignId(new AuthenticationId(2));
@@ -80,9 +70,8 @@ describe('Authentication Entity', () => {
     });
 
     it('should throw DomainError when assign id with null value', () => {
-      const id = new AuthenticationId();
       const userId = new UserId('user-123');
-      const entity = new Authentication(id, userId, 'token');
+      const entity = Authentication.create(userId, 'token');
 
       try {
         entity.assignId(new AuthenticationId(null));
