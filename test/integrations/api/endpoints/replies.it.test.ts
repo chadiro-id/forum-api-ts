@@ -6,6 +6,7 @@ import { Pool } from 'pg';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import {
   createCommentData,
+  createReplyData,
   createThreadData,
   createUserData,
 } from '@test/helper/data-factory';
@@ -55,6 +56,10 @@ describe('Replies Endpoint', () => {
         id: userData.id,
         username: userData.username,
       });
+    });
+
+    afterAll(async () => {
+      await pgTest.replies().cleanup();
     });
 
     it('should response 201 and added reply data', async () => {
@@ -151,6 +156,98 @@ describe('Replies Endpoint', () => {
       expect(response.body).toStrictEqual({
         status: 'fail',
         message: '"content" harus berupa teks',
+      });
+    });
+  });
+
+  describe('DELETE /threads/:threadId/comments/:commentId/replies/:replyId', () => {
+    const replyData = createReplyData({
+      comment_id: commentData.id,
+      owner_id: userData.id,
+    });
+
+    beforeAll(async () => {
+      await pgTest.replies().add(replyData);
+    });
+
+    afterAll(async () => {
+      await pgTest.replies().cleanup();
+    });
+
+    let accessToken: string;
+    beforeEach(async () => {
+      accessToken = await authTokenService.createAccessToken({
+        id: userData.id,
+        username: userData.username,
+      });
+    });
+
+    it('should response 200 and status "success"', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/${commentData.id}/replies/${replyData.id}`;
+      const response = await serverTest
+        .request()
+        .delete(endpoint)
+        .auth(accessToken, { type: 'bearer' });
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toStrictEqual({ status: 'success' });
+    });
+
+    it('should response 401 when request with no authentication', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/${commentData.id}/replies/${replyData.id}`;
+      const response = await serverTest.request().delete(endpoint);
+
+      expect(response.statusCode).toBe(401);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'Missing authentication',
+      });
+    });
+
+    it('should response 403 when request id not authorized', async () => {
+      const notAuthorizedToken = await authTokenService.createAccessToken({
+        id: 'not-authorized-id',
+        username: 'unknown-username',
+      });
+
+      const endpoint = `/threads/${threadData.id}/comments/${commentData.id}/replies/${replyData.id}`;
+      const response = await serverTest
+        .request()
+        .delete(endpoint)
+        .auth(notAuthorizedToken, { type: 'bearer' });
+
+      expect(response.statusCode).toBe(403);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'pengguna tidak memiliki hak akses',
+      });
+    });
+
+    it('should response 404 when reply not exists', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/${commentData.id}/replies/xxx`;
+      const response = await serverTest
+        .request()
+        .delete(endpoint)
+        .auth(accessToken, { type: 'bearer' });
+
+      expect(response.statusCode).toBe(404);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'balasan tidak ditemukan',
+      });
+    });
+
+    it('should response 400 when reply not belong to comment', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/another-comment-id/replies/${replyData.id}`;
+      const response = await serverTest
+        .request()
+        .delete(endpoint)
+        .auth(accessToken, { type: 'bearer' });
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'gagal mengakses sumber daya',
       });
     });
   });
