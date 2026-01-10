@@ -1,5 +1,5 @@
 export class Guard {
-  static againstNullish(props: object) {
+  static checkNullish(props: object) {
     const errors: string[] = [];
 
     for (const [k, v] of Object.entries(props)) {
@@ -7,5 +7,11 @@ export class Guard {
         errors.push(k);
       }
     }
+    return errors;
+  }
+
+  static isValidDate(value: unknown) {
+    if (value instanceof Date === false) return false;
+    return Number.isNaN(Date.parse(value.toString())) === false;
   }
 }
