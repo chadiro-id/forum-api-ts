@@ -60,4 +60,13 @@ export class PostgresCommentRepository implements CommentRepository {
     const result = await this.pool.query(sql, values);
     return result.rows.length > 0;
   }
+
+  async softDelete(comment: Comment): Promise<void> {
+    const query = {
+      text: 'UPDATE comments SET is_delete = TRUE WHERE id = $1',
+      values: [comment.id.value],
+    };
+
+    await this.pool.query(query);
+  }
 }
