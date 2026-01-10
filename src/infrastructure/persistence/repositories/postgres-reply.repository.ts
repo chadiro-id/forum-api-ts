@@ -51,4 +51,13 @@ export class PostgresReplyRepository implements ReplyRepository {
 
     await this.pool.query(sql, values);
   }
+
+  async softDelete(reply: Reply): Promise<void> {
+    const query = {
+      text: 'UPDATE replies SET is_delete = TRUE WHERE id = $1',
+      values: [reply.id.value],
+    };
+
+    await this.pool.query(query);
+  }
 }
