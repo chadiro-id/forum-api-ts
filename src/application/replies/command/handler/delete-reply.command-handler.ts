@@ -16,6 +16,6 @@ export class DeleteReplyCommandHandler {
     reply.verifyNonDeceptiveAccess(threadId, commentId);
     reply.verifyAccessRights(userId);
 
-    await this.replyRepository.updateById(reply.id, { isDelete: true });
+    await this.replyRepository.softDelete(reply);
   }
 }
