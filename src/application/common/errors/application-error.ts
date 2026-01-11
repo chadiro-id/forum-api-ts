@@ -1,7 +1,7 @@
 import { DomainError } from '../../../domain/common/domain-error';
 
 export type ApplicationErrorCode =
-  | 'INPUT_VALIDATION_ERROR'
+  | 'APPLICATION_ERROR'
   | 'USERNAME_ALREADY_EXISTS_ERROR'
   | 'NON_EXISTENCE_USER_LOGIN_ERROR'
   | 'INVALID_LOGIN_CREDENTIALS_ERROR'
