@@ -1,5 +1,5 @@
 import { DomainError } from '../../../domain/common/domain-error';
-import { CommentForbiddenAccessError } from './comment-forbidden-access.error';
+import { CommentForbiddenAccessError } from './comment-unauthorized-access.error';
 
 describe('CommentForbiddenAccessError', () => {
   it('should be instance of DomainError', () => {
