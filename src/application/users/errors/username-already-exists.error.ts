@@ -1,12 +1,12 @@
-import { DomainError } from '../../../domain/common/domain-error';
+import { ApplicationError } from '../../common/errors/application-error';
 
-export class UsernameAlreadyExistsError extends DomainError {
+export class UsernameAlreadyExistsError extends ApplicationError {
   constructor(username?: string) {
     const message = username
       ? `Username "${username}" already exists`
       : 'Username already exists';
 
-    super(message, 'USERNAME_ALREADY_EXISTS');
+    super(message, 'INVALID_OPERATION_ERROR');
     this.name = 'UsernameAlreadyExistsError';
   }
 }
