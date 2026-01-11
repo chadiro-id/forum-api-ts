@@ -9,10 +9,12 @@ import {
   Delete,
   HttpCode,
 } from '../../libs/my-app/common/controllers/controllers.decorator';
-import { RefreshAuthDto, UserLoginDto, UserLogoutDto } from './auth.dto';
 import { UserLoginCommand } from '../../application/authentications/command/user-login.command';
 import { RefreshAuthCommand } from '../../application/authentications/command/refresh-auth.command';
 import { UserLogoutCommand } from '../../application/authentications/command/user-logout.command';
+import { UserLoginDto } from './dtos/user-login.dto';
+import { RefreshAuthDto } from './dtos/refresh-auth.dto';
+import { UserLogoutDto } from './dtos/user-logout.dto';
 
 @Controller('/authentications')
 export class AuthController {
