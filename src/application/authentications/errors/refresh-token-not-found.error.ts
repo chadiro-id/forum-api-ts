@@ -2,7 +2,7 @@ import { ApplicationError } from '@main/application/common/errors/application-er
 
 export class RefreshTokenNotFoundError extends ApplicationError {
   constructor() {
-    super('Cannot find refresh token', 'KEY_NOT_FOUND_ERROR');
+    super('token not exists', 'NON_EXISTENCE_ERROR');
     this.name = 'RefreshTokenNotFoundError';
   }
 }

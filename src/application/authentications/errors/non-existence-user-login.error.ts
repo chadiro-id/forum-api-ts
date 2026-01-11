@@ -2,7 +2,7 @@ import { ApplicationError } from '@main/application/common/errors/application-er
 
 export class NonExistenceUserLoginError extends ApplicationError {
   constructor(message: string = '') {
-    super(message, 'NON_EXISTENCE_USER_LOGIN_ERROR');
+    super(message, 'NON_EXISTENCE_ERROR');
     this.name = 'NonExistenceUserLoginError';
   }
 }
