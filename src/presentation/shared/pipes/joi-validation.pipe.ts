@@ -6,8 +6,6 @@ import { AddReplyDto } from '../../replies/replies.dto';
 import { AddReplySchema } from '../../replies/replies.schema';
 import { AddCommentDto } from '../../comments/comments.dto';
 import { AddCommentSchema } from '../../comments/comments.schema';
-import { AddThreadDto } from '../../threads/threads.dto';
-import { AddThreadSchema } from '../../threads/threads.schema';
 import {
   RegisterUserDto,
   RegisterUserSchema,
@@ -21,6 +19,10 @@ import {
   RefreshAuthDto,
   RefreshAuthSchema,
 } from '../../auth/dtos/refresh-auth.dto';
+import {
+  AddThreadDto,
+  AddThreadSchema,
+} from '../../threads/dtos/add-thread.dto';
 
 export class JoiValidationPipe implements PipeTransform {
   transform(value: any, argMeta: ArgumentMetadata) {
