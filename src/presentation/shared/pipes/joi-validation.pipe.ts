@@ -2,14 +2,16 @@ import Joi from 'joi';
 import { InvariantError } from '../../../shared/errors/invariant-error';
 import { PipeTransform } from '../../../libs/my-app/common/pipes/pipe-transform';
 import { ArgumentMetadata } from '../../../libs/my-app/common/controllers/controllers.type';
-import { RegisterUserDto } from '../../users/users.dto';
-import { RegisterUserSchema } from '../../users/users.schema';
 import { AddReplyDto } from '../../replies/replies.dto';
 import { AddReplySchema } from '../../replies/replies.schema';
 import { AddCommentDto } from '../../comments/comments.dto';
 import { AddCommentSchema } from '../../comments/comments.schema';
 import { AddThreadDto } from '../../threads/threads.dto';
 import { AddThreadSchema } from '../../threads/threads.schema';
+import {
+  RegisterUserDto,
+  RegisterUserSchema,
+} from '../../users/dtos/register-user.dto';
 import { UserLoginDto, UserLoginSchema } from '../../auth/dtos/user-login.dto';
 import {
   UserLogoutDto,
