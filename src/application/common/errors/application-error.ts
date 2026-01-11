@@ -1,5 +1,3 @@
-import { DomainError } from '../../../domain/common/domain-error';
-
 export type ApplicationErrorCode =
   | 'APPLICATION_ERROR'
   | 'USERNAME_ALREADY_EXISTS_ERROR'
@@ -10,9 +8,13 @@ export type ApplicationErrorCode =
   | 'UNAUTHORIZED_ACCESS_ERROR'
   | 'INVALID_OPERATIONS_ERROR';
 
-export class ApplicationError extends DomainError {
+export class ApplicationError extends Error {
+  public readonly code: ApplicationErrorCode;
+
   constructor(message: string, code: ApplicationErrorCode) {
-    super(message, code);
+    super(message);
+
+    this.code = code;
     this.name = 'ApplicationError';
   }
 }
