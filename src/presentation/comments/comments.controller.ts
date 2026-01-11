@@ -1,6 +1,5 @@
 import { DeleteCommentCommandHandler } from '../../application/comments/command/handler/delete-comment.command-handler';
 import { AddCommentCommandHandler } from '../../application/comments/command/handler/add-comment.command-handler';
-import { AddCommentDto } from './comments.dto';
 import {
   Body,
   Controller,
@@ -18,6 +17,7 @@ import { UserId } from '../../domain/entities/user';
 import { DeleteCommentCommand } from '../../application/comments/command/delete-comment.command';
 import { CommentId } from '../../domain/entities/comment';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';
+import { AddCommentDto } from './dtos/add-comment.dto';
 
 @UseGuards(AuthGuard)
 @Controller('/threads/:threadId/comments')
