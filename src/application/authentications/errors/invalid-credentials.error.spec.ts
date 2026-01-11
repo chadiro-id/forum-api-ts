@@ -12,6 +12,6 @@ describe('InvalidCredentialsError', () => {
 
     expect(error.name).toBe('InvalidCredentialsError');
     expect(error.message).toBe('Error message');
-    expect(error.code).toBe('INVALID_LOGIN_CREDENTIALS_ERROR');
+    expect(error.code).toBe('AUTHENTICATION_ERROR');
   });
 });

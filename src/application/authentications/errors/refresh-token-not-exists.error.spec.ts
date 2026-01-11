@@ -11,7 +11,7 @@ describe('RefreshTokenNotExistsError', () => {
     const error = new RefreshTokenNotExistsError();
 
     expect(error.name).toBe('RefreshTokenNotExistsError');
-    expect(error.message).toBe('Cannot find refresh token');
+    expect(error.message).toBe('refresh token not exists');
     expect(error.code).toBe('NON_EXISTENCE_ERROR');
   });
 });

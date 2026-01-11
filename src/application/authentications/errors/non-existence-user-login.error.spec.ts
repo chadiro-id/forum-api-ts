@@ -12,6 +12,6 @@ describe('NonExistenceUserLoginError', () => {
 
     expect(error.name).toBe('NonExistenceUserLoginError');
     expect(error.message).toBe('Error message');
-    expect(error.code).toBe('NON_EXISTENCE_USER_LOGIN_ERROR');
+    expect(error.code).toBe('NON_EXISTENCE_ERROR');
   });
 });
