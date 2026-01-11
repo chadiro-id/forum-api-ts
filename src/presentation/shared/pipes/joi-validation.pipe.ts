@@ -10,16 +10,15 @@ import { AddCommentDto } from '../../comments/comments.dto';
 import { AddCommentSchema } from '../../comments/comments.schema';
 import { AddThreadDto } from '../../threads/threads.dto';
 import { AddThreadSchema } from '../../threads/threads.schema';
+import { UserLoginDto, UserLoginSchema } from '../../auth/dtos/user-login.dto';
 import {
-  UserLoginDto,
-  RefreshAuthDto,
   UserLogoutDto,
-} from '../../auth/auth.dto';
-import {
-  UserLoginSchema,
-  RefreshAuthSchema,
   UserLogoutSchema,
-} from '../../auth/auth.schema';
+} from '../../auth/dtos/user-logout.dto';
+import {
+  RefreshAuthDto,
+  RefreshAuthSchema,
+} from '../../auth/dtos/refresh-auth.dto';
 
 export class JoiValidationPipe implements PipeTransform {
   transform(value: any, argMeta: ArgumentMetadata) {
