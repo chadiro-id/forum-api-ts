@@ -2,8 +2,6 @@ import Joi from 'joi';
 import { InvariantError } from '../../../shared/errors/invariant-error';
 import { PipeTransform } from '../../../libs/my-app/common/pipes/pipe-transform';
 import { ArgumentMetadata } from '../../../libs/my-app/common/controllers/controllers.type';
-import { AddReplyDto } from '../../replies/replies.dto';
-import { AddReplySchema } from '../../replies/replies.schema';
 import {
   RegisterUserDto,
   RegisterUserSchema,
@@ -25,6 +23,7 @@ import {
   AddCommentDto,
   AddCommentSchema,
 } from '../../comments/dtos/add-comment.dto';
+import { AddReplyDto, AddReplySchema } from '../../replies/dtos/add-reply.dto';
 
 export class JoiValidationPipe implements PipeTransform {
   transform(value: any, argMeta: ArgumentMetadata) {

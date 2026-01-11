@@ -11,7 +11,6 @@ import {
   User,
 } from '../../libs/my-app/common/controllers/controllers.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
-import { AddReplyDto } from './replies.dto';
 import { AddReplyCommand } from '../../application/replies/command/add-reply.command';
 import { DeleteReplyCommand } from '../../application/replies/command/delete-reply.command';
 import { ReplyId } from '../../domain/entities/reply';
@@ -19,6 +18,7 @@ import { CommentId } from '../../domain/entities/comment';
 import { ThreadId } from '../../domain/entities/thread';
 import { UserId } from '../../domain/entities/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';
+import { AddReplyDto } from './dtos/add-reply.dto';
 
 @UseGuards(AuthGuard)
 @Controller('/threads/:threadId/comments/:commentId/replies')
