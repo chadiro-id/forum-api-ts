@@ -33,6 +33,14 @@ export class Authentication extends DomainEntity<AuthenticationId> {
     return new Authentication(id, userId, token);
   }
 
+  static restore(id: AuthenticationId, userId: UserId, token: string) {
+    if (!id.value || id.value < 1) {
+      throw new DomainError('invalid authentication ID');
+    }
+
+    return new Authentication(id, userId, token);
+  }
+
   assignId(id: AuthenticationId) {
     if (this._id.value) {
       throw new DomainError('ID already assigned', 'AUTHENTICATION_ASSIGN_ID');
