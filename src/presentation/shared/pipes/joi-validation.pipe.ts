@@ -4,8 +4,6 @@ import { PipeTransform } from '../../../libs/my-app/common/pipes/pipe-transform'
 import { ArgumentMetadata } from '../../../libs/my-app/common/controllers/controllers.type';
 import { AddReplyDto } from '../../replies/replies.dto';
 import { AddReplySchema } from '../../replies/replies.schema';
-import { AddCommentDto } from '../../comments/comments.dto';
-import { AddCommentSchema } from '../../comments/comments.schema';
 import {
   RegisterUserDto,
   RegisterUserSchema,
@@ -23,6 +21,10 @@ import {
   AddThreadDto,
   AddThreadSchema,
 } from '../../threads/dtos/add-thread.dto';
+import {
+  AddCommentDto,
+  AddCommentSchema,
+} from '../../comments/dtos/add-comment.dto';
 
 export class JoiValidationPipe implements PipeTransform {
   transform(value: any, argMeta: ArgumentMetadata) {
