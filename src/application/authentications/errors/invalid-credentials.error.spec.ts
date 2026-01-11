@@ -1,10 +1,10 @@
-import { DomainError } from '../../../domain/common/domain-error';
+import { ApplicationError } from '../../common/errors/application-error';
 import { InvalidCredentialsError } from './invalid-credentials.error';
 
 describe('InvalidCredentialsError', () => {
-  it('should be instance of DomainError', () => {
+  it('should be instance of ApplicationError', () => {
     const error = new InvalidCredentialsError();
-    expect(error).toBeInstanceOf(DomainError);
+    expect(error).toBeInstanceOf(ApplicationError);
   });
 
   it('should correctly initialize properties', () => {
@@ -12,6 +12,6 @@ describe('InvalidCredentialsError', () => {
 
     expect(error.name).toBe('InvalidCredentialsError');
     expect(error.message).toBe('Error message');
-    expect(error.code).toBe('INVALID_CREDENTIALS');
+    expect(error.code).toBe('INVALID_LOGIN_CREDENTIALS_ERROR');
   });
 });
