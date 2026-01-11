@@ -10,7 +10,7 @@ export class ApplicationErrorFilter implements ExceptionFilter {
 
     let statusCode: number | undefined;
     switch (exception.code) {
-      case 'INVALID_LOGIN_CREDENTIALS_ERROR':
+      case 'AUTHENTICATION_ERROR':
         statusCode = 401;
         break;
       case 'UNAUTHORIZED_ACCESS_ERROR':
@@ -19,11 +19,11 @@ export class ApplicationErrorFilter implements ExceptionFilter {
       case 'KEY_NOT_FOUND_ERROR':
         statusCode = 404;
         break;
-      case 'INVALID_OPERATIONS_ERROR':
+      case 'INVALID_OPERATION_ERROR':
         statusCode = 409;
         break;
-      case 'NON_EXISTENCE_USER_LOGIN_ERROR':
-      case 'USERNAME_ALREADY_EXISTS_ERROR':
+      case 'ARGUMENT_ERROR':
+      case 'NON_EXISTENCE_ERROR':
       case 'DECEPTIVE_ACCESS_ERROR':
         statusCode = 400;
         break;
