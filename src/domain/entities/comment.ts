@@ -18,15 +18,27 @@ export class CommentId extends EntityId {
 }
 
 export class Comment extends DomainEntity<CommentId> {
+  public readonly threadId: ThreadId;
+  public readonly ownerId: UserId;
+  public readonly content: string;
+  public readonly isDelete: boolean;
+  public readonly createdAt: Date;
+
   private constructor(
     id: CommentId,
-    public readonly threadId: ThreadId,
-    public readonly ownerId: UserId,
-    public readonly content: string,
-    public readonly isDelete: boolean,
-    public readonly createdAt: Date,
+    threadId: ThreadId,
+    ownerId: UserId,
+    content: string,
+    isDelete: boolean,
+    createdAt: Date,
   ) {
     super(id);
+
+    this.threadId = threadId;
+    this.ownerId = ownerId;
+    this.content = content;
+    this.isDelete = isDelete;
+    this.createdAt = createdAt;
   }
 
   static create(
