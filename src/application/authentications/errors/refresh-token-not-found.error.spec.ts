@@ -1,5 +1,5 @@
 import { ApplicationError } from '@main/application/common/errors/application-error';
-import { RefreshTokenNotFoundError } from './refresh-token-not-found.error';
+import { RefreshTokenNotFoundError } from './refresh-token-not-exists.error';
 
 describe('RefreshTokenNotFoundError', () => {
   it('should be instance of ApplicationError', () => {

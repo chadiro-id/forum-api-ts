@@ -1,5 +1,5 @@
 import { AuthenticationRepository } from '../../../../domain/repositories/authentication-repository.interface';
-import { RefreshTokenNotFoundError } from '../../errors/refresh-token-not-found.error';
+import { RefreshTokenNotFoundError } from '../../errors/refresh-token-not-exists.error';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';
 import { RefreshAuthCommand } from '../refresh-auth.command';
 import { AuthTokenService } from '../../../common/interfaces/auth-token-service.interface';

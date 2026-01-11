@@ -1,5 +1,5 @@
 import { AuthenticationRepository } from '../../../../domain/repositories/authentication-repository.interface';
-import { RefreshTokenNotFoundError } from '../../errors/refresh-token-not-found.error';
+import { RefreshTokenNotFoundError } from '../../errors/refresh-token-not-exists.error';
 import { UserLogoutCommand } from '../user-logout.command';
 
 export class UserLogoutCommandHandler {
