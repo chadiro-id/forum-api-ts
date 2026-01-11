@@ -13,7 +13,9 @@ export class AuthenticationMapper {
   static toDomain(row: AuthenticationRow): Authentication {
     const id = new AuthenticationId(parseInt(row.id, 10));
     const userId = new UserId(row.user_id);
-    return new Authentication(id, userId, row.token);
+    const entity = Authentication.create(userId, row.token);
+    entity.assignId(id);
+    return entity;
   }
 
   static toPersistence(entity: Authentication) {
