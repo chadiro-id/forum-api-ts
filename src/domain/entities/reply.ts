@@ -16,16 +16,30 @@ export class ReplyId extends EntityId {
 }
 
 export class Reply extends DomainEntity<ReplyId> {
+  public readonly threadId: ThreadId;
+  public readonly commentId: CommentId;
+  public readonly ownerId: UserId;
+  public readonly content: string;
+  public readonly isDelete: boolean;
+  public readonly createdAt: Date;
+
   private constructor(
     id: ReplyId,
-    public readonly threadId: ThreadId,
-    public readonly commentId: CommentId,
-    public readonly ownerId: UserId,
-    public readonly content: string,
-    public readonly isDelete: boolean,
-    public readonly createdAt: Date,
+    threadId: ThreadId,
+    commentId: CommentId,
+    ownerId: UserId,
+    content: string,
+    isDelete: boolean,
+    createdAt: Date,
   ) {
     super(id);
+
+    this.threadId = threadId;
+    this.commentId = commentId;
+    this.ownerId = ownerId;
+    this.content = content;
+    this.isDelete = isDelete;
+    this.createdAt = createdAt;
   }
 
   static create(
