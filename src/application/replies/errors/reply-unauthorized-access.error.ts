@@ -1,8 +1,8 @@
-import { DomainError } from '../../../domain/common/domain-error';
+import { ApplicationError } from '../../common/errors/application-error';
 
-export class ReplyForbiddenAccessError extends DomainError {
-  constructor(message?: string) {
-    super(message, 'FORBIDDEN_ACCESS');
-    this.name = 'ReplyForbiddenAccessError';
+export class ReplyUnauthorizedAccessError extends ApplicationError {
+  constructor(message: string) {
+    super(message, 'UNAUTHORIZED_ACCESS_ERROR');
+    this.name = 'ReplyUnauthorizedAccessError';
   }
 }
