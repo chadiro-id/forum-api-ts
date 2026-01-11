@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { PasswordHasher } from '../../application/interfaces/password-hasher.interface';
+import { PasswordHasher } from '../../application/common/interfaces/password-hasher.interface';
 import { Injectable } from '../../libs/my-app/common/injections/injections.decorator';
 
 @Injectable()

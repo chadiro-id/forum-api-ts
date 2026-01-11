@@ -2,7 +2,7 @@ import { AuthenticationRepository } from '../../../../domain/repositories/authen
 import { RefreshTokenNotFoundError } from '../../errors/refresh-token-not-found.error';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';
 import { RefreshAuthCommand } from '../refresh-auth.command';
-import { AuthTokenService } from '../../../interfaces/auth-token-service.interface';
+import { AuthTokenService } from '../../../common/interfaces/auth-token-service.interface';
 
 export class RefreshAuthCommandHandler {
   constructor(

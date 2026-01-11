@@ -1,4 +1,4 @@
-import { AuthTokenService } from '@main/application/interfaces/auth-token-service.interface';
+import { AuthTokenService } from '@main/application/common/interfaces/auth-token-service.interface';
 import { createServerTest, ServerTest } from '@test/helper/server-test.helper';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { AUTH_TOKEN_SERVICE } from '@main/shared/injections.constant';

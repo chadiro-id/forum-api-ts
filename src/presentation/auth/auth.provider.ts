@@ -1,5 +1,5 @@
-import { AuthTokenService } from '../../application/interfaces/auth-token-service.interface';
-import { PasswordHasher } from '../../application/interfaces/password-hasher.interface';
+import { AuthTokenService } from '../../application/common/interfaces/auth-token-service.interface';
+import { PasswordHasher } from '../../application/common/interfaces/password-hasher.interface';
 import { AuthenticationRepository } from '../../domain/repositories/authentication-repository.interface';
 import { UserRepository } from '../../domain/repositories/user-repository.interface';
 import { UserLoginCommandHandler } from '../../application/authentications/command/handler/user-login.command-handler';

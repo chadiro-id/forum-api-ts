@@ -1,6 +1,6 @@
 import { User, UserId } from '@main/domain/entities/user';
 import { UserRepository } from '../../../../domain/repositories/user-repository.interface';
-import { PasswordHasher } from '@main/application/interfaces/password-hasher.interface';
+import { PasswordHasher } from '@main/application/common/interfaces/password-hasher.interface';
 import { RegisterUserCommandHandler } from './register-user.command-handler';
 import { RegisterUserCommand } from '../register-user.command';
 import { RegisteredUserReport } from '../../reports/registered-user.report';

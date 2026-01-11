@@ -1,6 +1,6 @@
 import { AuthenticationRepository } from '../../../../domain/repositories/authentication-repository.interface';
-import { PasswordHasher } from '../../../interfaces/password-hasher.interface';
-import { AuthTokenService } from '../../../interfaces/auth-token-service.interface';
+import { PasswordHasher } from '../../../common/interfaces/password-hasher.interface';
+import { AuthTokenService } from '../../../common/interfaces/auth-token-service.interface';
 import { Authentication } from '../../../../domain/entities/authentication';
 import { NonExistenceUserLoginError } from '../../errors/non-existence-user-login.error';
 import { InvalidCredentialsError } from '../../errors/invalid-credentials.error';

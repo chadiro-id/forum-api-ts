@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import {
   AuthTokenService,
   AuthTokenPayload,
-} from '../../application/interfaces/auth-token-service.interface';
+} from '../../application/common/interfaces/auth-token-service.interface';
 import { Injectable } from '../../libs/my-app/common/injections/injections.decorator';
 import { InvariantError } from '../../shared/errors/invariant-error';
 import { ConfigService } from '../config/config-service';

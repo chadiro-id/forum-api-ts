@@ -2,8 +2,8 @@ import { createServerTest, ServerTest } from '@test/helper/server-test.helper';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { Pool } from 'pg';
-import { AuthTokenService } from '@main/application/interfaces/auth-token-service.interface';
-import { PasswordHasher } from '@main/application/interfaces/password-hasher.interface';
+import { AuthTokenService } from '@main/application/common/interfaces/auth-token-service.interface';
+import { PasswordHasher } from '@main/application/common/interfaces/password-hasher.interface';
 import {
   AUTH_TOKEN_SERVICE,
   PASSWORD_HASHER,

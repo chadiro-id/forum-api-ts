@@ -2,7 +2,7 @@ import { createServerTest, ServerTest } from '@test/helper/server-test.helper';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { Pool } from 'pg';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
-import { AuthTokenService } from '@main/application/interfaces/auth-token-service.interface';
+import { AuthTokenService } from '@main/application/common/interfaces/auth-token-service.interface';
 import { AUTH_TOKEN_SERVICE } from '@main/shared/injections.constant';
 import {
   createCommentData,

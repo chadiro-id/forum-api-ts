@@ -1,4 +1,4 @@
-import { AuthTokenService } from '@main/application/interfaces/auth-token-service.interface';
+import { AuthTokenService } from '@main/application/common/interfaces/auth-token-service.interface';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { AUTH_TOKEN_SERVICE } from '@main/shared/injections.constant';
 import {
