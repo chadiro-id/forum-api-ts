@@ -1,8 +1,8 @@
-import { DomainError } from '../../../domain/common/domain-error';
+import { ApplicationError } from '../../common/errors/application-error';
 
-export class ReplyDeceptiveAccessError extends DomainError {
-  constructor(message?: string) {
-    super(message, 'DECEPTIVE_ACCESS');
+export class ReplyDeceptiveAccessError extends ApplicationError {
+  constructor(message: string = '') {
+    super(message, 'DECEPTIVE_ACCESS_ERROR');
     this.name = 'ReplyDeceptiveAccessError';
   }
 }
