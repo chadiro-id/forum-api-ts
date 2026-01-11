@@ -1,6 +1,6 @@
 import { RegisterUserCommandHandler } from '../../application/users/command/handler/register-user.command-handler';
 import { RegisterUserCommand } from '../../application/users/command/register-user.command';
-import { RegisterUserDto } from './users.dto';
+import { RegisterUserDto } from './dtos/register-user.dto';
 import {
   Body,
   Controller,
