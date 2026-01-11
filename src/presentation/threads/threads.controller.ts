@@ -1,6 +1,6 @@
 import { AddThreadCommandHandler } from '../../application/threads/command/handler/add-thread.command-handler';
 import { GetThreadDetailsQueryHandler } from '../../application/threads/query/handler/get-thread-details.query-handler';
-import { AddThreadDto } from './threads.dto';
+import { AddThreadDto } from './dtos/add-thread.dto';
 import {
   Body,
   Controller,
