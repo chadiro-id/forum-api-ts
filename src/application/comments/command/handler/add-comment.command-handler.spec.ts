@@ -8,6 +8,7 @@ import { ThreadId } from '@main/domain/entities/thread';
 import { UserId } from '@main/domain/entities/user';
 import { Comment, CommentId } from '@main/domain/entities/comment';
 import { ThreadNotFoundError } from '@main/application/threads/errors/thread-not-found.error';
+import { AddedCommentReport } from '../../reports/added-comment.report';
 jest.useFakeTimers();
 
 describe('AddCommentCommandHandler', () => {
@@ -40,8 +41,11 @@ describe('AddCommentCommandHandler', () => {
     );
 
     const command = new AddCommentCommand(threadId, userId, 'Sebuah komentar');
-    await commandHandler.handle(command);
+    const result = await commandHandler.handle(command);
 
+    expect(result).toStrictEqual(
+      new AddedCommentReport('comment-001', 'Sebuah komentar', 'user-001'),
+    );
     expect(mockThreadRepo.existsById).toHaveBeenCalledWith(threadId);
     expect(mockCommentRepo.add).toHaveBeenCalledWith(calledComment);
   });
