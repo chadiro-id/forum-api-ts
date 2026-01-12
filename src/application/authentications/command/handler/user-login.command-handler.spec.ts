@@ -3,7 +3,7 @@ import { PasswordHasher } from '@main/application/common/interfaces/password-has
 import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
 import { UserRepository } from '@main/domain/repositories/user-repository.interface';
 import { UserLoginCommandHandler } from './user-login.command-handler';
-import { MockAuthTokenService } from '@main/application/common/tests/fake-auth-token-service';
+import { FakeAuthTokenService } from '@main/application/common/tests/fake-auth-token-service';
 import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
 import { MockPasswordHasher } from '@main/application/common/tests/mock-password-hasher';
@@ -22,7 +22,7 @@ describe('UserLoginCommandHandler', () => {
   let commandHandler: UserLoginCommandHandler;
 
   beforeAll(() => {
-    mockAuthTokenService = new MockAuthTokenService();
+    mockAuthTokenService = new FakeAuthTokenService();
     mockAuthRepository = new InMemoryAuthenticationRepository();
     mockUserRepository = new InMemoryUserRepository();
     mockPasswordHasher = new MockPasswordHasher();
