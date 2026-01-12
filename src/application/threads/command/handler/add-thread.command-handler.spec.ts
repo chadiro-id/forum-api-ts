@@ -23,12 +23,12 @@ describe('AddThreadCommandHandler', () => {
     const command = new AddThreadCommand(
       'Sebuah thread',
       'Isi thread',
-      new UserId('user-001'),
+      new UserId('user-id'),
     );
     const result = await commandHandler.handle(command);
 
     expect(result).toStrictEqual(
-      new AddedThreadReport('thread-001', 'Sebuah thread', 'user-001'),
+      new AddedThreadReport('thread-001', 'Sebuah thread', 'user-id'),
     );
   });
 });
