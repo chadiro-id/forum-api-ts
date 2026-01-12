@@ -34,7 +34,11 @@ describe('DeleteCommentCommandHandler', () => {
     mockCommentRepo.findById = jest.fn().mockResolvedValue(mockEntity);
     mockCommentRepo.softDelete = jest.fn().mockResolvedValue(undefined);
 
-    const command = new DeleteCommentCommand(id, threadId, userId);
+    const command = new DeleteCommentCommand(
+      'comment-001',
+      'thread-id',
+      'user-id',
+    );
     await commandHandler.handle(command);
 
     expect(mockCommentRepo.findById).toHaveBeenCalledWith(id);
@@ -45,15 +49,16 @@ describe('DeleteCommentCommandHandler', () => {
     mockCommentRepo.findById = jest.fn().mockResolvedValue(null);
     mockCommentRepo.softDelete = jest.fn();
 
-    const id = new CommentId('comment-001');
-    const threadId = new ThreadId('thread-id');
-    const userId = new UserId('user-id');
-
-    const command = new DeleteCommentCommand(id, threadId, userId);
+    const command = new DeleteCommentCommand(
+      'comment-001',
+      'thread-id',
+      'user-id',
+    );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       CommentNotFoundError,
     );
 
+    expect(mockCommentRepo.findById).toHaveBeenCalledTimes(1);
     expect(mockCommentRepo.softDelete).not.toHaveBeenCalled();
   });
 
@@ -61,14 +66,17 @@ describe('DeleteCommentCommandHandler', () => {
     const id = new CommentId('comment-001');
     const threadId = new ThreadId('thread-id');
     const userId = new UserId('user-id');
-    const mismatchedThreadId = new ThreadId('thread-xxx');
 
     const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
 
     mockCommentRepo.findById = jest.fn().mockResolvedValue(mockEntity);
     mockCommentRepo.softDelete = jest.fn();
 
-    const command = new DeleteCommentCommand(id, mismatchedThreadId, userId);
+    const command = new DeleteCommentCommand(
+      'comment-001',
+      'thread-xxx',
+      'user-id',
+    );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       CommentDeceptiveAccessError,
     );
@@ -81,14 +89,22 @@ describe('DeleteCommentCommandHandler', () => {
     const id = new CommentId('comment-001');
     const threadId = new ThreadId('thread-id');
     const userId = new UserId('user-id');
-    const mismatchedUserId = new UserId('user-xxx');
 
-    const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
+    const mockValueComment = Comment.create(
+      id,
+      threadId,
+      userId,
+      'Sebuah komentar',
+    );
 
-    mockCommentRepo.findById = jest.fn().mockResolvedValue(mockEntity);
+    mockCommentRepo.findById = jest.fn().mockResolvedValue(mockValueComment);
     mockCommentRepo.softDelete = jest.fn();
 
-    const command = new DeleteCommentCommand(id, threadId, mismatchedUserId);
+    const command = new DeleteCommentCommand(
+      'comment-001',
+      'thread-id',
+      'user-xxx',
+    );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       CommentUnauthorizedAccessError,
     );
