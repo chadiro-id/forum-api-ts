@@ -14,8 +14,4 @@ export class RegisteredUserReport {
       user.fullname,
     );
   }
-
-  toJSON() {
-    return Object.assign({}, this);
-  }
 }

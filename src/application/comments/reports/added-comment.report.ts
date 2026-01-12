@@ -14,12 +14,4 @@ export class AddedCommentReport {
       comment.ownerId.value,
     );
   }
-
-  toJSON() {
-    return {
-      id: this.id,
-      content: this.content,
-      owner: this.owner,
-    };
-  }
 }

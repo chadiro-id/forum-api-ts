@@ -14,12 +14,4 @@ export class AddedReplyReport {
       reply.ownerId.value,
     );
   }
-
-  toJSON() {
-    return {
-      id: this.id,
-      content: this.content,
-      owner: this.owner,
-    };
-  }
 }

@@ -3,8 +3,4 @@ export class LoggedInUserReport {
     public readonly accessToken: string,
     public readonly refreshToken: string,
   ) {}
-
-  toJSON() {
-    return Object.assign({}, this);
-  }
 }
