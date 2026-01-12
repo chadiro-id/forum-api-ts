@@ -4,7 +4,7 @@ import {
 } from '@main/application/common/interfaces/auth-token-service.interface';
 import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
 import { RefreshAuthCommandHandler } from './refresh-auth.command-handler';
-import { MockAuthenticationRepository } from '@main/application/common/tests/in-memory-authentication-repository';
+import { InMemoryAuthenticationRepository } from '@main/application/common/tests/in-memory-authentication-repository';
 import { MockAuthTokenService } from '@main/application/common/tests/mock-auth-token-service';
 import {
   Authentication,
@@ -21,7 +21,7 @@ describe('RefreshAuthCommandHandler', () => {
   let commandHandler: RefreshAuthCommandHandler;
 
   beforeAll(() => {
-    mockAuthRepo = new MockAuthenticationRepository();
+    mockAuthRepo = new InMemoryAuthenticationRepository();
     mockAuthTokenService = new MockAuthTokenService();
     commandHandler = new RefreshAuthCommandHandler(
       mockAuthRepo,
