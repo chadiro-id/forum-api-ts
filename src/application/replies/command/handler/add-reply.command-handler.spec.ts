@@ -1,11 +1,11 @@
-import { CommentRepository } from '@main/domain/repositories/comment-repository.interface';
+import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 import { ReplyRepository } from '@main/domain/repositories/reply-repository.interface';
 import { AddReplyCommandHandler } from './add-reply.command-handler';
 import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
 import { InMemoryReplyRepository } from '@main/application/common/tests/repository/in-memory-reply-repository';
 import { Reply, ReplyId } from '@main/domain/entities/reply';
 import { ThreadId } from '@main/domain/entities/thread';
-import { CommentId } from '@main/domain/entities/comment';
+import { CommentId } from '@main/domain/comments/comment';
 import { UserId } from '@main/domain/entities/user';
 import { AddReplyCommand } from '../add-reply.command';
 import { AddedReplyReport } from '../../reports/added-reply.report';

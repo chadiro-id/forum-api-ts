@@ -1,5 +1,5 @@
-import { Comment, CommentId } from '../../../domain/entities/comment';
-import { CommentRepository } from '../../../domain/repositories/comment-repository.interface';
+import { Comment, CommentId } from '../../../domain/comments/comment';
+import { CommentRepository } from '../../../domain/comments/comment-repository.interface';
 import { Pool } from 'pg';
 import {
   Inject,

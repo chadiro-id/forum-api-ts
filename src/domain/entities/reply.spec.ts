@@ -1,5 +1,5 @@
 import { DomainError } from '../common/domain-error';
-import { CommentId } from './comment';
+import { CommentId } from '../comments/comment';
 import { Reply, ReplyId } from './reply';
 import { ThreadId } from './thread';
 import { UserId } from './user';

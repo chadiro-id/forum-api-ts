@@ -4,7 +4,7 @@ import {
   ReplyDetails,
   ThreadDetails,
 } from '@main/application/threads/query/results/thread-details.result';
-import { CommentId } from '@main/domain/entities/comment';
+import { CommentId } from '@main/domain/comments/comment';
 import { ReplyId } from '@main/domain/entities/reply';
 import { ThreadId } from '@main/domain/entities/thread';
 import { PG_POOL } from '@main/infrastructure/database/database.module';

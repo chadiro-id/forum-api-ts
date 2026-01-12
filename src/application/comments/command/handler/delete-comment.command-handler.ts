@@ -1,4 +1,4 @@
-import { CommentRepository } from '../../../../domain/repositories/comment-repository.interface';
+import { CommentRepository } from '../../../../domain/comments/comment-repository.interface';
 import { DeleteCommentCommand } from '../delete-comment.command';
 import { CommentNotFoundError } from '../../errors/comment-not-found.error';
 import { CommentDeceptiveAccessError } from '../../errors/comment-deceptive-access.error';

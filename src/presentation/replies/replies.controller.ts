@@ -14,7 +14,7 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 import { AddReplyCommand } from '../../application/replies/command/add-reply.command';
 import { DeleteReplyCommand } from '../../application/replies/command/delete-reply.command';
 import { ReplyId } from '../../domain/entities/reply';
-import { CommentId } from '../../domain/entities/comment';
+import { CommentId } from '../../domain/comments/comment';
 import { ThreadId } from '../../domain/entities/thread';
 import { UserId } from '../../domain/entities/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';

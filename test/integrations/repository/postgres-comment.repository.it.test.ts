@@ -1,5 +1,5 @@
 import { AppModule } from '@main/app.module';
-import { Comment, CommentId } from '@main/domain/entities/comment';
+import { Comment, CommentId } from '@main/domain/comments/comment';
 import { ThreadId } from '@main/domain/entities/thread';
 import { UserId } from '@main/domain/entities/user';
 import { PG_POOL } from '@main/infrastructure/database/database.module';

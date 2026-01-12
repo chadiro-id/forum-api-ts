@@ -1,5 +1,5 @@
 import { AppModule } from '@main/app.module';
-import { CommentId } from '@main/domain/entities/comment';
+import { CommentId } from '@main/domain/comments/comment';
 import { Reply, ReplyId } from '@main/domain/entities/reply';
 import { ThreadId } from '@main/domain/entities/thread';
 import { UserId } from '@main/domain/entities/user';

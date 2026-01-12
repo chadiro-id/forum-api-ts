@@ -1,4 +1,4 @@
-import { CommentRepository } from '../../domain/repositories/comment-repository.interface';
+import { CommentRepository } from '../../domain/comments/comment-repository.interface';
 import { ReplyRepository } from '../../domain/repositories/reply-repository.interface';
 import { AddReplyCommandHandler } from '../../application/replies/command/handler/add-reply.command-handler';
 import { DeleteReplyCommandHandler } from '../../application/replies/command/handler/delete-reply.command-handler';

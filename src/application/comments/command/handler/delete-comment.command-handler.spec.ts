@@ -1,7 +1,7 @@
-import { CommentRepository } from '@main/domain/repositories/comment-repository.interface';
+import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 import { DeleteCommentCommandHandler } from './delete-comment.command-handler';
 import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
-import { Comment, CommentId } from '@main/domain/entities/comment';
+import { Comment, CommentId } from '@main/domain/comments/comment';
 import { ThreadId } from '@main/domain/entities/thread';
 import { UserId } from '@main/domain/entities/user';
 import { DeleteCommentCommand } from '../delete-comment.command';

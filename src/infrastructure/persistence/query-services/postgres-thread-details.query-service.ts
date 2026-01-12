@@ -3,7 +3,7 @@ import {
   CommentDetails,
   ReplyDetails,
 } from '../../../application/threads/query/results/thread-details.result';
-import { CommentId } from '../../../domain/entities/comment';
+import { CommentId } from '../../../domain/comments/comment';
 import { ThreadId } from '../../../domain/entities/thread';
 import { ThreadDetailsQueryService } from '../../../application/threads/interfaces/thread-details-query-service.interface';
 import { Inject } from '../../../libs/my-app/common/injections/injections.decorator';

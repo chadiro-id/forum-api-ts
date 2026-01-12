@@ -1,4 +1,4 @@
-import { CommentRepository } from '@main/domain/repositories/comment-repository.interface';
+import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 import { ThreadRepository } from '@main/domain/repositories/thread-repository.interface';
 import { AddCommentCommandHandler } from './add-comment.command-handler';
 import { InMemoryThreadRepository } from '@main/application/common/tests/repository/in-memory-thread-repository';
@@ -6,7 +6,7 @@ import { InMemoryCommentRepository } from '@main/application/common/tests/reposi
 import { AddCommentCommand } from '../add-comment.command';
 import { ThreadId } from '@main/domain/entities/thread';
 import { UserId } from '@main/domain/entities/user';
-import { Comment, CommentId } from '@main/domain/entities/comment';
+import { Comment, CommentId } from '@main/domain/comments/comment';
 import { ThreadNotFoundError } from '@main/application/threads/errors/thread-not-found.error';
 import { AddedCommentReport } from '../../reports/added-comment.report';
 jest.useFakeTimers();

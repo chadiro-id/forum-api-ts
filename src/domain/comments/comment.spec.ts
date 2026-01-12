@@ -1,7 +1,7 @@
 import { DomainError } from '../common/domain-error';
 import { Comment, CommentId } from './comment';
-import { ThreadId } from './thread';
-import { UserId } from './user';
+import { ThreadId } from '../entities/thread';
+import { UserId } from '../entities/user';
 
 describe('CommentId', () => {
   it('should create instance with valid value', () => {

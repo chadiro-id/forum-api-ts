@@ -1,6 +1,6 @@
 import { EntityId } from '@main/domain/common/domain-entity';
-import { Comment, CommentId } from '@main/domain/entities/comment';
-import { CommentRepository } from '@main/domain/repositories/comment-repository.interface';
+import { Comment, CommentId } from '@main/domain/comments/comment';
+import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 
 export class InMemoryCommentRepository implements CommentRepository {
   constructor(private storage: Array<Comment> = []) {}

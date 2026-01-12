@@ -1,4 +1,4 @@
-import { CommentId } from '../../../domain/entities/comment';
+import { CommentId } from '../../../domain/comments/comment';
 import { ThreadId } from '../../../domain/entities/thread';
 import { UserId } from '../../../domain/entities/user';
 

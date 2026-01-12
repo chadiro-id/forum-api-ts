@@ -1,7 +1,7 @@
 import { ThreadId } from '../../../domain/entities/thread';
 import { Reply, ReplyId } from '../../../domain/entities/reply';
 import { ReplyDetails } from '../../../application/threads/query/results/thread-details.result';
-import { CommentId } from '../../../domain/entities/comment';
+import { CommentId } from '../../../domain/comments/comment';
 import { UserId } from '../../../domain/entities/user';
 
 export interface ReplyRow {
