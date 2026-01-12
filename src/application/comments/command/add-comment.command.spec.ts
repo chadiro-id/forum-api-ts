@@ -3,7 +3,7 @@ import { AddCommentCommand } from './add-comment.command';
 import { UserId } from '@main/domain/users/user';
 
 describe('AddCommentCommand', () => {
-  it('should initialize with valid data', () => {
+  it('should correctly initialize data', () => {
     const threadId = new ThreadId('thread-id');
     const userId = new UserId('user-id');
 

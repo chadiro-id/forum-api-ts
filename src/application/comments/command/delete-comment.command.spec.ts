@@ -4,7 +4,7 @@ import { ThreadId } from '@main/domain/threads/thread';
 import { UserId } from '@main/domain/users/user';
 
 describe('DeleteCommentCommand', () => {
-  it('should initialize with valid data', () => {
+  it('should correctly initialize data', () => {
     const id = new CommentId('comment-id');
     const threadId = new ThreadId('thread-id');
     const userId = new UserId('user-id');
