@@ -1,4 +1,4 @@
-import { Thread } from '../../../domain/entities/thread';
+import { Thread } from '../../../domain/threads/thread';
 
 export class AddedThreadReport {
   constructor(

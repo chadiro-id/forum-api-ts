@@ -1,4 +1,4 @@
-import { ThreadId } from '../../../domain/entities/thread';
+import { ThreadId } from '../../../domain/threads/thread';
 import { Comment, CommentId } from '../../../domain/comments/comment';
 import { CommentDetails } from '../../../application/threads/query/results/thread-details.result';
 import { UserId } from '../../../domain/entities/user';

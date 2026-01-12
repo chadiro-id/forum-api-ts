@@ -1,6 +1,6 @@
 import { UserId } from '@main/domain/entities/user';
 import { InMemoryThreadRepository } from '../../../common/tests/repository/in-memory-thread-repository';
-import { ThreadRepository } from '../../../../domain/repositories/thread-repository.interface';
+import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
 import { AddThreadCommand } from '../add-thread.command';
 import { AddThreadCommandHandler } from './add-thread.command-handler';
 import { AddedThreadReport } from '../../reports/added-thread.report';

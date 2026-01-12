@@ -1,5 +1,5 @@
-import { Thread, ThreadId } from '../../../../domain/entities/thread';
-import { ThreadRepository } from '../../../../domain/repositories/thread-repository.interface';
+import { Thread, ThreadId } from '../../../../domain/threads/thread';
+import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
 import { AddedThreadReport } from '../../reports/added-thread.report';
 import { AddThreadCommand } from '../add-thread.command';
 

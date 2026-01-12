@@ -2,7 +2,7 @@ import { CommentRepository } from '@main/domain/comments/comment-repository.inte
 import { DeleteCommentCommandHandler } from './delete-comment.command-handler';
 import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
 import { Comment, CommentId } from '@main/domain/comments/comment';
-import { ThreadId } from '@main/domain/entities/thread';
+import { ThreadId } from '@main/domain/threads/thread';
 import { UserId } from '@main/domain/entities/user';
 import { DeleteCommentCommand } from '../delete-comment.command';
 import { CommentNotFoundError } from '../../errors/comment-not-found.error';

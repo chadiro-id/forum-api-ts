@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
-import { Thread, ThreadId } from '../../../domain/entities/thread';
-import { ThreadRepository } from '../../../domain/repositories/thread-repository.interface';
+import { Thread, ThreadId } from '../../../domain/threads/thread';
+import { ThreadRepository } from '../../../domain/threads/thread-repository.interface';
 import {
   Inject,
   Injectable,

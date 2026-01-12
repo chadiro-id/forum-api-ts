@@ -12,7 +12,7 @@ import {
 } from '../../libs/my-app/common/controllers/controllers.decorator';
 import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
-import { ThreadId } from '../../domain/entities/thread';
+import { ThreadId } from '../../domain/threads/thread';
 import { AddThreadCommand } from '../../application/threads/command/add-thread.command';
 import { UserId } from '../../domain/entities/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';

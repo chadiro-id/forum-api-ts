@@ -1,5 +1,5 @@
 import { CommentRepository } from '../../../../domain/comments/comment-repository.interface';
-import { ThreadRepository } from '../../../../domain/repositories/thread-repository.interface';
+import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
 import { Comment, CommentId } from '../../../../domain/comments/comment';
 import { ThreadNotFoundError } from '../../../threads/errors/thread-not-found.error';
 import { AddCommentCommand } from '../add-comment.command';

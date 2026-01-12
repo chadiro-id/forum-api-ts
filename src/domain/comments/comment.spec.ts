@@ -1,6 +1,6 @@
 import { DomainError } from '../common/domain-error';
 import { Comment, CommentId } from './comment';
-import { ThreadId } from '../entities/thread';
+import { ThreadId } from '../threads/thread';
 import { UserId } from '../entities/user';
 
 describe('CommentId', () => {

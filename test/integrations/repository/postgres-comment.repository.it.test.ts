@@ -1,6 +1,6 @@
 import { AppModule } from '@main/app.module';
 import { Comment, CommentId } from '@main/domain/comments/comment';
-import { ThreadId } from '@main/domain/entities/thread';
+import { ThreadId } from '@main/domain/threads/thread';
 import { UserId } from '@main/domain/entities/user';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { CommentMapper } from '@main/infrastructure/persistence/mappers/comment.mapper';

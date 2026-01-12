@@ -2,7 +2,7 @@ import { ReplyRepository } from '@main/domain/replies/reply-repository.interface
 import { DeleteReplyCommandHandler } from './delete-reply.command-handler';
 import { InMemoryReplyRepository } from '@main/application/common/tests/repository/in-memory-reply-repository';
 import { Reply, ReplyId } from '@main/domain/replies/reply';
-import { ThreadId } from '@main/domain/entities/thread';
+import { ThreadId } from '@main/domain/threads/thread';
 import { CommentId } from '@main/domain/comments/comment';
 import { UserId } from '@main/domain/entities/user';
 import { DeleteReplyCommand } from '../delete-reply.command';

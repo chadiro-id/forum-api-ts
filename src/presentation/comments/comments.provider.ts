@@ -1,4 +1,4 @@
-import { ThreadRepository } from '../../domain/repositories/thread-repository.interface';
+import { ThreadRepository } from '../../domain/threads/thread-repository.interface';
 import { CommentRepository } from '../../domain/comments/comment-repository.interface';
 import { AddCommentCommandHandler } from '../../application/comments/command/handler/add-comment.command-handler';
 import { DeleteCommentCommandHandler } from '../../application/comments/command/handler/delete-comment.command-handler';

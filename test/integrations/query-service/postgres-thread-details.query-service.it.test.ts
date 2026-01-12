@@ -6,7 +6,7 @@ import {
 } from '@main/application/threads/query/results/thread-details.result';
 import { CommentId } from '@main/domain/comments/comment';
 import { ReplyId } from '@main/domain/replies/reply';
-import { ThreadId } from '@main/domain/entities/thread';
+import { ThreadId } from '@main/domain/threads/thread';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { PostgresThreadDetailsQueryService } from '@main/infrastructure/persistence/query-services/postgres-thread-details.query-service';
 import Test from '@main/libs/my-app/testing/test-utils';

@@ -1,6 +1,6 @@
 import { DomainError } from '../common/domain-error';
 import { Thread, ThreadId } from './thread';
-import { UserId } from './user';
+import { UserId } from '../entities/user';
 
 describe('ThreadId', () => {
   it('should create instance with valid value', () => {

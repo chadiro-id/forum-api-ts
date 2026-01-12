@@ -1,6 +1,6 @@
 import { CommentId } from '../../../domain/comments/comment';
 import { ReplyId } from '../../../domain/replies/reply';
-import { ThreadId } from '../../../domain/entities/thread';
+import { ThreadId } from '../../../domain/threads/thread';
 import { UserId } from '../../../domain/entities/user';
 
 export class DeleteReplyCommand {

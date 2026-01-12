@@ -1,4 +1,4 @@
-import { ThreadRepository } from '../../domain/repositories/thread-repository.interface';
+import { ThreadRepository } from '../../domain/threads/thread-repository.interface';
 import { AddThreadCommandHandler } from '../../application/threads/command/handler/add-thread.command-handler';
 import { GetThreadDetailsQueryHandler } from '../../application/threads/query/handler/get-thread-details.query-handler';
 import {

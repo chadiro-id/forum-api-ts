@@ -15,7 +15,7 @@ import { AddReplyCommand } from '../../application/replies/command/add-reply.com
 import { DeleteReplyCommand } from '../../application/replies/command/delete-reply.command';
 import { ReplyId } from '../../domain/replies/reply';
 import { CommentId } from '../../domain/comments/comment';
-import { ThreadId } from '../../domain/entities/thread';
+import { ThreadId } from '../../domain/threads/thread';
 import { UserId } from '../../domain/entities/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';
 import { AddReplyDto } from './dtos/add-reply.dto';

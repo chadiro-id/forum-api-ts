@@ -1,5 +1,5 @@
-import { Thread, ThreadId } from '../../../../domain/entities/thread';
-import { ThreadRepository } from '../../../../domain/repositories/thread-repository.interface';
+import { Thread, ThreadId } from '../../../../domain/threads/thread';
+import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
 
 export class InMemoryThreadRepository implements ThreadRepository {
   private storage: Array<Thread>;

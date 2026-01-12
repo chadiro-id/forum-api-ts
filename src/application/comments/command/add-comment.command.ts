@@ -1,4 +1,4 @@
-import { ThreadId } from '../../../domain/entities/thread';
+import { ThreadId } from '../../../domain/threads/thread';
 import { UserId } from '../../../domain/entities/user';
 
 export class AddCommentCommand {
