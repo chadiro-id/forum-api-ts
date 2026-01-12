@@ -1,7 +1,7 @@
 import { userRepositoryContract } from '../../../../domain/repositories/user-repository.contract';
-import { InMemoryThreadRepository } from './in-memory-thread-repository';
+import { InMemoryUserRepository } from './in-memory-user-repository';
 
-describe('InMemoryThreadRepository', () => {
-  const contract = userRepositoryContract(InMemoryThreadRepository);
+describe('InMemoryUserRepository', () => {
+  const contract = userRepositoryContract(InMemoryUserRepository);
   contract.testBehavior();
 });
