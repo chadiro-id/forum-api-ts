@@ -43,7 +43,12 @@ describe('DeleteReplyCommandHandler', () => {
     mockReplyRepo.findById = jest.fn().mockResolvedValue(mockValueReply);
     mockReplyRepo.softDelete = jest.fn().mockResolvedValue(undefined);
 
-    const command = new DeleteReplyCommand(id, commentId, threadId, userId);
+    const command = new DeleteReplyCommand(
+      'reply-001',
+      'comment-id',
+      'thread-id',
+      'user-id',
+    );
     await commandHandler.handle(command);
 
     expect(mockReplyRepo.findById).toHaveBeenCalledTimes(1);
@@ -53,44 +58,39 @@ describe('DeleteReplyCommandHandler', () => {
   });
 
   it('should throw error when reply not exists', async () => {
-    const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-id');
-    const commentId = new CommentId('comment-id');
-    const userId = new UserId('user-id');
-
     mockReplyRepo.findById = jest.fn().mockResolvedValue(null);
     mockReplyRepo.softDelete = jest.fn();
 
-    const command = new DeleteReplyCommand(id, commentId, threadId, userId);
+    const command = new DeleteReplyCommand(
+      'reply-001',
+      'comment-id',
+      'thread-id',
+      'user-id',
+    );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       ReplyNotFoundError,
     );
 
+    expect(mockReplyRepo.findById).toHaveBeenCalledTimes(1);
     expect(mockReplyRepo.softDelete).not.toHaveBeenCalled();
   });
 
   it('should throw error when threadId not match', async () => {
-    const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-id');
-    const commentId = new CommentId('comment-id');
-    const userId = new UserId('user-id');
-    const mismatchedThreadId = new ThreadId('thread-xxx');
-
     const mockValueReply = Reply.create(
-      id,
-      threadId,
-      commentId,
-      userId,
+      new ReplyId('reply-001'),
+      new ThreadId('thread-id'),
+      new CommentId('comment-id'),
+      new UserId('user-id'),
       'Sebuah balasan',
     );
     mockReplyRepo.findById = jest.fn().mockResolvedValue(mockValueReply);
     mockReplyRepo.softDelete = jest.fn();
 
     const command = new DeleteReplyCommand(
-      id,
-      commentId,
-      mismatchedThreadId,
-      userId,
+      'reply-001',
+      'comment-id',
+      'thread-xxx',
+      'user-id',
     );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       ReplyDeceptiveAccessError,
@@ -100,27 +100,21 @@ describe('DeleteReplyCommandHandler', () => {
   });
 
   it('should throw error when commentId not match', async () => {
-    const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-id');
-    const commentId = new CommentId('comment-id');
-    const userId = new UserId('user-id');
-    const mismatchedCommentId = new CommentId('comment-xxx');
-
     const mockValueReply = Reply.create(
-      id,
-      threadId,
-      commentId,
-      userId,
+      new ReplyId('reply-001'),
+      new ThreadId('thread-id'),
+      new CommentId('comment-id'),
+      new UserId('user-id'),
       'Sebuah balasan',
     );
     mockReplyRepo.findById = jest.fn().mockResolvedValue(mockValueReply);
     mockReplyRepo.softDelete = jest.fn();
 
     const command = new DeleteReplyCommand(
-      id,
-      mismatchedCommentId,
-      threadId,
-      userId,
+      'reply-001',
+      'comment-xxx',
+      'thread-id',
+      'user-id',
     );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       ReplyDeceptiveAccessError,
@@ -130,27 +124,21 @@ describe('DeleteReplyCommandHandler', () => {
   });
 
   it('should throw error when userId not match', async () => {
-    const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-id');
-    const commentId = new CommentId('comment-id');
-    const userId = new UserId('user-id');
-    const mismatchedUserId = new UserId('user-xxx');
-
     const mockValueReply = Reply.create(
-      id,
-      threadId,
-      commentId,
-      userId,
+      new ReplyId('reply-001'),
+      new ThreadId('thread-id'),
+      new CommentId('comment-id'),
+      new UserId('user-id'),
       'Sebuah balasan',
     );
     mockReplyRepo.findById = jest.fn().mockResolvedValue(mockValueReply);
     mockReplyRepo.softDelete = jest.fn();
 
     const command = new DeleteReplyCommand(
-      id,
-      commentId,
-      threadId,
-      mismatchedUserId,
+      'reply-001',
+      'comment-id',
+      'thread-id',
+      'user-xxx',
     );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       ReplyUnauthorizedAccessError,
