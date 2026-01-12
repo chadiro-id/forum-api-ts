@@ -2,7 +2,7 @@ import { User, UserId } from '@main/domain/users/user';
 import { RegisteredUserReport } from './registered-user.report';
 
 describe('RegisteredUserReport', () => {
-  it('should initialize with valid data', () => {
+  it('should correctly initialize data', () => {
     const report = new RegisteredUserReport('user-001', 'johndoe', 'John Doe');
     expect(report.id).toEqual('user-001');
     expect(report.username).toEqual('johndoe');

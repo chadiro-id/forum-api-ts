@@ -1,7 +1,7 @@
 import { RegisterUserCommand } from './register-user.command';
 
 describe('RegisterUserCommand', () => {
-  it('should correctly initialize property', () => {
+  it('should correctly initialize data', () => {
     const command = new RegisterUserCommand('johndoe', 'p455w0rd', 'John Doe');
 
     expect(command.username).toBe('johndoe');
