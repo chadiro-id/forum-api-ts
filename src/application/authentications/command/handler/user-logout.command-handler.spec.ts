@@ -21,13 +21,12 @@ describe('UserLogoutCommandHandler', () => {
   it('should handle user logout correctly', async () => {
     const id = new AuthenticationId(1);
     const userId = new UserId('user-001');
-    const mockAuthEntity = Authentication.create(userId, 'refresh_token');
-    mockAuthEntity.assignId(id);
+    const mockValueAuth = Authentication.restore(id, userId, 'refresh_token');
 
     const calledAuthEntity = Authentication.create(userId, 'refresh_token');
     calledAuthEntity.assignId(id);
 
-    mockAuthRepo.findByToken = jest.fn().mockResolvedValue(mockAuthEntity);
+    mockAuthRepo.findByToken = jest.fn().mockResolvedValue(mockValueAuth);
     mockAuthRepo.delete = jest.fn().mockResolvedValue(undefined);
 
     const command = new UserLogoutCommand('refresh_token');
