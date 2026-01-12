@@ -46,6 +46,27 @@ describe('Authentication Entity', () => {
     });
   });
 
+  describe('restore', () => {
+    it('should restore entity with valid data', () => {
+      const id = new AuthenticationId(1);
+      const userId = new UserId('id-user');
+      const entity = Authentication.restore(id, userId, 'token');
+
+      expect(entity.id).toStrictEqual(id);
+      expect(entity.userId).toStrictEqual(userId);
+      expect(entity.token).toBe('token');
+    });
+
+    it('should throw error when value of id null', () => {
+      const id = new AuthenticationId(null);
+      const userId = new UserId('id-user');
+
+      expect(() => Authentication.restore(id, userId, 'token')).toThrow(
+        'invalid authentication ID',
+      );
+    });
+  });
+
   describe('assignId', () => {
     it('should correctly assign the given ID', () => {
       const userId = new UserId('user-123');
