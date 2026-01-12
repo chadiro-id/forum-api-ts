@@ -5,39 +5,18 @@ import { RegisterUserCommandHandler } from './register-user.command-handler';
 import { RegisterUserCommand } from '../register-user.command';
 import { RegisteredUserReport } from '../../reports/registered-user.report';
 import { UsernameAlreadyExistsError } from '../../errors/username-already-exists.error';
+import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
+import { FakePasswordHasher } from '@main/application/common/tests/security/fake-password-hasher';
+
 jest.useFakeTimers();
-
-class MockUserRepository implements UserRepository {
-  add(_user: User): Promise<void> {
-    throw new Error('Method not implemented');
-  }
-
-  findByUsername(_username: string): Promise<User | null> {
-    throw new Error('Method not implemented.');
-  }
-
-  existsByUsername(_username: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
-  }
-}
-
-class MockPasswordHasher implements PasswordHasher {
-  hashPassword(_password: string): Promise<string> {
-    throw new Error('Method not implemented.');
-  }
-  comparePassword(_password: string, _hashed: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
-  }
-}
-
 describe('RegisterUserCommandHandler', () => {
   let mockUserRepo: UserRepository;
   let mockPasswordHasher: PasswordHasher;
   let commandHandler: RegisterUserCommandHandler;
 
   beforeEach(() => {
-    mockUserRepo = new MockUserRepository();
-    mockPasswordHasher = new MockPasswordHasher();
+    mockUserRepo = new InMemoryUserRepository();
+    mockPasswordHasher = new FakePasswordHasher();
     commandHandler = new RegisterUserCommandHandler(
       mockUserRepo,
       mockPasswordHasher,
@@ -62,14 +41,22 @@ describe('RegisterUserCommandHandler', () => {
       'hashedPassword',
       'John Doe',
     );
-    const expectedResult = RegisteredUserReport.fromEntity(calledUser);
+    const expectedResult = new RegisteredUserReport(
+      'user-001',
+      'johndoe',
+      'John Doe',
+    );
 
     const command = new RegisterUserCommand('johndoe', 'p455w0rd', 'John Doe');
     const result = await commandHandler.handle(command);
+
     expect(result).toStrictEqual(expectedResult);
 
+    expect(mockUserRepo.existsByUsername).toHaveBeenCalledTimes(1);
     expect(mockUserRepo.existsByUsername).toHaveBeenCalledWith('johndoe');
+    expect(mockPasswordHasher.hashPassword).toHaveBeenCalledTimes(1);
     expect(mockPasswordHasher.hashPassword).toHaveBeenCalledWith('p455w0rd');
+    expect(mockUserRepo.add).toHaveBeenCalledTimes(1);
     expect(mockUserRepo.add).toHaveBeenCalledWith(calledUser);
   });
 
