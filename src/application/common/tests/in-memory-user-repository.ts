@@ -1,7 +1,7 @@
 import { User } from '@main/domain/entities/user';
 import { UserRepository } from '@main/domain/repositories/user-repository.interface';
 
-export class MockUserRepository implements UserRepository {
+export class InMemoryUserRepository implements UserRepository {
   private storage: Array<User> = [];
 
   async add(user: User): Promise<void> {
@@ -15,6 +15,6 @@ export class MockUserRepository implements UserRepository {
 
   async existsByUsername(username: string): Promise<boolean> {
     const result = this.storage.find((u) => u.username === username);
-    return !result;
+    return result !== undefined;
   }
 }
