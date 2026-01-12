@@ -3,7 +3,7 @@ import {
   AuthTokenService,
 } from '../interfaces/auth-token-service.interface';
 
-export class MockAuthTokenService implements AuthTokenService {
+export class FakeAuthTokenService implements AuthTokenService {
   async createAccessToken(payload: AuthTokenPayload): Promise<string> {
     return `access-token.${payload.id}.${payload.username}`;
   }
