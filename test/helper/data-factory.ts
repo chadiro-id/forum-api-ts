@@ -20,7 +20,7 @@ export function createAuthenticationData(
   overrides: Partial<AuthenticationData> = {},
 ): AuthenticationData {
   return {
-    id: 1,
+    id: '1',
     user_id: 'user-001',
     token: 'refresh_token',
     ...overrides,
