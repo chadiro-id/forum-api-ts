@@ -4,7 +4,7 @@ import {
 } from '@main/domain/entities/authentication';
 import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
 
-export class MockAuthenticationRepository implements AuthenticationRepository {
+export class InMemoryAuthenticationRepository implements AuthenticationRepository {
   private increment: number = 0;
   private storage: Array<Authentication> = [];
 
