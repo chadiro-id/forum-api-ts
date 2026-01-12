@@ -13,8 +13,6 @@ import {
 import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { AddThreadCommand } from '../../application/threads/command/add-thread.command';
-import { UserId } from '../../domain/users/user';
-import { IdConverter } from '../shared/pipes/id-converter.pipe';
 import { GetThreadDetailsQuery } from '../../application/threads/query/get-thread-details.query';
 
 @Controller('/threads')
@@ -27,10 +25,7 @@ export class ThreadsController {
   @UseGuards(AuthGuard)
   @HttpCode(201)
   @Post()
-  async addThread(
-    @Body() dto: AddThreadDto,
-    @User('id', IdConverter) userId: UserId,
-  ) {
+  async addThread(@Body() dto: AddThreadDto, @User('id') userId: string) {
     const command = new AddThreadCommand(dto.title, dto.body, userId);
     const addedThread = await this.addThreadCommandHandler.handle(command);
 
