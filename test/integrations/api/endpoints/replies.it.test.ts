@@ -247,7 +247,7 @@ describe('Replies Endpoint', () => {
       expect(response.statusCode).toBe(400);
       expect(response.body).toStrictEqual({
         status: 'fail',
-        message: 'gagal mengakses sumber daya',
+        message: 'tidak dapat mengakses balasan',
       });
     });
   });
