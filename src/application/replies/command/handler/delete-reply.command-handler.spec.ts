@@ -21,9 +21,9 @@ describe('DeleteReplyCommandHandler', () => {
 
   it('should handle delete reply correctly', async () => {
     const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-001');
-    const commentId = new CommentId('comment-001');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const commentId = new CommentId('comment-id');
+    const userId = new UserId('user-id');
 
     const mockValueReply = Reply.create(
       id,
@@ -54,9 +54,9 @@ describe('DeleteReplyCommandHandler', () => {
 
   it('should throw error when reply not exists', async () => {
     const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-001');
-    const commentId = new CommentId('comment-001');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const commentId = new CommentId('comment-id');
+    const userId = new UserId('user-id');
 
     mockReplyRepo.findById = jest.fn().mockResolvedValue(null);
     mockReplyRepo.softDelete = jest.fn();
@@ -71,9 +71,9 @@ describe('DeleteReplyCommandHandler', () => {
 
   it('should throw error when threadId not match', async () => {
     const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-001');
-    const commentId = new CommentId('comment-001');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const commentId = new CommentId('comment-id');
+    const userId = new UserId('user-id');
     const mismatchedThreadId = new ThreadId('thread-xxx');
 
     const mockValueReply = Reply.create(
@@ -101,9 +101,9 @@ describe('DeleteReplyCommandHandler', () => {
 
   it('should throw error when commentId not match', async () => {
     const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-001');
-    const commentId = new CommentId('comment-001');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const commentId = new CommentId('comment-id');
+    const userId = new UserId('user-id');
     const mismatchedCommentId = new CommentId('comment-xxx');
 
     const mockValueReply = Reply.create(
@@ -131,9 +131,9 @@ describe('DeleteReplyCommandHandler', () => {
 
   it('should throw error when userId not match', async () => {
     const id = new ReplyId('reply-001');
-    const threadId = new ThreadId('thread-001');
-    const commentId = new CommentId('comment-001');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const commentId = new CommentId('comment-id');
+    const userId = new UserId('user-id');
     const mismatchedUserId = new UserId('user-xxx');
 
     const mockValueReply = Reply.create(
