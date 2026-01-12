@@ -9,7 +9,7 @@ export class DeleteCommentCommandHandler {
 
   async handle(command: DeleteCommentCommand): Promise<void> {
     const comment = await this.commentRepository.findById(command.id);
-    if (comment === null || comment.isDelete) {
+    if (!comment) {
       throw new CommentNotFoundError();
     }
 
