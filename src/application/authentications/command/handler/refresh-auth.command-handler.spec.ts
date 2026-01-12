@@ -30,18 +30,18 @@ describe('RefreshAuthCommandHandler', () => {
   });
 
   it('should handle refresh auth correctly', async () => {
-    const mockAuthToken: AuthTokenPayload = {
+    const mockValueAuthToken: AuthTokenPayload = {
       id: 'user-001',
       username: 'johndoe',
     };
     const id = new AuthenticationId(1);
     const userId = new UserId('user-001');
-    const mockAuthEntity = Authentication.restore(id, userId, 'refresh_token');
+    const mockValueAuth = Authentication.restore(id, userId, 'refresh_token');
 
     mockAuthTokenService.verifyRefreshToken = jest
       .fn()
-      .mockResolvedValue(mockAuthToken);
-    mockAuthRepo.findByToken = jest.fn().mockResolvedValue(mockAuthEntity);
+      .mockResolvedValue(mockValueAuthToken);
+    mockAuthRepo.findByToken = jest.fn().mockResolvedValue(mockValueAuth);
     mockAuthTokenService.createAccessToken = jest
       .fn()
       .mockResolvedValue('new_access_token');
