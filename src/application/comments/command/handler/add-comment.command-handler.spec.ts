@@ -9,8 +9,8 @@ import { UserId } from '@main/domain/users/user';
 import { Comment, CommentId } from '@main/domain/comments/comment';
 import { ThreadNotFoundError } from '@main/application/threads/errors/thread-not-found.error';
 import { AddedCommentReport } from '../../reports/added-comment.report';
-jest.useFakeTimers();
 
+jest.useFakeTimers();
 describe('AddCommentCommandHandler', () => {
   let mockThreadRepo: ThreadRepository;
   let mockCommentRepo: CommentRepository;
@@ -30,8 +30,8 @@ describe('AddCommentCommandHandler', () => {
     mockThreadRepo.existsById = jest.fn().mockResolvedValue(true);
     mockCommentRepo.add = jest.fn().mockResolvedValue(undefined);
 
-    const threadId = new ThreadId('thread-002');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const userId = new UserId('user-id');
 
     const calledComment = Comment.create(
       new CommentId('comment-001'),
@@ -44,7 +44,7 @@ describe('AddCommentCommandHandler', () => {
     const result = await commandHandler.handle(command);
 
     expect(result).toStrictEqual(
-      new AddedCommentReport('comment-001', 'Sebuah komentar', 'user-001'),
+      new AddedCommentReport('comment-001', 'Sebuah komentar', 'user-id'),
     );
     expect(mockThreadRepo.existsById).toHaveBeenCalledWith(threadId);
     expect(mockCommentRepo.add).toHaveBeenCalledWith(calledComment);
@@ -54,8 +54,8 @@ describe('AddCommentCommandHandler', () => {
     mockThreadRepo.existsById = jest.fn().mockResolvedValue(false);
     mockCommentRepo.add = jest.fn();
 
-    const threadId = new ThreadId('thread-002');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const userId = new UserId('user-id');
 
     const command = new AddCommentCommand(threadId, userId, 'Sebuah komentar');
     await expect(commandHandler.handle(command)).rejects.toThrow(

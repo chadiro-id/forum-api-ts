@@ -20,8 +20,8 @@ describe('DeleteCommentCommandHandler', () => {
 
   it('should handle delete comment correctly', async () => {
     const id = new CommentId('comment-001');
-    const threadId = new ThreadId('thread-002');
-    const userId = new UserId('user-003');
+    const threadId = new ThreadId('thread-id');
+    const userId = new UserId('user-id');
 
     const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
     const calledEntity = Comment.create(
@@ -46,8 +46,8 @@ describe('DeleteCommentCommandHandler', () => {
     mockCommentRepo.softDelete = jest.fn();
 
     const id = new CommentId('comment-001');
-    const threadId = new ThreadId('thread-001');
-    const userId = new UserId('user-001');
+    const threadId = new ThreadId('thread-id');
+    const userId = new UserId('user-id');
 
     const command = new DeleteCommentCommand(id, threadId, userId);
     await expect(commandHandler.handle(command)).rejects.toThrow(
@@ -59,8 +59,8 @@ describe('DeleteCommentCommandHandler', () => {
 
   it('should throw error when threadId not match', async () => {
     const id = new CommentId('comment-001');
-    const threadId = new ThreadId('thread-002');
-    const userId = new UserId('user-003');
+    const threadId = new ThreadId('thread-id');
+    const userId = new UserId('user-id');
     const mismatchedThreadId = new ThreadId('thread-xxx');
 
     const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
@@ -79,8 +79,8 @@ describe('DeleteCommentCommandHandler', () => {
 
   it('should throw error when userId not match', async () => {
     const id = new CommentId('comment-001');
-    const threadId = new ThreadId('thread-002');
-    const userId = new UserId('user-003');
+    const threadId = new ThreadId('thread-id');
+    const userId = new UserId('user-id');
     const mismatchedUserId = new UserId('user-xxx');
 
     const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
