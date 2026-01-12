@@ -1,5 +1,9 @@
 import { ThreadId } from '../../../domain/threads/thread';
 
 export class GetThreadDetailsQuery {
-  constructor(public readonly id: ThreadId) {}
+  public readonly id: ThreadId;
+
+  constructor(id: string) {
+    this.id = new ThreadId(id);
+  }
 }
