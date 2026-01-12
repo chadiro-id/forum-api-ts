@@ -4,7 +4,7 @@ import { AuthTokenService } from '../../../common/interfaces/auth-token-service.
 import { Authentication } from '../../../../domain/authentications/authentication';
 import { NonExistenceUserLoginError } from '../../errors/non-existence-user-login.error';
 import { InvalidCredentialsError } from '../../errors/invalid-credentials.error';
-import { UserRepository } from '../../../../domain/repositories/user-repository.interface';
+import { UserRepository } from '../../../../domain/users/user-repository.interface';
 import { UserLoginCommand } from '../user-login.command';
 import { LoggedInUserReport } from '../../reports/logged-in-user.report';
 

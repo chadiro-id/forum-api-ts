@@ -6,7 +6,7 @@ import { InMemoryReplyRepository } from '@main/application/common/tests/reposito
 import { Reply, ReplyId } from '@main/domain/replies/reply';
 import { ThreadId } from '@main/domain/threads/thread';
 import { CommentId } from '@main/domain/comments/comment';
-import { UserId } from '@main/domain/entities/user';
+import { UserId } from '@main/domain/users/user';
 import { AddReplyCommand } from '../add-reply.command';
 import { AddedReplyReport } from '../../reports/added-reply.report';
 import { CommentNotFoundError } from '@main/application/comments/errors/comment-not-found.error';

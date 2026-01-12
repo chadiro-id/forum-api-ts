@@ -1,4 +1,4 @@
-import { UserId } from '../../../domain/entities/user';
+import { UserId } from '../../../domain/users/user';
 import { Thread, ThreadId } from '../../../domain/threads/thread';
 import { ThreadDetails } from '../../../application/threads/query/results/thread-details.result';
 

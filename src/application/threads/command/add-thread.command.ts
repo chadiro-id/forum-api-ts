@@ -1,4 +1,4 @@
-import { UserId } from '../../../domain/entities/user';
+import { UserId } from '../../../domain/users/user';
 
 export class AddThreadCommand {
   constructor(

@@ -1,7 +1,7 @@
 import { CommentId } from '../../../domain/comments/comment';
 import { ReplyId } from '../../../domain/replies/reply';
 import { ThreadId } from '../../../domain/threads/thread';
-import { UserId } from '../../../domain/entities/user';
+import { UserId } from '../../../domain/users/user';
 
 export class DeleteReplyCommand {
   constructor(

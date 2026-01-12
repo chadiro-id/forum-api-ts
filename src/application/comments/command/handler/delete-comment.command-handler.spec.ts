@@ -3,7 +3,7 @@ import { DeleteCommentCommandHandler } from './delete-comment.command-handler';
 import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
 import { Comment, CommentId } from '@main/domain/comments/comment';
 import { ThreadId } from '@main/domain/threads/thread';
-import { UserId } from '@main/domain/entities/user';
+import { UserId } from '@main/domain/users/user';
 import { DeleteCommentCommand } from '../delete-comment.command';
 import { CommentNotFoundError } from '../../errors/comment-not-found.error';
 import { CommentDeceptiveAccessError } from '../../errors/comment-deceptive-access.error';

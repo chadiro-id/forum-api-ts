@@ -1,5 +1,5 @@
-import { User } from '../../../domain/entities/user';
-import { UserRepository } from '../../../domain/repositories/user-repository.interface';
+import { User } from '../../../domain/users/user';
+import { UserRepository } from '../../../domain/users/user-repository.interface';
 import {
   Inject,
   Injectable,

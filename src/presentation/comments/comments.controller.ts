@@ -13,7 +13,7 @@ import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { AddCommentCommand } from '../../application/comments/command/add-comment.command';
 import { ThreadId } from '../../domain/threads/thread';
-import { UserId } from '../../domain/entities/user';
+import { UserId } from '../../domain/users/user';
 import { DeleteCommentCommand } from '../../application/comments/command/delete-comment.command';
 import { CommentId } from '../../domain/comments/comment';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';

@@ -1,4 +1,4 @@
-import { User, UserId } from '@main/domain/entities/user';
+import { User, UserId } from '@main/domain/users/user';
 import { RegisteredUserReport } from './registered-user.report';
 
 describe('RegisteredUserReport', () => {

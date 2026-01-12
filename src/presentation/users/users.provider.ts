@@ -1,4 +1,4 @@
-import { UserRepository } from '../../domain/repositories/user-repository.interface';
+import { UserRepository } from '../../domain/users/user-repository.interface';
 import { PasswordHasher } from '../../application/common/interfaces/password-hasher.interface';
 import { RegisterUserCommandHandler } from '../../application/users/command/handler/register-user.command-handler';
 import {

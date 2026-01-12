@@ -16,7 +16,7 @@ import { DeleteReplyCommand } from '../../application/replies/command/delete-rep
 import { ReplyId } from '../../domain/replies/reply';
 import { CommentId } from '../../domain/comments/comment';
 import { ThreadId } from '../../domain/threads/thread';
-import { UserId } from '../../domain/entities/user';
+import { UserId } from '../../domain/users/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';
 import { AddReplyDto } from './dtos/add-reply.dto';
 

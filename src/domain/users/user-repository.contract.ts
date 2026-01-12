@@ -1,4 +1,4 @@
-import { UserId, User } from '../entities/user';
+import { UserId, User } from './user';
 
 export function userRepositoryContract<T extends new (...args: any[]) => any>(
   RepoClass: T,

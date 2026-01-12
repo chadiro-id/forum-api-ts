@@ -1,5 +1,5 @@
 import { ThreadId } from '../../../domain/threads/thread';
-import { UserId } from '../../../domain/entities/user';
+import { UserId } from '../../../domain/users/user';
 
 export class AddCommentCommand {
   constructor(

@@ -14,7 +14,7 @@ import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { ThreadId } from '../../domain/threads/thread';
 import { AddThreadCommand } from '../../application/threads/command/add-thread.command';
-import { UserId } from '../../domain/entities/user';
+import { UserId } from '../../domain/users/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';
 import { GetThreadDetailsQuery } from '../../application/threads/query/get-thread-details.query';
 
