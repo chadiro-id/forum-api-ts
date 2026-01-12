@@ -4,7 +4,7 @@ import { ThreadId } from '@main/domain/threads/thread';
 import { UserId } from '@main/domain/users/user';
 
 describe('AddedCommentReport', () => {
-  it('should initialize with valid data', () => {
+  it('should correctly initialize data', () => {
     const report = new AddedCommentReport(
       'comment-id',
       'Sebuah komentar',
@@ -17,7 +17,7 @@ describe('AddedCommentReport', () => {
   });
 
   describe('fromEntity', () => {
-    it('should initialize data from comment entity', () => {
+    it('should initialize data from Comment', () => {
       const comment = Comment.create(
         new CommentId('comment-id'),
         new ThreadId('thread-id'),
