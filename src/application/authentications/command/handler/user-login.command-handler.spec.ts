@@ -15,7 +15,7 @@ import { NonExistenceUserLoginError } from '../../errors/non-existence-user-logi
 import { InvalidCredentialsError } from '../../errors/invalid-credentials.error';
 
 describe('UserLoginCommandHandler', () => {
-  let mockAuthenticationRepository: AuthenticationRepository;
+  let mockAuthRepository: AuthenticationRepository;
   let mockUserRepository: UserRepository;
   let mockPasswordHasher: PasswordHasher;
   let mockAuthTokenService: AuthTokenService;
@@ -23,12 +23,12 @@ describe('UserLoginCommandHandler', () => {
 
   beforeAll(() => {
     mockAuthTokenService = new MockAuthTokenService();
-    mockAuthenticationRepository = new MockAuthenticationRepository();
+    mockAuthRepository = new MockAuthenticationRepository();
     mockUserRepository = new MockUserRepository();
     mockPasswordHasher = new MockPasswordHasher();
 
     commandHandler = new UserLoginCommandHandler(
-      mockAuthenticationRepository,
+      mockAuthRepository,
       mockUserRepository,
       mockPasswordHasher,
       mockAuthTokenService,
@@ -51,7 +51,7 @@ describe('UserLoginCommandHandler', () => {
       .fn()
       .mockResolvedValue('refresh_token');
 
-    mockAuthenticationRepository.add = jest
+    mockAuthRepository.add = jest
       .fn()
       .mockResolvedValue(new AuthenticationId(1));
 

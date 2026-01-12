@@ -16,15 +16,15 @@ import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
 
 describe('RefreshAuthCommandHandler', () => {
-  let mockAuthenticationRepository: AuthenticationRepository;
+  let mockAuthRepo: AuthenticationRepository;
   let mockAuthTokenService: AuthTokenService;
   let commandHandler: RefreshAuthCommandHandler;
 
   beforeAll(() => {
-    mockAuthenticationRepository = new MockAuthenticationRepository();
+    mockAuthRepo = new MockAuthenticationRepository();
     mockAuthTokenService = new MockAuthTokenService();
     commandHandler = new RefreshAuthCommandHandler(
-      mockAuthenticationRepository,
+      mockAuthRepo,
       mockAuthTokenService,
     );
   });
@@ -36,15 +36,12 @@ describe('RefreshAuthCommandHandler', () => {
     };
     const id = new AuthenticationId(1);
     const userId = new UserId('user-001');
-    const mockAuthentication = Authentication.create(userId, 'refresh_token');
-    mockAuthentication.assignId(id);
+    const mockAuthEntity = Authentication.restore(id, userId, 'refresh_token');
 
     mockAuthTokenService.verifyRefreshToken = jest
       .fn()
       .mockResolvedValue(mockAuthToken);
-    mockAuthenticationRepository.findByToken = jest
-      .fn()
-      .mockResolvedValue(mockAuthentication);
+    mockAuthRepo.findByToken = jest.fn().mockResolvedValue(mockAuthEntity);
     mockAuthTokenService.createAccessToken = jest
       .fn()
       .mockResolvedValue('new_access_token');
@@ -56,9 +53,7 @@ describe('RefreshAuthCommandHandler', () => {
     expect(mockAuthTokenService.verifyRefreshToken).toHaveBeenCalledWith(
       'refresh_token',
     );
-    expect(mockAuthenticationRepository.findByToken).toHaveBeenCalledWith(
-      'refresh_token',
-    );
+    expect(mockAuthRepo.findByToken).toHaveBeenCalledWith('refresh_token');
     expect(mockAuthTokenService.createAccessToken).toHaveBeenCalledWith({
       id: 'user-001',
       username: 'johndoe',
@@ -70,9 +65,7 @@ describe('RefreshAuthCommandHandler', () => {
       id: 'user-001',
       username: 'johndoe',
     });
-    mockAuthenticationRepository.findByToken = jest
-      .fn()
-      .mockResolvedValue(null);
+    mockAuthRepo.findByToken = jest.fn().mockResolvedValue(null);
     mockAuthTokenService.createAccessToken = jest.fn();
 
     const command = new RefreshAuthCommand('refresh_token');
