@@ -2,7 +2,7 @@ import { User, UserId } from '@main/domain/entities/user';
 import { RegisteredUserReport } from './registered-user.report';
 
 describe('RegisteredUserReport', () => {
-  it('should initialize correct property', () => {
+  it('should initialize with valid data', () => {
     const report = new RegisteredUserReport('user-001', 'johndoe', 'John Doe');
     expect(report.id).toEqual('user-001');
     expect(report.username).toEqual('johndoe');
@@ -12,7 +12,7 @@ describe('RegisteredUserReport', () => {
   });
 
   describe('fromEntity', () => {
-    it('should correctly initialize data from entity', () => {
+    it('should initialize data from entity', () => {
       const entity = User.create(
         new UserId('user-001'),
         'johndoe',
