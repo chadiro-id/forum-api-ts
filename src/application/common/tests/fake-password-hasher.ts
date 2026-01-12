@@ -1,6 +1,6 @@
 import { PasswordHasher } from '../interfaces/password-hasher.interface';
 
-export class MockPasswordHasher implements PasswordHasher {
+export class FakePasswordHasher implements PasswordHasher {
   async hashPassword(password: string): Promise<string> {
     return `hashed_${password}`;
   }
