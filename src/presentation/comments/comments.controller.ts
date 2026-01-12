@@ -12,11 +12,7 @@ import {
 import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { AddCommentCommand } from '../../application/comments/command/add-comment.command';
-import { ThreadId } from '../../domain/threads/thread';
-import { UserId } from '../../domain/users/user';
 import { DeleteCommentCommand } from '../../application/comments/command/delete-comment.command';
-import { CommentId } from '../../domain/comments/comment';
-import { IdConverter } from '../shared/pipes/id-converter.pipe';
 import { AddCommentDto } from './dtos/add-comment.dto';
 
 @UseGuards(AuthGuard)
@@ -30,9 +26,9 @@ export class CommentsController {
   @HttpCode(201)
   @Post()
   async addComment(
-    @Param('threadId', IdConverter) threadId: ThreadId,
+    @Param('threadId') threadId: string,
     @Body() dto: AddCommentDto,
-    @User('id', IdConverter) userId: UserId,
+    @User('id') userId: string,
   ) {
     const command = new AddCommentCommand(threadId, userId, dto.content);
     const addedComment = await this.addCommentCommandHandler.handle(command);
@@ -42,9 +38,9 @@ export class CommentsController {
 
   @Delete('/:id')
   async deleteComment(
-    @Param('id', IdConverter) id: CommentId,
-    @Param('threadId', IdConverter) threadId: ThreadId,
-    @User('id', IdConverter) userId: UserId,
+    @Param('id') id: string,
+    @Param('threadId') threadId: string,
+    @User('id') userId: string,
   ) {
     const command = new DeleteCommentCommand(id, threadId, userId);
 
