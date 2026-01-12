@@ -6,7 +6,7 @@ import { UserLoginCommandHandler } from './user-login.command-handler';
 import { FakeAuthTokenService } from '@main/application/common/tests/fake-auth-token-service';
 import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
-import { MockPasswordHasher } from '@main/application/common/tests/mock-password-hasher';
+import { MockPasswordHasher } from '@main/application/common/tests/fake-password-hasher';
 import { User, UserId } from '@main/domain/entities/user';
 import { AuthenticationId } from '@main/domain/entities/authentication';
 import { UserLoginCommand } from '../user-login.command';
