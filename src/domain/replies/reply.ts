@@ -1,8 +1,8 @@
 import { DomainEntity, EntityId } from '../common/domain-entity';
 import { DomainError } from '../common/domain-error';
 import { CommentId } from '../comments/comment';
-import { ThreadId } from './thread';
-import { UserId } from './user';
+import { ThreadId } from '../entities/thread';
+import { UserId } from '../entities/user';
 
 export class ReplyId extends EntityId {
   readonly __brand = 'ReplyId';

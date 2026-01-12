@@ -1,4 +1,4 @@
-import { Reply, ReplyId } from '../entities/reply';
+import { Reply, ReplyId } from './reply';
 
 export interface ReplyRepository {
   add(reply: Reply): Promise<void>;

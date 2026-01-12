@@ -1,4 +1,4 @@
-import { ReplyRepository } from '../../../../domain/repositories/reply-repository.interface';
+import { ReplyRepository } from '../../../../domain/replies/reply-repository.interface';
 import { ReplyDeceptiveAccessError } from '../../errors/reply-deceptive-access.error';
 import { ReplyNotFoundError } from '../../errors/reply-not-found.error';
 import { ReplyUnauthorizedAccessError } from '../../errors/reply-unauthorized-access.error';

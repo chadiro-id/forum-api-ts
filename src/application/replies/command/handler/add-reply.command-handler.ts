@@ -1,6 +1,6 @@
 import { CommentRepository } from '../../../../domain/comments/comment-repository.interface';
-import { ReplyRepository } from '../../../../domain/repositories/reply-repository.interface';
-import { Reply, ReplyId } from '../../../../domain/entities/reply';
+import { ReplyRepository } from '../../../../domain/replies/reply-repository.interface';
+import { Reply, ReplyId } from '../../../../domain/replies/reply';
 import { CommentNotFoundError } from '../../../comments/errors/comment-not-found.error';
 import { AddReplyCommand } from '../add-reply.command';
 import { AddedReplyReport } from '../../reports/added-reply.report';

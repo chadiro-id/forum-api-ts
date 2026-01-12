@@ -1,5 +1,5 @@
 import { ThreadId } from '../../../domain/entities/thread';
-import { Reply, ReplyId } from '../../../domain/entities/reply';
+import { Reply, ReplyId } from '../../../domain/replies/reply';
 import { ReplyDetails } from '../../../application/threads/query/results/thread-details.result';
 import { CommentId } from '../../../domain/comments/comment';
 import { UserId } from '../../../domain/entities/user';

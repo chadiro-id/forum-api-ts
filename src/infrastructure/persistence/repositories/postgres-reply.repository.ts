@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
-import { Reply, ReplyId } from '../../../domain/entities/reply';
-import { ReplyRepository } from '../../../domain/repositories/reply-repository.interface';
+import { Reply, ReplyId } from '../../../domain/replies/reply';
+import { ReplyRepository } from '../../../domain/replies/reply-repository.interface';
 import {
   Inject,
   Injectable,

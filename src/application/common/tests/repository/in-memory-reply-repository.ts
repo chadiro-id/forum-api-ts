@@ -1,5 +1,5 @@
-import { Reply, ReplyId } from '@main/domain/entities/reply';
-import { ReplyRepository } from '@main/domain/repositories/reply-repository.interface';
+import { Reply, ReplyId } from '@main/domain/replies/reply';
+import { ReplyRepository } from '@main/domain/replies/reply-repository.interface';
 
 export class InMemoryReplyRepository implements ReplyRepository {
   constructor(private storage: Array<Reply> = []) {}

@@ -1,4 +1,4 @@
-import { Reply } from '../../../domain/entities/reply';
+import { Reply } from '../../../domain/replies/reply';
 
 export class AddedReplyReport {
   constructor(

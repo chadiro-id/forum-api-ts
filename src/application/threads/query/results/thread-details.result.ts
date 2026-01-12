@@ -1,6 +1,6 @@
 import { ThreadId } from '../../../../domain/entities/thread';
 import { CommentId } from '../../../../domain/comments/comment';
-import { ReplyId } from '../../../../domain/entities/reply';
+import { ReplyId } from '../../../../domain/replies/reply';
 
 export class ThreadDetails {
   constructor(
