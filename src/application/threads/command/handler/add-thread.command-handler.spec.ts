@@ -6,6 +6,7 @@ import { AddThreadCommandHandler } from './add-thread.command-handler';
 import { AddedThreadReport } from '../../reports/added-thread.report';
 import { Thread, ThreadId } from '@main/domain/threads/thread';
 
+jest.useFakeTimers();
 describe('AddThreadCommandHandler', () => {
   let mockThreadRepo: ThreadRepository;
   let commandHandler: AddThreadCommandHandler;
