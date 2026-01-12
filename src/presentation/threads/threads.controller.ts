@@ -12,7 +12,6 @@ import {
 } from '../../libs/my-app/common/controllers/controllers.decorator';
 import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
 import { AuthGuard } from '../shared/guards/auth.guard';
-import { ThreadId } from '../../domain/threads/thread';
 import { AddThreadCommand } from '../../application/threads/command/add-thread.command';
 import { UserId } from '../../domain/users/user';
 import { IdConverter } from '../shared/pipes/id-converter.pipe';
@@ -39,7 +38,7 @@ export class ThreadsController {
   }
 
   @Get('/:id')
-  async getThreadDetails(@Param('id', IdConverter) id: ThreadId) {
+  async getThreadDetails(@Param('id') id: string) {
     const query = new GetThreadDetailsQuery(id);
     const thread = await this.getThreadDetailsQueryHandler.handle(query);
 
