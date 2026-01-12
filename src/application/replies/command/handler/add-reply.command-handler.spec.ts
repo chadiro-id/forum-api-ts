@@ -44,9 +44,9 @@ describe('AddReplyCommandHandler', () => {
     );
 
     const command = new AddReplyCommand(
-      threadId,
-      commentId,
-      userId,
+      'thread-id',
+      'comment-id',
+      'user-id',
       'Sebuah balasan',
     );
     const result = await commandHandler.handle(command);
@@ -55,8 +55,8 @@ describe('AddReplyCommandHandler', () => {
       new AddedReplyReport('reply-001', 'Sebuah balasan', 'user-id'),
     );
     expect(mockCommentRepo.existsBy).toHaveBeenCalledWith({
-      id: commentId,
-      threadId,
+      id: command.commentId,
+      threadId: command.threadId,
       isDelete: false,
     });
     expect(mockReplyRepo.add).toHaveBeenCalledWith(calledReply);
@@ -67,15 +67,16 @@ describe('AddReplyCommandHandler', () => {
     mockReplyRepo.add = jest.fn();
 
     const command = new AddReplyCommand(
-      new ThreadId('thread-id'),
-      new CommentId('comment-id'),
-      new UserId('user-id'),
+      'thread-id',
+      'comment-id',
+      'user-id',
       'Sebuah balasan',
     );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       CommentNotFoundError,
     );
 
+    expect(mockCommentRepo.existsBy).toHaveBeenCalledTimes(1);
     expect(mockReplyRepo.add).not.toHaveBeenCalled();
   });
 });
