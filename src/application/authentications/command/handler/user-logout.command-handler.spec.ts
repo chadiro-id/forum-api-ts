@@ -1,5 +1,5 @@
 import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
-import { MockAuthenticationRepository } from '@main/application/common/tests/mock-authentication-repository';
+import { MockAuthenticationRepository } from '@main/application/common/tests/in-memory-authentication-repository';
 import { UserLogoutCommandHandler } from './user-logout.command-handler';
 import {
   Authentication,
