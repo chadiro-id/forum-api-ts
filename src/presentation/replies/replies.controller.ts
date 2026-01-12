@@ -13,11 +13,6 @@ import {
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { AddReplyCommand } from '../../application/replies/command/add-reply.command';
 import { DeleteReplyCommand } from '../../application/replies/command/delete-reply.command';
-import { ReplyId } from '../../domain/replies/reply';
-import { CommentId } from '../../domain/comments/comment';
-import { ThreadId } from '../../domain/threads/thread';
-import { UserId } from '../../domain/users/user';
-import { IdConverter } from '../shared/pipes/id-converter.pipe';
 import { AddReplyDto } from './dtos/add-reply.dto';
 
 @UseGuards(AuthGuard)
@@ -31,10 +26,10 @@ export class RepliesController {
   @HttpCode(201)
   @Post()
   async addReply(
-    @Param('threadId', IdConverter) threadId: ThreadId,
-    @Param('commentId', IdConverter) commentId: CommentId,
+    @Param('threadId') threadId: string,
+    @Param('commentId') commentId: string,
     @Body() dto: AddReplyDto,
-    @User('id', IdConverter) userId: UserId,
+    @User('id') userId: string,
   ) {
     const command = new AddReplyCommand(
       threadId,
@@ -49,10 +44,10 @@ export class RepliesController {
 
   @Delete('/:id')
   async deleteReply(
-    @Param('id', IdConverter) id: ReplyId,
-    @Param('commentId', IdConverter) commentId: CommentId,
-    @Param('threadId', IdConverter) threadId: ThreadId,
-    @User('id', IdConverter) userId: UserId,
+    @Param('id') id: string,
+    @Param('commentId') commentId: string,
+    @Param('threadId') threadId: string,
+    @User('id') userId: string,
   ) {
     const command = new DeleteReplyCommand(id, commentId, threadId, userId);
     await this.deleteReplyCommandHandler.handle(command);
