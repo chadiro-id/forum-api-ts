@@ -1,0 +1,99 @@
+import { CommentRepository } from '@main/domain/repositories/comment-repository.interface';
+import { DeleteCommentCommandHandler } from './delete-comment.command-handler';
+import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
+import { Comment, CommentId } from '@main/domain/entities/comment';
+import { ThreadId } from '@main/domain/entities/thread';
+import { UserId } from '@main/domain/entities/user';
+import { DeleteCommentCommand } from '../delete-comment.command';
+import { CommentNotFoundError } from '../../errors/comment-not-found.error';
+import { CommentDeceptiveAccessError } from '../../errors/comment-deceptive-access.error';
+import { CommentUnauthorizedAccessError } from '../../errors/comment-unauthorized-access.error';
+
+describe('DeleteCommentCommandHandler', () => {
+  let mockCommentRepo: CommentRepository;
+  let commandHandler: DeleteCommentCommandHandler;
+
+  beforeAll(() => {
+    mockCommentRepo = new InMemoryCommentRepository();
+    commandHandler = new DeleteCommentCommandHandler(mockCommentRepo);
+  });
+
+  it('should handle delete comment correctly', async () => {
+    const id = new CommentId('comment-001');
+    const threadId = new ThreadId('thread-002');
+    const userId = new UserId('user-003');
+
+    const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
+    const calledEntity = Comment.create(
+      id,
+      threadId,
+      userId,
+      'Sebuah komentar',
+    );
+
+    mockCommentRepo.findById = jest.fn().mockResolvedValue(mockEntity);
+    mockCommentRepo.softDelete = jest.fn().mockResolvedValue(undefined);
+
+    const command = new DeleteCommentCommand(id, threadId, userId);
+    await commandHandler.handle(command);
+
+    expect(mockCommentRepo.findById).toHaveBeenCalledWith(id);
+    expect(mockCommentRepo.softDelete).toHaveBeenCalledWith(calledEntity);
+  });
+
+  it('should throw error when comment not exists', async () => {
+    mockCommentRepo.findById = jest.fn().mockResolvedValue(null);
+    mockCommentRepo.softDelete = jest.fn();
+
+    const id = new CommentId('comment-001');
+    const threadId = new ThreadId('thread-001');
+    const userId = new UserId('user-001');
+
+    const command = new DeleteCommentCommand(id, threadId, userId);
+    await expect(commandHandler.handle(command)).rejects.toThrow(
+      CommentNotFoundError,
+    );
+
+    expect(mockCommentRepo.softDelete).not.toHaveBeenCalled();
+  });
+
+  it('should throw error when threadId not match', async () => {
+    const id = new CommentId('comment-001');
+    const threadId = new ThreadId('thread-002');
+    const userId = new UserId('user-003');
+    const mismatchedThreadId = new ThreadId('thread-xxx');
+
+    const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
+
+    mockCommentRepo.findById = jest.fn().mockResolvedValue(mockEntity);
+    mockCommentRepo.softDelete = jest.fn();
+
+    const command = new DeleteCommentCommand(id, mismatchedThreadId, userId);
+    await expect(commandHandler.handle(command)).rejects.toThrow(
+      CommentDeceptiveAccessError,
+    );
+
+    expect(mockCommentRepo.findById).toHaveBeenCalledWith(id);
+    expect(mockCommentRepo.softDelete).not.toHaveBeenCalled();
+  });
+
+  it('should throw error when userId not match', async () => {
+    const id = new CommentId('comment-001');
+    const threadId = new ThreadId('thread-002');
+    const userId = new UserId('user-003');
+    const mismatchedUserId = new UserId('user-xxx');
+
+    const mockEntity = Comment.create(id, threadId, userId, 'Sebuah komentar');
+
+    mockCommentRepo.findById = jest.fn().mockResolvedValue(mockEntity);
+    mockCommentRepo.softDelete = jest.fn();
+
+    const command = new DeleteCommentCommand(id, threadId, mismatchedUserId);
+    await expect(commandHandler.handle(command)).rejects.toThrow(
+      CommentUnauthorizedAccessError,
+    );
+
+    expect(mockCommentRepo.findById).toHaveBeenCalledWith(id);
+    expect(mockCommentRepo.softDelete).not.toHaveBeenCalled();
+  });
+});
