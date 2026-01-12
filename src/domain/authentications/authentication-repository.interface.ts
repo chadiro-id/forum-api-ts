@@ -1,4 +1,4 @@
-import { Authentication, AuthenticationId } from '../entities/authentication';
+import { Authentication, AuthenticationId } from './authentication';
 
 export interface AuthenticationRepository {
   add(authentication: Authentication): Promise<AuthenticationId>;

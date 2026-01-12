@@ -1,6 +1,6 @@
 import { DomainError } from '../common/domain-error';
 import { Authentication, AuthenticationId } from './authentication';
-import { UserId } from './user';
+import { UserId } from '../entities/user';
 
 describe('AuthenticationId', () => {
   it('should create instance with valid value', () => {

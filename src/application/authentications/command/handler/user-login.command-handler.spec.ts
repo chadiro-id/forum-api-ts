@@ -1,6 +1,6 @@
 import { AuthTokenService } from '@main/application/common/interfaces/auth-token-service.interface';
 import { PasswordHasher } from '@main/application/common/interfaces/password-hasher.interface';
-import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
+import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 import { UserRepository } from '@main/domain/repositories/user-repository.interface';
 import { UserLoginCommandHandler } from './user-login.command-handler';
 import { FakeAuthTokenService } from '@main/application/common/tests/security/fake-auth-token-service';
@@ -8,7 +8,7 @@ import { InMemoryAuthenticationRepository } from '@main/application/common/tests
 import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
 import { FakePasswordHasher } from '@main/application/common/tests/security/fake-password-hasher';
 import { User, UserId } from '@main/domain/entities/user';
-import { AuthenticationId } from '@main/domain/entities/authentication';
+import { AuthenticationId } from '@main/domain/authentications/authentication';
 import { UserLoginCommand } from '../user-login.command';
 import { LoggedInUserReport } from '../../reports/logged-in-user.report';
 import { NonExistenceUserLoginError } from '../../errors/non-existence-user-login.error';

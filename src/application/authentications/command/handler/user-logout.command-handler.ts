@@ -1,4 +1,4 @@
-import { AuthenticationRepository } from '../../../../domain/repositories/authentication-repository.interface';
+import { AuthenticationRepository } from '../../../../domain/authentications/authentication-repository.interface';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
 import { UserLogoutCommand } from '../user-logout.command';
 

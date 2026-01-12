@@ -1,10 +1,10 @@
-import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
+import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { UserLogoutCommandHandler } from './user-logout.command-handler';
 import {
   Authentication,
   AuthenticationId,
-} from '@main/domain/entities/authentication';
+} from '@main/domain/authentications/authentication';
 import { UserId } from '@main/domain/entities/user';
 import { UserLogoutCommand } from '../user-logout.command';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';

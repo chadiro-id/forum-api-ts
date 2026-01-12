@@ -2,14 +2,14 @@ import {
   AuthTokenPayload,
   AuthTokenService,
 } from '@main/application/common/interfaces/auth-token-service.interface';
-import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
+import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 import { RefreshAuthCommandHandler } from './refresh-auth.command-handler';
 import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { FakeAuthTokenService } from '@main/application/common/tests/security/fake-auth-token-service';
 import {
   Authentication,
   AuthenticationId,
-} from '@main/domain/entities/authentication';
+} from '@main/domain/authentications/authentication';
 import { UserId } from '@main/domain/entities/user';
 import { RefreshAuthCommand } from '../refresh-auth.command';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';

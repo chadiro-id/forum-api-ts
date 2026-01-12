@@ -1,8 +1,8 @@
 import {
   Authentication,
   AuthenticationId,
-} from '@main/domain/entities/authentication';
-import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
+} from '@main/domain/authentications/authentication';
+import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 
 export class InMemoryAuthenticationRepository implements AuthenticationRepository {
   private increment: number = 0;

@@ -1,6 +1,6 @@
 import { AuthTokenService } from '../../application/common/interfaces/auth-token-service.interface';
 import { PasswordHasher } from '../../application/common/interfaces/password-hasher.interface';
-import { AuthenticationRepository } from '../../domain/repositories/authentication-repository.interface';
+import { AuthenticationRepository } from '../../domain/authentications/authentication-repository.interface';
 import { UserRepository } from '../../domain/repositories/user-repository.interface';
 import { UserLoginCommandHandler } from '../../application/authentications/command/handler/user-login.command-handler';
 import { UserLogoutCommandHandler } from '../../application/authentications/command/handler/user-logout.command-handler';

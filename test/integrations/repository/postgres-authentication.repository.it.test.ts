@@ -1,5 +1,5 @@
 import { AppModule } from '@main/app.module';
-import { Authentication } from '@main/domain/entities/authentication';
+import { Authentication } from '@main/domain/authentications/authentication';
 import { UserId } from '@main/domain/entities/user';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { AuthenticationMapper } from '@main/infrastructure/persistence/mappers/authentication.mapper';

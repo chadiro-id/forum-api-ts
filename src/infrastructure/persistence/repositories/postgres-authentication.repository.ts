@@ -2,8 +2,8 @@ import { Pool } from 'pg';
 import {
   Authentication,
   AuthenticationId,
-} from '../../../domain/entities/authentication';
-import { AuthenticationRepository } from '../../../domain/repositories/authentication-repository.interface';
+} from '../../../domain/authentications/authentication';
+import { AuthenticationRepository } from '../../../domain/authentications/authentication-repository.interface';
 import {
   Inject,
   Injectable,
