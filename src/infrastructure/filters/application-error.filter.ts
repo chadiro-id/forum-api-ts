@@ -52,7 +52,7 @@ export class ApplicationErrorFilter implements ExceptionFilter {
         break;
       case CommentUnauthorizedAccessError.name:
         statusCode = 403;
-        message = 'pengguna tidak memilliki hak akses';
+        message = 'pengguna tidak memiliki hak akses';
         break;
       case ReplyNotFoundError.name:
         statusCode = 404;
