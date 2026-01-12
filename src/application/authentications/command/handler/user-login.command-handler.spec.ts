@@ -5,7 +5,7 @@ import { UserRepository } from '@main/domain/repositories/user-repository.interf
 import { UserLoginCommandHandler } from './user-login.command-handler';
 import { MockAuthTokenService } from '@main/application/common/tests/mock-auth-token-service';
 import { MockAuthenticationRepository } from '@main/application/common/tests/mock-authentication-repository';
-import { MockUserRepository } from '@main/application/common/tests/mock-user-repository';
+import { InMemoryUserRepository } from '@main/application/common/tests/in-memory-user-repository';
 import { MockPasswordHasher } from '@main/application/common/tests/mock-password-hasher';
 import { User, UserId } from '@main/domain/entities/user';
 import { AuthenticationId } from '@main/domain/entities/authentication';
@@ -24,7 +24,7 @@ describe('UserLoginCommandHandler', () => {
   beforeAll(() => {
     mockAuthTokenService = new MockAuthTokenService();
     mockAuthRepository = new MockAuthenticationRepository();
-    mockUserRepository = new MockUserRepository();
+    mockUserRepository = new InMemoryUserRepository();
     mockPasswordHasher = new MockPasswordHasher();
 
     commandHandler = new UserLoginCommandHandler(
