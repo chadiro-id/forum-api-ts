@@ -5,7 +5,7 @@ import { CommentId } from '@main/domain/comments/comment';
 import { UserId } from '@main/domain/users/user';
 
 describe('AddedReplyReport', () => {
-  it('should initialize with valid data', () => {
+  it('should correctly initialize data', () => {
     const report = new AddedReplyReport(
       'reply-id',
       'Sebuah balasan',
@@ -18,7 +18,7 @@ describe('AddedReplyReport', () => {
   });
 
   describe('fromEntity', () => {
-    it('should initialize with data from from reply entity', () => {
+    it('should initialize data from Reply', () => {
       const entity = Reply.create(
         new ReplyId('reply-id'),
         new ThreadId('thread-id'),
