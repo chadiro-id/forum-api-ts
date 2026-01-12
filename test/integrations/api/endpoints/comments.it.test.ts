@@ -190,7 +190,6 @@ describe('Comments Endpoint', () => {
         .delete(endpoint)
         .auth(accessToken, { type: 'bearer' });
 
-      console.log(response.body);
       expect(response.statusCode).toBe(400);
       expect(response.body).toStrictEqual({
         status: 'fail',
@@ -224,7 +223,6 @@ describe('Comments Endpoint', () => {
         .delete(endpoint)
         .auth(notAuthorizedToken, { type: 'bearer' });
 
-      console.log(response.body);
       expect(response.statusCode).toBe(403);
       expect(response.body).toStrictEqual({
         status: 'fail',
