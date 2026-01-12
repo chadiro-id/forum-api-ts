@@ -31,7 +31,7 @@ describe('AddThreadCommandHandler', () => {
     const command = new AddThreadCommand(
       'Sebuah thread',
       'Isi thread',
-      new UserId('user-id'),
+      'user-id',
     );
     const result = await commandHandler.handle(command);
 
