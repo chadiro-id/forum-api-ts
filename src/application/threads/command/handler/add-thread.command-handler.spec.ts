@@ -4,21 +4,29 @@ import { ThreadRepository } from '../../../../domain/threads/thread-repository.i
 import { AddThreadCommand } from '../add-thread.command';
 import { AddThreadCommandHandler } from './add-thread.command-handler';
 import { AddedThreadReport } from '../../reports/added-thread.report';
+import { Thread, ThreadId } from '@main/domain/threads/thread';
 
 describe('AddThreadCommandHandler', () => {
-  let threadRepo: ThreadRepository;
+  let mockThreadRepo: ThreadRepository;
   let commandHandler: AddThreadCommandHandler;
 
   beforeAll(() => {
-    threadRepo = new InMemoryThreadRepository();
+    mockThreadRepo = new InMemoryThreadRepository();
     commandHandler = new AddThreadCommandHandler(
-      threadRepo,
+      mockThreadRepo,
       () => 'thread-001',
     );
   });
 
   it('should handle add thread correctly', async () => {
-    threadRepo.add = jest.fn().mockResolvedValue(undefined);
+    mockThreadRepo.add = jest.fn().mockResolvedValue(undefined);
+
+    const calledThread = Thread.create(
+      new ThreadId('thread-001'),
+      new UserId('user-id'),
+      'Sebuah thread',
+      'Isi thread',
+    );
 
     const command = new AddThreadCommand(
       'Sebuah thread',
@@ -30,5 +38,7 @@ describe('AddThreadCommandHandler', () => {
     expect(result).toStrictEqual(
       new AddedThreadReport('thread-001', 'Sebuah thread', 'user-id'),
     );
+
+    expect(mockThreadRepo.add).toHaveBeenCalledWith(calledThread);
   });
 });
