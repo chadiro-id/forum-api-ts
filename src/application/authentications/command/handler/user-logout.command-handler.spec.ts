@@ -1,5 +1,5 @@
 import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
-import { InMemoryAuthenticationRepository } from '@main/application/common/tests/in-memory-authentication-repository';
+import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { UserLogoutCommandHandler } from './user-logout.command-handler';
 import {
   Authentication,
