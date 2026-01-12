@@ -60,8 +60,4 @@ export class ThreadDetailsReport {
       commentList,
     );
   }
-
-  toJSON() {
-    return Object.assign({}, this);
-  }
 }

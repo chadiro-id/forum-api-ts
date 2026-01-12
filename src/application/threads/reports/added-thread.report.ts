@@ -14,12 +14,4 @@ export class AddedThreadReport {
       thread.ownerId.value,
     );
   }
-
-  toJSON() {
-    return {
-      id: this.id,
-      title: this.title,
-      owner: this.owner,
-    };
-  }
 }
