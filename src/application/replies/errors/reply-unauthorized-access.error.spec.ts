@@ -1,17 +1,17 @@
-import { DomainError } from '../../../domain/common/domain-error';
+import { ApplicationError } from '../../common/errors/application-error';
 import { ReplyUnauthorizedAccessError } from './reply-unauthorized-access.error';
 
 describe('ReplyUnauthorizedAccessError', () => {
   it('should be instance of ApplicationError', () => {
-    const error = new ReplyUnauthorizedAccessError('');
-    expect(error).toBeInstanceOf(DomainError);
+    const error = new ReplyUnauthorizedAccessError();
+    expect(error).toBeInstanceOf(ApplicationError);
   });
 
   it('should correctly initialize properties', () => {
-    const error = new ReplyUnauthorizedAccessError('');
+    const error = new ReplyUnauthorizedAccessError();
 
-    expect(error.name).toBe('ReplyForbiddenAccessError');
-    expect(error.message).toBe('forbidden');
-    expect(error.code).toBe('FORBIDDEN_ACCESS');
+    expect(error.name).toBe('ReplyUnauthorizedAccessError');
+    expect(error.message).toBe('Unauthorized');
+    expect(error.code).toBe('UNAUTHORIZED_ACCESS_ERROR');
   });
 });

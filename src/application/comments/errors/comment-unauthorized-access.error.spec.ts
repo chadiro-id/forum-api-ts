@@ -1,7 +1,7 @@
 import { ApplicationError } from '../../common/errors/application-error';
 import { CommentUnauthorizedAccessError } from './comment-unauthorized-access.error';
 
-describe('CommentForbiddenAccessError', () => {
+describe('CommentUnauthoriedAccessError', () => {
   it('should be instance of ApplicationError', () => {
     const error = new CommentUnauthorizedAccessError('');
     expect(error).toBeInstanceOf(ApplicationError);
