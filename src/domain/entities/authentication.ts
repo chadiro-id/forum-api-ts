@@ -34,7 +34,7 @@ export class Authentication extends DomainEntity<AuthenticationId> {
   }
 
   static restore(id: AuthenticationId, userId: UserId, token: string) {
-    if (!id.value || id.value < 1) {
+    if (!id.value) {
       throw new DomainError('invalid authentication ID');
     }
 
