@@ -7,7 +7,6 @@ export class AddThreadCommand {
   public readonly userId: UserId;
 
   constructor(title: string, body: string, userId: string) {
-    this.userId = new UserId(userId);
     if (!title || !body) {
       throw new ApplicationError('missing arguments', 'ARGUMENT_ERROR');
     }
@@ -15,5 +14,9 @@ export class AddThreadCommand {
     if (typeof title !== 'string' || typeof body !== 'string') {
       throw new ApplicationError('invalid data type', 'ARGUMENT_ERROR');
     }
+
+    this.title = title;
+    this.body = body;
+    this.userId = new UserId(userId);
   }
 }
