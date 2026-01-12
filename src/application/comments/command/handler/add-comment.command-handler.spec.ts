@@ -40,13 +40,17 @@ describe('AddCommentCommandHandler', () => {
       'Sebuah komentar',
     );
 
-    const command = new AddCommentCommand(threadId, userId, 'Sebuah komentar');
+    const command = new AddCommentCommand(
+      'thread-id',
+      'user-id',
+      'Sebuah komentar',
+    );
     const result = await commandHandler.handle(command);
 
     expect(result).toStrictEqual(
       new AddedCommentReport('comment-001', 'Sebuah komentar', 'user-id'),
     );
-    expect(mockThreadRepo.existsById).toHaveBeenCalledWith(threadId);
+    expect(mockThreadRepo.existsById).toHaveBeenCalledWith(command.threadId);
     expect(mockCommentRepo.add).toHaveBeenCalledWith(calledComment);
   });
 
@@ -54,14 +58,16 @@ describe('AddCommentCommandHandler', () => {
     mockThreadRepo.existsById = jest.fn().mockResolvedValue(false);
     mockCommentRepo.add = jest.fn();
 
-    const threadId = new ThreadId('thread-id');
-    const userId = new UserId('user-id');
-
-    const command = new AddCommentCommand(threadId, userId, 'Sebuah komentar');
+    const command = new AddCommentCommand(
+      'thread-id',
+      'user-id',
+      'Sebuah komentar',
+    );
     await expect(commandHandler.handle(command)).rejects.toThrow(
       ThreadNotFoundError,
     );
 
+    expect(mockThreadRepo.existsById).toHaveBeenCalledTimes(1);
     expect(mockCommentRepo.add).not.toHaveBeenCalled();
   });
 });
