@@ -36,13 +36,15 @@ describe('UserLoginCommandHandler', () => {
   });
 
   it('should handle user login correctly', async () => {
-    const mockUser = User.create(
+    const mockValueUser = User.create(
       new UserId('user-001'),
       'johndoe',
       'hashed_p455w0rd',
       'John Doe',
     );
-    mockUserRepository.findByUsername = jest.fn().mockResolvedValue(mockUser);
+    mockUserRepository.findByUsername = jest
+      .fn()
+      .mockResolvedValue(mockValueUser);
     mockPasswordHasher.comparePassword = jest.fn().mockResolvedValue(true);
     mockAuthTokenService.createAccessToken = jest
       .fn()
