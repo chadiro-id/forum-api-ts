@@ -1,4 +1,4 @@
-import { userRepositoryContract } from '../user-repository.contract';
+import { userRepositoryContract } from '../../../../domain/repositories/user-repository.contract';
 import { InMemoryThreadRepository } from './in-memory-thread-repository';
 
 describe('InMemoryThreadRepository', () => {
