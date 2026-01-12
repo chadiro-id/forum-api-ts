@@ -23,8 +23,7 @@ describe('UserLogoutCommandHandler', () => {
     const userId = new UserId('user-001');
     const mockValueAuth = Authentication.restore(id, userId, 'refresh_token');
 
-    const calledAuthEntity = Authentication.create(userId, 'refresh_token');
-    calledAuthEntity.assignId(id);
+    const calledAuth = Authentication.restore(id, userId, 'refresh_token');
 
     mockAuthRepo.findByToken = jest.fn().mockResolvedValue(mockValueAuth);
     mockAuthRepo.delete = jest.fn().mockResolvedValue(undefined);
@@ -33,7 +32,7 @@ describe('UserLogoutCommandHandler', () => {
     await commandHandler.handle(command);
 
     expect(mockAuthRepo.findByToken).toHaveBeenCalledWith('refresh_token');
-    expect(mockAuthRepo.delete).toHaveBeenCalledWith(calledAuthEntity);
+    expect(mockAuthRepo.delete).toHaveBeenCalledWith(calledAuth);
   });
 
   it('should throw error when refresh token not exists', async () => {
