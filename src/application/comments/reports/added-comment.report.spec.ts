@@ -1,4 +1,7 @@
+import { Comment, CommentId } from '@main/domain/comments/comment';
 import { AddedCommentReport } from './added-comment.report';
+import { ThreadId } from '@main/domain/threads/thread';
+import { UserId } from '@main/domain/users/user';
 
 describe('AddedCommentReport', () => {
   it('should initialize with valid data', () => {
@@ -11,5 +14,21 @@ describe('AddedCommentReport', () => {
     expect(report.id).toBe('comment-id');
     expect(report.content).toBe('Sebuah komentar');
     expect(report.owner).toBe('user-id');
+  });
+
+  describe('fromEntity', () => {
+    it('should initialize data from comment entity', () => {
+      const comment = Comment.create(
+        new CommentId('comment-id'),
+        new ThreadId('thread-id'),
+        new UserId('user-id'),
+        'Sebuah komentar',
+      );
+
+      const report = AddedCommentReport.fromEntity(comment);
+      expect(report).toStrictEqual(
+        new AddedCommentReport('comment-id', 'Sebuah komentar', 'user-id'),
+      );
+    });
   });
 });
