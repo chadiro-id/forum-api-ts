@@ -5,14 +5,14 @@ import { UserId } from '@main/domain/users/user';
 
 describe('DeleteCommentCommand', () => {
   it('should correctly initialize data', () => {
-    const id = new CommentId('comment-id');
-    const threadId = new ThreadId('thread-id');
-    const userId = new UserId('user-id');
+    const command = new DeleteCommentCommand(
+      'comment-id',
+      'thread-id',
+      'user-id',
+    );
 
-    const command = new DeleteCommentCommand(id, threadId, userId);
-
-    expect(command.id).toStrictEqual(id);
-    expect(command.threadId).toStrictEqual(threadId);
-    expect(command.userId).toStrictEqual(userId);
+    expect(command.id).toStrictEqual(new CommentId('comment-id'));
+    expect(command.threadId).toStrictEqual(new ThreadId('thread-id'));
+    expect(command.userId).toStrictEqual(new UserId('user-id'));
   });
 });
