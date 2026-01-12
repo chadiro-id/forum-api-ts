@@ -10,8 +10,8 @@ import { UserId } from '@main/domain/users/user';
 import { AddReplyCommand } from '../add-reply.command';
 import { AddedReplyReport } from '../../reports/added-reply.report';
 import { CommentNotFoundError } from '@main/application/comments/errors/comment-not-found.error';
-jest.useFakeTimers();
 
+jest.useFakeTimers();
 describe('AddReplyCommandHandler', () => {
   let mockCommentRepo: CommentRepository;
   let mockReplyRepo: ReplyRepository;
@@ -31,9 +31,9 @@ describe('AddReplyCommandHandler', () => {
     mockCommentRepo.existsBy = jest.fn().mockResolvedValue(true);
     mockReplyRepo.add = jest.fn().mockResolvedValue(undefined);
 
-    const threadId = new ThreadId('thread-001');
-    const commentId = new CommentId('comment-002');
-    const userId = new UserId('user-003');
+    const threadId = new ThreadId('thread-id');
+    const commentId = new CommentId('comment-id');
+    const userId = new UserId('user-id');
 
     const calledReply = Reply.create(
       new ReplyId('reply-001'),
@@ -52,7 +52,7 @@ describe('AddReplyCommandHandler', () => {
     const result = await commandHandler.handle(command);
 
     expect(result).toStrictEqual(
-      new AddedReplyReport('reply-001', 'Sebuah balasan', userId.value),
+      new AddedReplyReport('reply-001', 'Sebuah balasan', 'user-id'),
     );
     expect(mockCommentRepo.existsBy).toHaveBeenCalledWith({
       id: commentId,
@@ -67,9 +67,9 @@ describe('AddReplyCommandHandler', () => {
     mockReplyRepo.add = jest.fn();
 
     const command = new AddReplyCommand(
-      new ThreadId('thread-001'),
-      new CommentId('comment-001'),
-      new UserId('user-001'),
+      new ThreadId('thread-id'),
+      new CommentId('comment-id'),
+      new UserId('user-id'),
       'Sebuah balasan',
     );
     await expect(commandHandler.handle(command)).rejects.toThrow(
