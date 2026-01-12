@@ -5,7 +5,7 @@ import {
 import { AuthenticationRepository } from '@main/domain/repositories/authentication-repository.interface';
 import { RefreshAuthCommandHandler } from './refresh-auth.command-handler';
 import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
-import { MockAuthTokenService } from '@main/application/common/tests/mock-auth-token-service';
+import { MockAuthTokenService } from '@main/application/common/tests/fake-auth-token-service';
 import {
   Authentication,
   AuthenticationId,
