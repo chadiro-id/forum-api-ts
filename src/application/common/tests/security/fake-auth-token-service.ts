@@ -1,7 +1,7 @@
 import {
   AuthTokenPayload,
   AuthTokenService,
-} from '../interfaces/auth-token-service.interface';
+} from '../../interfaces/auth-token-service.interface';
 
 export class FakeAuthTokenService implements AuthTokenService {
   async createAccessToken(payload: AuthTokenPayload): Promise<string> {
