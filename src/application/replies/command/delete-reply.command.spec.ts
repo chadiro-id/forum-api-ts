@@ -6,15 +6,16 @@ import { UserId } from '@main/domain/users/user';
 
 describe('DeleteReplyCommand', () => {
   it('should correctly initialize data', () => {
-    const id = new ReplyId('reply-id');
-    const threadId = new ThreadId('thread-id');
-    const commentId = new CommentId('comment-id');
-    const userId = new UserId('user-123');
+    const command = new DeleteReplyCommand(
+      'reply-id',
+      'comment-id',
+      'thread-id',
+      'user-id',
+    );
 
-    const command = new DeleteReplyCommand(id, commentId, threadId, userId);
-    expect(command.id).toStrictEqual(id);
-    expect(command.threadId).toStrictEqual(threadId);
-    expect(command.commentId).toStrictEqual(commentId);
-    expect(command.userId).toStrictEqual(userId);
+    expect(command.id).toStrictEqual(new ReplyId('reply-id'));
+    expect(command.threadId).toStrictEqual(new ThreadId('thread-id'));
+    expect(command.commentId).toStrictEqual(new CommentId('comment-id'));
+    expect(command.userId).toStrictEqual(new UserId('user-id'));
   });
 });
