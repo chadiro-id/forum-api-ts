@@ -1,4 +1,4 @@
-import { User, UserId } from '../../../domain/users/user';
+import { User, UserId } from '../../../domain/users/entities/user';
 
 export interface UserRow {
   id: string;

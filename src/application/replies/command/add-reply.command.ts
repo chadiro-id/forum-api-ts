@@ -1,7 +1,7 @@
 import { ApplicationError } from '@main/application/common/errors/application-error';
 import { CommentId } from '../../../domain/comments/comment';
 import { ThreadId } from '../../../domain/threads/thread';
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 
 export class AddReplyCommand {
   public readonly threadId: ThreadId;

@@ -1,5 +1,5 @@
 import { ApplicationError } from '@main/application/common/errors/application-error';
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 
 export class AddThreadCommand {
   public readonly title: string;

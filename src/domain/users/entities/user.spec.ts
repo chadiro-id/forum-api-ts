@@ -1,4 +1,4 @@
-import { DomainError } from '../common/domain-error';
+import { DomainError } from '../../common/domain-error';
 import { User, UserId } from './user';
 
 describe('UserId', () => {

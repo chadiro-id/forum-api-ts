@@ -4,7 +4,7 @@ import { InMemoryReplyRepository } from '@main/application/common/tests/reposito
 import { Reply, ReplyId } from '@main/domain/replies/reply';
 import { ThreadId } from '@main/domain/threads/thread';
 import { CommentId } from '@main/domain/comments/comment';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 import { DeleteReplyCommand } from '../delete-reply.command';
 import { ReplyNotFoundError } from '../../errors/reply-not-found.error';
 import { ReplyDeceptiveAccessError } from '../../errors/reply-deceptive-access.error';

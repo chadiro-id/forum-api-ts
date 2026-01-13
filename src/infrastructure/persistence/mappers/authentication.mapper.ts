@@ -1,4 +1,4 @@
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 import {
   Authentication,
   AuthenticationId,

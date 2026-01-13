@@ -1,6 +1,6 @@
 import { UserRepository } from '../../../../domain/users/user-repository.interface';
 import { PasswordHasher } from '../../../common/interfaces/password-hasher.interface';
-import { User, UserId } from '../../../../domain/users/user';
+import { User, UserId } from '../../../../domain/users/entities/user';
 import { UsernameAlreadyExistsError } from '../../errors/username-already-exists.error';
 import { RegisterUserCommand } from '../register-user.command';
 import { RegisteredUserReport } from '../../reports/registered-user.report';

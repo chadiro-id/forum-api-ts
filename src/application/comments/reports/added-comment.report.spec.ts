@@ -1,7 +1,7 @@
 import { Comment, CommentId } from '@main/domain/comments/comment';
 import { AddedCommentReport } from './added-comment.report';
 import { ThreadId } from '@main/domain/threads/thread';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 
 describe('AddedCommentReport', () => {
   it('should correctly initialize data', () => {

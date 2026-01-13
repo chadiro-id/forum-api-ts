@@ -1,4 +1,4 @@
-import { User } from '@main/domain/users/user';
+import { User } from '@main/domain/users/entities/user';
 import { UserRepository } from '@main/domain/users/user-repository.interface';
 
 export class InMemoryUserRepository implements UserRepository {

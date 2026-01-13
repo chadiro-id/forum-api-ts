@@ -1,7 +1,7 @@
 import { ThreadId } from '../../../domain/threads/thread';
 import { Comment, CommentId } from '../../../domain/comments/comment';
 import { CommentDetails } from '../../../application/threads/query/results/thread-details.result';
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 
 export interface CommentRow {
   id: string;

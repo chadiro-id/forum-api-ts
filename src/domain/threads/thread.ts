@@ -1,6 +1,6 @@
 import { DomainEntity, EntityId } from '../common/domain-entity';
 import { DomainError } from '../common/domain-error';
-import { UserId } from '../users/user';
+import { UserId } from '../users/entities/user';
 
 export class ThreadId extends EntityId {
   readonly __brand = 'ThreadId';

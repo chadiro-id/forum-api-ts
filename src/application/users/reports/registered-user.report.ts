@@ -1,4 +1,4 @@
-import { User } from '../../../domain/users/user';
+import { User } from '../../../domain/users/entities/user';
 
 export class RegisteredUserReport {
   constructor(

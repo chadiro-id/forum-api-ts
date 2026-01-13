@@ -1,6 +1,6 @@
 import { Thread, ThreadId } from '@main/domain/threads/thread';
 import { AddedThreadReport } from './added-thread.report';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 
 describe('AddedThreadReport', () => {
   it('should correctly initialize data', () => {

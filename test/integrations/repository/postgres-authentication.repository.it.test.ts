@@ -1,6 +1,6 @@
 import { AppModule } from '@main/app.module';
 import { Authentication } from '@main/domain/authentications/authentication';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { AuthenticationMapper } from '@main/infrastructure/persistence/mappers/authentication.mapper';
 import { PostgresAuthenticationRepository } from '@main/infrastructure/persistence/repositories/postgres-authentication.repository';

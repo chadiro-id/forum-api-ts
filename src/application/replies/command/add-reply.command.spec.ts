@@ -1,7 +1,7 @@
 import { ThreadId } from '@main/domain/threads/thread';
 import { AddReplyCommand } from './add-reply.command';
 import { CommentId } from '@main/domain/comments/comment';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 import { ApplicationError } from '@main/application/common/errors/application-error';
 
 describe('AddReplyCommand', () => {

@@ -2,7 +2,7 @@ import { ThreadId } from '../../../domain/threads/thread';
 import { Reply, ReplyId } from '../../../domain/replies/reply';
 import { ReplyDetails } from '../../../application/threads/query/results/thread-details.result';
 import { CommentId } from '../../../domain/comments/comment';
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 
 export interface ReplyRow {
   id: string;

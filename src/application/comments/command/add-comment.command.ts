@@ -1,6 +1,6 @@
 import { ApplicationError } from '@main/application/common/errors/application-error';
 import { ThreadId } from '../../../domain/threads/thread';
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 
 export class AddCommentCommand {
   public readonly threadId: ThreadId;

@@ -2,7 +2,7 @@ import { AppModule } from '@main/app.module';
 import { CommentId } from '@main/domain/comments/comment';
 import { Reply, ReplyId } from '@main/domain/replies/reply';
 import { ThreadId } from '@main/domain/threads/thread';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { PostgresReplyRepository } from '@main/infrastructure/persistence/repositories/postgres-reply.repository';
 import Test from '@main/libs/my-app/testing/test-utils';

@@ -3,7 +3,7 @@ import { AppModule } from '@main/app.module';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { USER_REPOSITORY } from '@main/shared/injections.constant';
 import { PostgresUserRepository } from '@main/infrastructure/persistence/repositories/postgres-user.repository';
-import { UserId, User } from '@main/domain/users/user';
+import { UserId, User } from '@main/domain/users/entities/user';
 import Test from '@main/libs/my-app/testing/test-utils';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { createUserData } from '@test/helper/data-factory';

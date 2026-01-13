@@ -1,6 +1,6 @@
 import { CommentId } from '../../../domain/comments/comment';
 import { ThreadId } from '../../../domain/threads/thread';
-import { UserId } from '../../../domain/users/user';
+import { UserId } from '../../../domain/users/entities/user';
 
 export class DeleteCommentCommand {
   public readonly id: CommentId;

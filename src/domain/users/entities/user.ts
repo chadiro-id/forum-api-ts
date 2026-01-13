@@ -1,5 +1,5 @@
-import { DomainEntity, EntityId } from '../common/domain-entity';
-import { DomainError } from '../common/domain-error';
+import { DomainEntity, EntityId } from '../../common/domain-entity';
+import { DomainError } from '../../common/domain-error';
 
 export class UserId extends EntityId {
   readonly __brand = 'UserId';

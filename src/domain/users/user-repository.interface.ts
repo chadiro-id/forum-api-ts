@@ -1,4 +1,4 @@
-import { User } from './user';
+import { User } from './entities/user';
 
 export interface UserRepository {
   add(user: User): Promise<void>;

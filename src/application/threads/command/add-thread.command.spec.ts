@@ -1,4 +1,4 @@
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 import { AddThreadCommand } from './add-thread.command';
 import { ApplicationError } from '@main/application/common/errors/application-error';
 

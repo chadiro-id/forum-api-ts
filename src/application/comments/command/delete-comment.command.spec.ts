@@ -1,7 +1,7 @@
 import { CommentId } from '@main/domain/comments/comment';
 import { DeleteCommentCommand } from './delete-comment.command';
 import { ThreadId } from '@main/domain/threads/thread';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 
 describe('DeleteCommentCommand', () => {
   it('should correctly initialize data', () => {

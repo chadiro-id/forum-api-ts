@@ -1,4 +1,4 @@
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 import { InMemoryThreadRepository } from '../../../common/tests/repository/in-memory-thread-repository';
 import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
 import { AddThreadCommand } from '../add-thread.command';

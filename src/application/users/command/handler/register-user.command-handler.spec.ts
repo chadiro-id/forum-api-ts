@@ -1,4 +1,4 @@
-import { User, UserId } from '../../../../domain/users/user';
+import { User, UserId } from '../../../../domain/users/entities/user';
 import { UserRepository } from '../../../../domain/users/user-repository.interface';
 import { PasswordHasher } from '../../../common/interfaces/password-hasher.interface';
 import { RegisterUserCommandHandler } from './register-user.command-handler';

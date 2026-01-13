@@ -1,4 +1,4 @@
-import { User } from '../../../domain/users/user';
+import { User } from '../../../domain/users/entities/user';
 import { UserRepository } from '../../../domain/users/user-repository.interface';
 import {
   Inject,

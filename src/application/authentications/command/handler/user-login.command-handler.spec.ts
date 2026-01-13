@@ -7,7 +7,7 @@ import { FakeAuthTokenService } from '@main/application/common/tests/security/fa
 import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
 import { FakePasswordHasher } from '@main/application/common/tests/security/fake-password-hasher';
-import { User, UserId } from '@main/domain/users/user';
+import { User, UserId } from '@main/domain/users/entities/user';
 import { AuthenticationId } from '@main/domain/authentications/authentication';
 import { UserLoginCommand } from '../user-login.command';
 import { LoggedInUserReport } from '../../reports/logged-in-user.report';

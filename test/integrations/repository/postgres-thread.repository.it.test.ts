@@ -7,7 +7,7 @@ import { Pool } from 'pg';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { createThreadData, createUserData } from '@test/helper/data-factory';
 import { Thread, ThreadId } from '@main/domain/threads/thread';
-import { UserId } from '@main/domain/users/user';
+import { UserId } from '@main/domain/users/entities/user';
 
 let threadRepository: PostgresThreadRepository;
 
