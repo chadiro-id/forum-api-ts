@@ -1,4 +1,4 @@
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { GetThreadDetailsQuery } from './get-thread-details.query';
 
 describe('GetThreadDetailsQuery', () => {

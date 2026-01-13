@@ -1,4 +1,4 @@
-import { Thread, ThreadId } from '@main/domain/threads/thread';
+import { Thread, ThreadId } from '@main/domain/threads/entities/thread';
 import { AddedThreadReport } from './added-thread.report';
 import { UserId } from '@main/domain/users/entities/user';
 

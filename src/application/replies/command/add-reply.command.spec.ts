@@ -1,4 +1,4 @@
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { AddReplyCommand } from './add-reply.command';
 import { CommentId } from '@main/domain/comments/comment';
 import { UserId } from '@main/domain/users/entities/user';

@@ -4,7 +4,7 @@ import {
   ReplyDetails,
 } from '@main/application/threads/query/results/thread-details.result';
 import { CommentId } from '@main/domain/comments/comment';
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { ThreadDetailsQueryService } from '../../../threads/interfaces/thread-details-query-service.interface';
 
 export class InMemoryThreadDetailsQueryService implements ThreadDetailsQueryService {

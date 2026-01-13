@@ -1,6 +1,6 @@
 import { CommentId } from '@main/domain/comments/comment';
 import { DeleteCommentCommand } from './delete-comment.command';
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
 
 describe('DeleteCommentCommand', () => {

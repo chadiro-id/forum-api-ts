@@ -1,5 +1,5 @@
 import { CommentId } from '@main/domain/comments/comment';
-import { ThreadId } from '../../../domain/threads/thread';
+import { ThreadId } from '../../../domain/threads/entities/thread';
 import {
   CommentDetails,
   ReplyDetails,

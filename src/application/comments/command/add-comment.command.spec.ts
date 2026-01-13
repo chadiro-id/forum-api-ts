@@ -1,4 +1,4 @@
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { AddCommentCommand } from './add-comment.command';
 import { UserId } from '@main/domain/users/entities/user';
 import { ApplicationError } from '@main/application/common/errors/application-error';

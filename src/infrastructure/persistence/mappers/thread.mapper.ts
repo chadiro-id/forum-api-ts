@@ -1,5 +1,5 @@
 import { UserId } from '../../../domain/users/entities/user';
-import { Thread, ThreadId } from '../../../domain/threads/thread';
+import { Thread, ThreadId } from '../../../domain/threads/entities/thread';
 import { ThreadDetails } from '../../../application/threads/query/results/thread-details.result';
 
 export interface ThreadRow {

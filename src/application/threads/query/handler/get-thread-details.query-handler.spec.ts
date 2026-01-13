@@ -6,7 +6,7 @@ import {
   ReplyDetails,
   ThreadDetails,
 } from '../results/thread-details.result';
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { CommentId } from '@main/domain/comments/comment';
 import { ReplyId } from '@main/domain/replies/reply';
 import { GetThreadDetailsQuery } from '../get-thread-details.query';

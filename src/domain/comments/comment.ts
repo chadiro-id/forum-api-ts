@@ -1,6 +1,6 @@
 import { DomainEntity, EntityId } from '../common/domain-entity';
 import { DomainError } from '../common/domain-error';
-import { ThreadId } from '../threads/thread';
+import { ThreadId } from '../threads/entities/thread';
 import { UserId } from '../users/entities/user';
 
 export class CommentId extends EntityId {

@@ -4,7 +4,7 @@ import { AddReplyCommandHandler } from './add-reply.command-handler';
 import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
 import { InMemoryReplyRepository } from '@main/application/common/tests/repository/in-memory-reply-repository';
 import { Reply, ReplyId } from '@main/domain/replies/reply';
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { CommentId } from '@main/domain/comments/comment';
 import { UserId } from '@main/domain/users/entities/user';
 import { AddReplyCommand } from '../add-reply.command';

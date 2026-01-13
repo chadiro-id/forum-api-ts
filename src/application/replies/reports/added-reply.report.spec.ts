@@ -1,6 +1,6 @@
 import { Reply, ReplyId } from '@main/domain/replies/reply';
 import { AddedReplyReport } from './added-reply.report';
-import { ThreadId } from '@main/domain/threads/thread';
+import { ThreadId } from '@main/domain/threads/entities/thread';
 import { CommentId } from '@main/domain/comments/comment';
 import { UserId } from '@main/domain/users/entities/user';
 

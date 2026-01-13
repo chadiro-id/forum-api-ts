@@ -1,5 +1,5 @@
 import { ApplicationError } from '@main/application/common/errors/application-error';
-import { ThreadId } from '../../../domain/threads/thread';
+import { ThreadId } from '../../../domain/threads/entities/thread';
 import { UserId } from '../../../domain/users/entities/user';
 
 export class AddCommentCommand {

@@ -1,4 +1,4 @@
-import { ThreadId } from '../../../domain/threads/thread';
+import { ThreadId } from '../../../domain/threads/entities/thread';
 
 export class GetThreadDetailsQuery {
   public readonly id: ThreadId;

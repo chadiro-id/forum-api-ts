@@ -1,4 +1,4 @@
-import { Thread, ThreadId } from './thread';
+import { Thread, ThreadId } from './entities/thread';
 
 export interface ThreadRepository {
   add(thread: Thread): Promise<void>;

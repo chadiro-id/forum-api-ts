@@ -1,7 +1,7 @@
 import { DomainError } from '../common/domain-error';
 import { CommentId } from '../comments/comment';
 import { Reply, ReplyId } from './reply';
-import { ThreadId } from '../threads/thread';
+import { ThreadId } from '../threads//entities/thread';
 import { UserId } from '../users/entities/user';
 
 describe('ReplyId', () => {
