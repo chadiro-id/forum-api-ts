@@ -1,4 +1,3 @@
-import { InMemoryThreadDetailsQueryService } from '@test/storages/repositories/in-memory-thread-details-query-service';
 import { ThreadDetailsQueryService } from '../../interfaces/thread-details-query-service.interface';
 import { GetThreadDetailsQueryHandler } from './get-thread-details.query-handler';
 import {
@@ -12,6 +11,7 @@ import { ReplyId } from '@main/domain/replies/entities/reply';
 import { GetThreadDetailsQuery } from '../get-thread-details.query';
 import { ThreadDetailsReport } from '../../reports/thread-details.report';
 import { ThreadNotFoundError } from '../../errors/thread-not-found.error';
+import { MockThreadDetailsQueryService } from '../../interfaces/thread-details-query-service.spec';
 
 jest.useFakeTimers();
 describe('GetThreadDetailsQueryHandler', () => {
@@ -19,7 +19,7 @@ describe('GetThreadDetailsQueryHandler', () => {
   let queryHandler: GetThreadDetailsQueryHandler;
 
   beforeAll(() => {
-    mockThreadDetailsQueryService = new InMemoryThreadDetailsQueryService();
+    mockThreadDetailsQueryService = new MockThreadDetailsQueryService();
     queryHandler = new GetThreadDetailsQueryHandler(
       mockThreadDetailsQueryService,
     );
