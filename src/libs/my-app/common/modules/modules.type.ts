@@ -3,3 +3,5 @@ export interface ModuleOptions {
   controllers?: any[];
   imports?: any[];
 }
+
+export type MyAppModule = ModuleOptions | (new (...args: any[]) => any);
