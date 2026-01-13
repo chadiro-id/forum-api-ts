@@ -16,7 +16,6 @@ import {
   ROUTE,
   ROUTE_PARAMS,
   RES_HTTP_CODE,
-  RES_HEADER_METHOD,
   FILTERS_CATCH,
 } from '../constant/metadata.constant';
 import { ExecutionContext } from './http/execution-context';
@@ -242,12 +241,12 @@ export class MyExpressApp {
           methodName,
         );
         const statusCode = parseInt(`${statusCodeMeta}`) || 200;
-        const headers = Reflect.getMetadata(
-          RES_HEADER_METHOD,
-          controllerInstance,
-          methodName,
-        );
-        console.log('HTTP headers', headers);
+        // const headers = Reflect.getMetadata(
+        //   RES_HEADER_METHOD,
+        //   controllerInstance,
+        //   methodName,
+        // );
+        // console.log('HTTP headers', headers);
         // Handle response
         if (result === undefined || result === null) {
           console.log('result undefined', res.get('status'));
@@ -367,7 +366,6 @@ export class MyExpressApp {
   }
 
   private defaultErrorHandler(error: any, req: Request, res: Response): void {
-    console.log('Default Error Handler');
     if (res.headersSent) {
       return;
     }
