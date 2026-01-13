@@ -1,6 +1,5 @@
 import { ReplyRepository } from '@main/domain/replies/reply-repository.interface';
 import { DeleteReplyCommandHandler } from './delete-reply.command-handler';
-import { InMemoryReplyRepository } from '@main/application/common/tests/repository/in-memory-reply-repository';
 import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { CommentId } from '@main/domain/comments/entities/comment';
@@ -9,13 +8,14 @@ import { DeleteReplyCommand } from '../delete-reply.command';
 import { ReplyNotFoundError } from '../../errors/reply-not-found.error';
 import { ReplyDeceptiveAccessError } from '../../errors/reply-deceptive-access.error';
 import { ReplyUnauthorizedAccessError } from '../../errors/reply-unauthorized-access.error';
+import { MockReplyRepository } from '@main/domain/replies/reply-repository.spec';
 
 describe('DeleteReplyCommandHandler', () => {
   let mockReplyRepo: ReplyRepository;
   let commandHandler: DeleteReplyCommandHandler;
 
   beforeAll(() => {
-    mockReplyRepo = new InMemoryReplyRepository();
+    mockReplyRepo = new MockReplyRepository();
     commandHandler = new DeleteReplyCommandHandler(mockReplyRepo);
   });
 
