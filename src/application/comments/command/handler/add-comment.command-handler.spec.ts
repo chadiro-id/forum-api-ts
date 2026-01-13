@@ -1,14 +1,14 @@
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 import { ThreadRepository } from '@main/domain/threads/thread-repository.interface';
 import { AddCommentCommandHandler } from './add-comment.command-handler';
-import { InMemoryThreadRepository } from '@main/application/common/tests/repository/in-memory-thread-repository';
-import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
 import { AddCommentCommand } from '../add-comment.command';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadNotFoundError } from '@main/application/threads/errors/thread-not-found.error';
 import { AddedCommentReport } from '../../reports/added-comment.report';
+import { MockThreadRepository } from '@main/domain/threads/thread-repository.spec';
+import { MockCommentRepository } from '@main/domain/comments/comment-repository.spec';
 
 jest.useFakeTimers();
 describe('AddCommentCommandHandler', () => {
@@ -17,8 +17,8 @@ describe('AddCommentCommandHandler', () => {
   let commandHandler: AddCommentCommandHandler;
 
   beforeAll(() => {
-    mockThreadRepo = new InMemoryThreadRepository();
-    mockCommentRepo = new InMemoryCommentRepository();
+    mockThreadRepo = new MockThreadRepository();
+    mockCommentRepo = new MockCommentRepository();
     commandHandler = new AddCommentCommandHandler(
       mockThreadRepo,
       mockCommentRepo,

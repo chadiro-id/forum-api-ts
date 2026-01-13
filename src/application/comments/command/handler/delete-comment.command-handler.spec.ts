@@ -1,6 +1,5 @@
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 import { DeleteCommentCommandHandler } from './delete-comment.command-handler';
-import { InMemoryCommentRepository } from '@main/application/common/tests/repository/in-memory-comment-repository';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
@@ -8,13 +7,14 @@ import { DeleteCommentCommand } from '../delete-comment.command';
 import { CommentNotFoundError } from '../../errors/comment-not-found.error';
 import { CommentDeceptiveAccessError } from '../../errors/comment-deceptive-access.error';
 import { CommentUnauthorizedAccessError } from '../../errors/comment-unauthorized-access.error';
+import { MockCommentRepository } from '@main/domain/comments/comment-repository.spec';
 
 describe('DeleteCommentCommandHandler', () => {
   let mockCommentRepo: CommentRepository;
   let commandHandler: DeleteCommentCommandHandler;
 
   beforeAll(() => {
-    mockCommentRepo = new InMemoryCommentRepository();
+    mockCommentRepo = new MockCommentRepository();
     commandHandler = new DeleteCommentCommandHandler(mockCommentRepo);
   });
 
