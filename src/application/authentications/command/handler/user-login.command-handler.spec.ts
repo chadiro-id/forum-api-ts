@@ -12,7 +12,7 @@ import { InvalidCredentialsError } from '../../errors/invalid-credentials.error'
 import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.mock';
 import { MockUserRepository } from '@main/domain/users/user-repository.mock';
 import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.mock';
-import { MockPasswordHasher } from '@main/application/common/interfaces/password-hasher.spec';
+import { MockPasswordHasher } from '@main/application/common/interfaces/password-hasher.mock';
 
 describe('UserLoginCommandHandler', () => {
   let mockAuthRepository: AuthenticationRepository;
