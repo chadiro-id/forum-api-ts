@@ -1,10 +1,10 @@
 import { UserId } from '@main/domain/users/entities/user';
-import { InMemoryThreadRepository } from '../../../common/tests/repository/in-memory-thread-repository';
 import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
 import { AddThreadCommand } from '../add-thread.command';
 import { AddThreadCommandHandler } from './add-thread.command-handler';
 import { AddedThreadReport } from '../../reports/added-thread.report';
 import { Thread, ThreadId } from '@main/domain/threads/entities/thread';
+import { MockThreadRepository } from '@main/domain/threads/thread-repository.spec';
 
 jest.useFakeTimers();
 describe('AddThreadCommandHandler', () => {
@@ -12,7 +12,7 @@ describe('AddThreadCommandHandler', () => {
   let commandHandler: AddThreadCommandHandler;
 
   beforeAll(() => {
-    mockThreadRepo = new InMemoryThreadRepository();
+    mockThreadRepo = new MockThreadRepository();
     commandHandler = new AddThreadCommandHandler(
       mockThreadRepo,
       () => 'thread-001',
