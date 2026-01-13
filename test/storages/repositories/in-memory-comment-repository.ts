@@ -1,7 +1,7 @@
 import { EntityId } from '@main/domain/common/domain-entity';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
-import { FakeStorage } from '../data/fake-storage-utils';
+import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 
 export class InMemoryCommentRepository implements CommentRepository {
   private commentList: Array<Comment>;

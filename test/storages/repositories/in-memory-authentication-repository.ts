@@ -3,7 +3,7 @@ import {
   AuthenticationId,
 } from '@main/domain/authentications/entities/authentication';
 import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
-import { FakeStorage } from '../data/fake-storage-utils';
+import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 
 export class InMemoryAuthenticationRepository implements AuthenticationRepository {
   private increment: number = 0;

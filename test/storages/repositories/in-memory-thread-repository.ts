@@ -1,6 +1,6 @@
-import { Thread, ThreadId } from '../../../../domain/threads/entities/thread';
-import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
-import { FakeStorage } from '../data/fake-storage-utils';
+import { Thread, ThreadId } from '../../../src/domain/threads/entities/thread';
+import { ThreadRepository } from '../../../src/domain/threads/thread-repository.interface';
+import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 
 export class InMemoryThreadRepository implements ThreadRepository {
   private threadList: Array<Thread>;

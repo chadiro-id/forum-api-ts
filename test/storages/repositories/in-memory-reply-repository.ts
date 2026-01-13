@@ -1,6 +1,6 @@
 import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { ReplyRepository } from '@main/domain/replies/reply-repository.interface';
-import { FakeStorage } from '../data/fake-storage-utils';
+import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 
 export class InMemoryReplyRepository implements ReplyRepository {
   private replyList: Array<Reply>;

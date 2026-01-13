@@ -1,6 +1,6 @@
 import { User } from '@main/domain/users/entities/user';
 import { UserRepository } from '@main/domain/users/user-repository.interface';
-import { FakeStorage } from '../data/fake-storage-utils';
+import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 
 export class InMemoryUserRepository implements UserRepository {
   private userList: Array<User>;
