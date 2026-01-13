@@ -12,7 +12,7 @@ import { UserId } from '@main/domain/users/entities/user';
 import { RefreshAuthCommand } from '../refresh-auth.command';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
-import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
+import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.mock';
 import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.spec';
 
 describe('RefreshAuthCommandHandler', () => {

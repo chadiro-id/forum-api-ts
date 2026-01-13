@@ -7,7 +7,7 @@ import {
 import { UserId } from '@main/domain/users/entities/user';
 import { UserLogoutCommand } from '../user-logout.command';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
-import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
+import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.mock';
 
 describe('UserLogoutCommandHandler', () => {
   let mockAuthRepo: AuthenticationRepository;

@@ -9,7 +9,7 @@ import { UserLoginCommand } from '../user-login.command';
 import { LoggedInUserReport } from '../../reports/logged-in-user.report';
 import { NonExistenceUserLoginError } from '../../errors/non-existence-user-login.error';
 import { InvalidCredentialsError } from '../../errors/invalid-credentials.error';
-import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
+import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.mock';
 import { MockUserRepository } from '@main/domain/users/user-repository.spec';
 import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.spec';
 import { MockPasswordHasher } from '@main/application/common/interfaces/password-hasher.spec';
