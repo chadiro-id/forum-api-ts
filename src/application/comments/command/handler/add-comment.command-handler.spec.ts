@@ -7,7 +7,7 @@ import { UserId } from '@main/domain/users/entities/user';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadNotFoundError } from '@main/application/threads/errors/thread-not-found.error';
 import { AddedCommentReport } from '../../reports/added-comment.report';
-import { MockThreadRepository } from '@main/domain/threads/thread-repository.spec';
+import { MockThreadRepository } from '@main/domain/threads/thread-repository.mock';
 import { MockCommentRepository } from '@main/domain/comments/comment-repository.spec';
 
 jest.useFakeTimers();

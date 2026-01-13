@@ -4,7 +4,7 @@ import { AddThreadCommand } from '../add-thread.command';
 import { AddThreadCommandHandler } from './add-thread.command-handler';
 import { AddedThreadReport } from '../../reports/added-thread.report';
 import { Thread, ThreadId } from '@main/domain/threads/entities/thread';
-import { MockThreadRepository } from '@main/domain/threads/thread-repository.spec';
+import { MockThreadRepository } from '@main/domain/threads/thread-repository.mock';
 
 jest.useFakeTimers();
 describe('AddThreadCommandHandler', () => {
