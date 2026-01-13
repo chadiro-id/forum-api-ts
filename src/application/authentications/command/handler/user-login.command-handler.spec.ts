@@ -3,8 +3,6 @@ import { PasswordHasher } from '@main/application/common/interfaces/password-has
 import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 import { UserRepository } from '@main/domain/users/user-repository.interface';
 import { UserLoginCommandHandler } from './user-login.command-handler';
-import { FakeAuthTokenService } from '@main/application/common/tests/security/fake-auth-token-service';
-import { FakePasswordHasher } from '@main/application/common/tests/security/fake-password-hasher';
 import { User, UserId } from '@main/domain/users/entities/user';
 import { AuthenticationId } from '@main/domain/authentications/entities/authentication';
 import { UserLoginCommand } from '../user-login.command';
@@ -13,6 +11,8 @@ import { NonExistenceUserLoginError } from '../../errors/non-existence-user-logi
 import { InvalidCredentialsError } from '../../errors/invalid-credentials.error';
 import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
 import { MockUserRepository } from '@main/domain/users/user-repository.spec';
+import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.spec';
+import { MockPasswordHasher } from '@main/application/common/interfaces/password-hasher.spec';
 
 describe('UserLoginCommandHandler', () => {
   let mockAuthRepository: AuthenticationRepository;
@@ -22,10 +22,10 @@ describe('UserLoginCommandHandler', () => {
   let commandHandler: UserLoginCommandHandler;
 
   beforeAll(() => {
-    mockAuthTokenService = new FakeAuthTokenService();
+    mockAuthTokenService = new MockAuthTokenService();
     mockAuthRepository = new MockAuthenticationRepository();
     mockUserRepository = new MockUserRepository();
-    mockPasswordHasher = new FakePasswordHasher();
+    mockPasswordHasher = new MockPasswordHasher();
 
     commandHandler = new UserLoginCommandHandler(
       mockAuthRepository,

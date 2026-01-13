@@ -4,7 +4,6 @@ import {
 } from '@main/application/common/interfaces/auth-token-service.interface';
 import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 import { RefreshAuthCommandHandler } from './refresh-auth.command-handler';
-import { FakeAuthTokenService } from '@main/application/common/tests/security/fake-auth-token-service';
 import {
   Authentication,
   AuthenticationId,
@@ -14,6 +13,7 @@ import { RefreshAuthCommand } from '../refresh-auth.command';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
 import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
+import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.spec';
 
 describe('RefreshAuthCommandHandler', () => {
   let mockAuthRepo: AuthenticationRepository;
@@ -22,7 +22,7 @@ describe('RefreshAuthCommandHandler', () => {
 
   beforeAll(() => {
     mockAuthRepo = new MockAuthenticationRepository();
-    mockAuthTokenService = new FakeAuthTokenService();
+    mockAuthTokenService = new MockAuthTokenService();
     commandHandler = new RefreshAuthCommandHandler(
       mockAuthRepo,
       mockAuthTokenService,
