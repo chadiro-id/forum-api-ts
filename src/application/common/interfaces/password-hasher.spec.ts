@@ -1,14 +1,4 @@
-import { PasswordHasher } from './password-hasher.interface';
-
-export class MockPasswordHasher implements PasswordHasher {
-  async hashPassword(password: string): Promise<string> {
-    return `hashed_${password}`;
-  }
-
-  async comparePassword(password: string, hashed: string): Promise<boolean> {
-    return `hashed_${password}` === hashed;
-  }
-}
+import { MockPasswordHasher } from './password-hasher.mock';
 
 describe('PasswordHasher', () => {
   it('should enforce hashPassword method', async () => {
