@@ -1,20 +1,25 @@
 import { User } from '@main/domain/users/entities/user';
 import { UserRepository } from '@main/domain/users/user-repository.interface';
+import { FakeStorage } from '../data/fake-storage-utils';
 
 export class InMemoryUserRepository implements UserRepository {
-  constructor(private storage: Array<User> = []) {}
+  private userList: Array<User>;
+
+  constructor(private storage: FakeStorage = new Map()) {
+    this.userList = (this.storage.get('users') as User[]) || [];
+  }
 
   async add(user: User): Promise<void> {
-    this.storage.push(user);
+    this.userList.push(user);
   }
 
   async findByUsername(username: string): Promise<User | null> {
-    const user = this.storage.find((u) => u.username === username);
+    const user = this.userList.find((u) => u.username === username);
     return user ? user : null;
   }
 
   async existsByUsername(username: string): Promise<boolean> {
-    const result = this.storage.find((u) => u.username === username);
+    const result = this.userList.find((u) => u.username === username);
     return result !== undefined;
   }
 }
