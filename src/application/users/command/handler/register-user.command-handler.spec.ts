@@ -5,7 +5,7 @@ import { RegisterUserCommandHandler } from './register-user.command-handler';
 import { RegisterUserCommand } from '../register-user.command';
 import { RegisteredUserReport } from '../../reports/registered-user.report';
 import { UsernameAlreadyExistsError } from '../../errors/username-already-exists.error';
-import { MockUserRepository } from '@main/domain/users/user-repository.spec';
+import { MockUserRepository } from '@main/domain/users/user-repository.mock';
 import { MockPasswordHasher } from '@main/application/common/interfaces/password-hasher.spec';
 
 jest.useFakeTimers();
