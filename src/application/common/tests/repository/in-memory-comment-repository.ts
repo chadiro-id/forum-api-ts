@@ -1,21 +1,26 @@
 import { EntityId } from '@main/domain/common/domain-entity';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
+import { FakeStorage } from '../data/fake-storage-utils';
 
 export class InMemoryCommentRepository implements CommentRepository {
-  constructor(private storage: Array<Comment> = []) {}
+  private commentList: Array<Comment>;
+
+  constructor(private storage: FakeStorage = new Map()) {
+    this.commentList = (this.storage.get('comments') as Comment[]) || [];
+  }
 
   async add(comment: Comment): Promise<void> {
-    this.storage.push(comment);
+    this.commentList.push(comment);
   }
 
   async findById(id: CommentId): Promise<Comment | null> {
-    const comment = this.storage.find((c) => c.id.equals(id));
+    const comment = this.commentList.find((c) => c.id.equals(id));
     return comment ? comment : null;
   }
 
   async existsBy(criteria: Partial<Comment>): Promise<boolean> {
-    const comment = this.storage.find((c) => {
+    const comment = this.commentList.find((c) => {
       for (const [k, v] of Object.entries(criteria)) {
         if (c[k] instanceof EntityId && !c[k].equals(v)) {
           return false;
@@ -29,7 +34,7 @@ export class InMemoryCommentRepository implements CommentRepository {
   }
 
   async softDelete(comment: Comment): Promise<void> {
-    const item = this.storage.find((c) => c.id.equals(comment.id));
+    const item = this.commentList.find((c) => c.id.equals(comment.id));
     if (item) {
       const newItem = Comment.create(
         item.id,
@@ -40,8 +45,8 @@ export class InMemoryCommentRepository implements CommentRepository {
         item.createdAt,
       );
 
-      const idx = this.storage.findIndex((c) => c.equals(item));
-      this.storage[idx] = newItem;
+      const idx = this.commentList.findIndex((c) => c.equals(item));
+      this.commentList[idx] = newItem;
     }
   }
 }
