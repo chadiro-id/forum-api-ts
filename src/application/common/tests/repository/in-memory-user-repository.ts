@@ -2,7 +2,7 @@ import { User } from '@main/domain/users/entities/user';
 import { UserRepository } from '@main/domain/users/user-repository.interface';
 
 export class InMemoryUserRepository implements UserRepository {
-  private storage: Array<User> = [];
+  constructor(private storage: Array<User> = []) {}
 
   async add(user: User): Promise<void> {
     this.storage.push(user);
