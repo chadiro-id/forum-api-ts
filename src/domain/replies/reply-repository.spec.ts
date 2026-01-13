@@ -2,34 +2,7 @@ import { CommentId } from '../comments/entities/comment';
 import { ThreadId } from '../threads/entities/thread';
 import { UserId } from '../users/entities/user';
 import { Reply, ReplyId } from './entities/reply';
-import { ReplyRepository } from './reply-repository.interface';
-
-export class MockReplyRepository implements ReplyRepository {
-  private replyList: Array<Reply> = [];
-
-  async add(reply: Reply): Promise<void> {
-    this.replyList.push(reply);
-  }
-
-  async findById(id: ReplyId): Promise<Reply | null> {
-    const found = this.replyList.find((r) => r.id.equals(id));
-    return found ?? null;
-  }
-
-  async softDelete(reply: Reply): Promise<void> {
-    const idx = this.replyList.findIndex((r) => r.equals(reply));
-    if (idx < 0) return;
-    this.replyList[idx] = Reply.create(
-      reply.id,
-      reply.threadId,
-      reply.commentId,
-      reply.ownerId,
-      reply.content,
-      true,
-      reply.createdAt,
-    );
-  }
-}
+import { MockReplyRepository } from './reply-repository.mock';
 
 describe('ReplyRepository', () => {
   it('should enforce findById method', async () => {
