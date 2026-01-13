@@ -1,6 +1,9 @@
 import { CommentRepository } from '../../../../domain/comments/comment-repository.interface';
 import { ThreadRepository } from '../../../../domain/threads/thread-repository.interface';
-import { Comment, CommentId } from '../../../../domain/comments/entities/comment';
+import {
+  Comment,
+  CommentId,
+} from '../../../../domain/comments/entities/comment';
 import { ThreadNotFoundError } from '../../../threads/errors/thread-not-found.error';
 import { AddCommentCommand } from '../add-comment.command';
 import { AddedCommentReport } from '../../reports/added-comment.report';
