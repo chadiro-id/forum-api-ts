@@ -8,7 +8,7 @@ import { InMemoryAuthenticationRepository } from '@main/application/common/tests
 import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
 import { FakePasswordHasher } from '@main/application/common/tests/security/fake-password-hasher';
 import { User, UserId } from '@main/domain/users/entities/user';
-import { AuthenticationId } from '@main/domain/authentications/authentication';
+import { AuthenticationId } from '@main/domain/authentications/entities/authentication';
 import { UserLoginCommand } from '../user-login.command';
 import { LoggedInUserReport } from '../../reports/logged-in-user.report';
 import { NonExistenceUserLoginError } from '../../errors/non-existence-user-login.error';

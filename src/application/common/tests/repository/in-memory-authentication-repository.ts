@@ -1,7 +1,7 @@
 import {
   Authentication,
   AuthenticationId,
-} from '@main/domain/authentications/authentication';
+} from '@main/domain/authentications/entities/authentication';
 import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
 
 export class InMemoryAuthenticationRepository implements AuthenticationRepository {

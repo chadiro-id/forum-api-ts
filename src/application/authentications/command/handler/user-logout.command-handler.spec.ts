@@ -4,7 +4,7 @@ import { UserLogoutCommandHandler } from './user-logout.command-handler';
 import {
   Authentication,
   AuthenticationId,
-} from '@main/domain/authentications/authentication';
+} from '@main/domain/authentications/entities/authentication';
 import { UserId } from '@main/domain/users/entities/user';
 import { UserLogoutCommand } from '../user-logout.command';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';

@@ -2,7 +2,7 @@ import { Pool } from 'pg';
 import {
   Authentication,
   AuthenticationId,
-} from '../../../domain/authentications/authentication';
+} from '../../../domain/authentications/entities/authentication';
 import { AuthenticationRepository } from '../../../domain/authentications/authentication-repository.interface';
 import {
   Inject,

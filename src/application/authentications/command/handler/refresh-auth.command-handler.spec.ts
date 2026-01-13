@@ -9,7 +9,7 @@ import { FakeAuthTokenService } from '@main/application/common/tests/security/fa
 import {
   Authentication,
   AuthenticationId,
-} from '@main/domain/authentications/authentication';
+} from '@main/domain/authentications/entities/authentication';
 import { UserId } from '@main/domain/users/entities/user';
 import { RefreshAuthCommand } from '../refresh-auth.command';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';

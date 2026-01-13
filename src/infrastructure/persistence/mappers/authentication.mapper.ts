@@ -2,7 +2,7 @@ import { UserId } from '../../../domain/users/entities/user';
 import {
   Authentication,
   AuthenticationId,
-} from '../../../domain/authentications/authentication';
+} from '../../../domain/authentications/entities/authentication';
 
 export interface AuthenticationRow {
   id: string;
