@@ -1,11 +1,11 @@
 import { Thread, ThreadId } from '../../../src/domain/threads/entities/thread';
 import { ThreadRepository } from '../../../src/domain/threads/thread-repository.interface';
-import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
+import { EntityStorage } from '../entity-storage';
 
 export class InMemoryThreadRepository implements ThreadRepository {
   private threadList: Array<Thread>;
 
-  constructor(private storage: FakeStorage = new Map()) {
+  constructor(private storage: EntityStorage) {
     this.threadList = (this.storage.get('threads') as Thread[]) || [];
   }
 

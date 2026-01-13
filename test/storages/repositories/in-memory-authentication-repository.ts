@@ -3,13 +3,13 @@ import {
   AuthenticationId,
 } from '@main/domain/authentications/entities/authentication';
 import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
-import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
+import { EntityStorage } from '../entity-storage';
 
 export class InMemoryAuthenticationRepository implements AuthenticationRepository {
   private increment: number = 0;
   private authList: Array<Authentication>;
 
-  constructor(private storage: FakeStorage = new Map()) {
+  constructor(private storage: EntityStorage) {
     this.authList =
       (this.storage.get('authentications') as Authentication[]) || [];
   }

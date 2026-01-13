@@ -6,9 +6,9 @@ import {
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { Thread, ThreadId } from '@main/domain/threads/entities/thread';
 import { ThreadDetailsQueryService } from '../../../src/application/threads/interfaces/thread-details-query-service.interface';
-import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 import { User } from '@main/domain/users/entities/user';
 import { Reply } from '@main/domain/replies/entities/reply';
+import { EntityStorage } from '../entity-storage';
 
 export class InMemoryThreadDetailsQueryService implements ThreadDetailsQueryService {
   private userList: Array<User>;
@@ -16,7 +16,7 @@ export class InMemoryThreadDetailsQueryService implements ThreadDetailsQueryServ
   private commentList: Array<Comment>;
   private replyList: Array<Reply>;
 
-  constructor(private storage: FakeStorage = new Map()) {
+  constructor(private storage: EntityStorage) {
     this.userList = this.storage.get('users')! as User[];
     this.threadList = (this.storage.get('threads') as Thread[]) || [];
     this.commentList = (this.storage.get('comments') as Comment[]) || [];

@@ -1,11 +1,11 @@
 import { User } from '@main/domain/users/entities/user';
 import { UserRepository } from '@main/domain/users/user-repository.interface';
-import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
+import { EntityStorage } from '../entity-storage';
 
 export class InMemoryUserRepository implements UserRepository {
   private userList: Array<User>;
 
-  constructor(private storage: FakeStorage = new Map()) {
+  constructor(private storage: EntityStorage) {
     this.userList = (this.storage.get('users') as User[]) || [];
   }
 

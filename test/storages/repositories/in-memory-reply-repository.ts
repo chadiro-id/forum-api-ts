@@ -1,11 +1,11 @@
 import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { ReplyRepository } from '@main/domain/replies/reply-repository.interface';
-import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
+import { EntityStorage } from '../entity-storage';
 
 export class InMemoryReplyRepository implements ReplyRepository {
   private replyList: Array<Reply>;
 
-  constructor(private storage: FakeStorage = new Map()) {
+  constructor(private storage: EntityStorage) {
     this.replyList = (this.storage.get('replies') as Reply[]) || [];
   }
 

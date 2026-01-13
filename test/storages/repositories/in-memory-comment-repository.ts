@@ -1,12 +1,12 @@
 import { EntityId } from '@main/domain/common/domain-entity';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
-import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
+import { EntityStorage } from '../entity-storage';
 
 export class InMemoryCommentRepository implements CommentRepository {
   private commentList: Array<Comment>;
 
-  constructor(private storage: FakeStorage = new Map()) {
+  constructor(private storage: EntityStorage) {
     this.commentList = (this.storage.get('comments') as Comment[]) || [];
   }
 
