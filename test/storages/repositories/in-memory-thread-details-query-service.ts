@@ -5,8 +5,8 @@ import {
 } from '@main/application/threads/query/results/thread-details.result';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { Thread, ThreadId } from '@main/domain/threads/entities/thread';
-import { ThreadDetailsQueryService } from '../../../threads/interfaces/thread-details-query-service.interface';
-import { FakeStorage } from '../data/fake-storage-utils';
+import { ThreadDetailsQueryService } from '../../../src/application/threads/interfaces/thread-details-query-service.interface';
+import { FakeStorage } from '../../../src/application/common/tests/data/fake-storage-utils';
 import { User } from '@main/domain/users/entities/user';
 import { Reply } from '@main/domain/replies/entities/reply';
 

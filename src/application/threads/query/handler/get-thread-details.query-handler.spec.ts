@@ -1,4 +1,4 @@
-import { InMemoryThreadDetailsQueryService } from '@main/application/common/tests/query-service/in-memory-thread-details-query-service';
+import { InMemoryThreadDetailsQueryService } from '@test/storages/repositories/in-memory-thread-details-query-service';
 import { ThreadDetailsQueryService } from '../../interfaces/thread-details-query-service.interface';
 import { GetThreadDetailsQueryHandler } from './get-thread-details.query-handler';
 import {
