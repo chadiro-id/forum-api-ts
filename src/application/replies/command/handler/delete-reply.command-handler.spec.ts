@@ -8,7 +8,7 @@ import { DeleteReplyCommand } from '../delete-reply.command';
 import { ReplyNotFoundError } from '../../errors/reply-not-found.error';
 import { ReplyDeceptiveAccessError } from '../../errors/reply-deceptive-access.error';
 import { ReplyUnauthorizedAccessError } from '../../errors/reply-unauthorized-access.error';
-import { MockReplyRepository } from '@main/domain/replies/reply-repository.spec';
+import { MockReplyRepository } from '@main/domain/replies/reply-repository.mock';
 
 describe('DeleteReplyCommandHandler', () => {
   let mockReplyRepo: ReplyRepository;

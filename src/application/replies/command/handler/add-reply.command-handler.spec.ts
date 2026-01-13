@@ -9,7 +9,7 @@ import { AddReplyCommand } from '../add-reply.command';
 import { AddedReplyReport } from '../../reports/added-reply.report';
 import { CommentNotFoundError } from '@main/application/comments/errors/comment-not-found.error';
 import { MockCommentRepository } from '@main/domain/comments/comment-repository.mock';
-import { MockReplyRepository } from '@main/domain/replies/reply-repository.spec';
+import { MockReplyRepository } from '@main/domain/replies/reply-repository.mock';
 
 jest.useFakeTimers();
 describe('AddReplyCommandHandler', () => {
