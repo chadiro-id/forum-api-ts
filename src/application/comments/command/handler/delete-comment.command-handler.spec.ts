@@ -7,7 +7,7 @@ import { DeleteCommentCommand } from '../delete-comment.command';
 import { CommentNotFoundError } from '../../errors/comment-not-found.error';
 import { CommentDeceptiveAccessError } from '../../errors/comment-deceptive-access.error';
 import { CommentUnauthorizedAccessError } from '../../errors/comment-unauthorized-access.error';
-import { MockCommentRepository } from '@main/domain/comments/comment-repository.spec';
+import { MockCommentRepository } from '@main/domain/comments/comment-repository.mock';
 
 describe('DeleteCommentCommandHandler', () => {
   let mockCommentRepo: CommentRepository;
