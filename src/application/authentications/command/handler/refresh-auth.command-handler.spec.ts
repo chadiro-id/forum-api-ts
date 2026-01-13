@@ -13,7 +13,7 @@ import { RefreshAuthCommand } from '../refresh-auth.command';
 import { RefreshedAuthReport } from '../../reports/refreshed-auth.report';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
 import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.mock';
-import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.spec';
+import { MockAuthTokenService } from '@main/application/common/interfaces/auth-token-service.mock';
 
 describe('RefreshAuthCommandHandler', () => {
   let mockAuthRepo: AuthenticationRepository;
