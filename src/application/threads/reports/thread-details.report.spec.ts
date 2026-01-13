@@ -6,7 +6,7 @@ import {
 } from '../query/results/thread-details.result';
 import { ThreadDetailsReport } from './thread-details.report';
 import { CommentId } from '@main/domain/comments/comment';
-import { ReplyId } from '@main/domain/replies/reply';
+import { ReplyId } from '@main/domain/replies/entities/reply';
 
 describe('ThreadDetailsReport', () => {
   it('should correctly initialize data', () => {

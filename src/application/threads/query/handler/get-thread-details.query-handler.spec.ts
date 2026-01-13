@@ -8,7 +8,7 @@ import {
 } from '../results/thread-details.result';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { CommentId } from '@main/domain/comments/comment';
-import { ReplyId } from '@main/domain/replies/reply';
+import { ReplyId } from '@main/domain/replies/entities/reply';
 import { GetThreadDetailsQuery } from '../get-thread-details.query';
 import { ThreadDetailsReport } from '../../reports/thread-details.report';
 import { ThreadNotFoundError } from '../../errors/thread-not-found.error';

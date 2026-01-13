@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { Reply, ReplyId } from '../../../domain/replies/reply';
+import { Reply, ReplyId } from '../../../domain/replies/entities/reply';
 import { ReplyRepository } from '../../../domain/replies/reply-repository.interface';
 import {
   Inject,

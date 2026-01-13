@@ -5,7 +5,7 @@ import {
   ThreadDetails,
 } from './thread-details.result';
 import { CommentId } from '@main/domain/comments/comment';
-import { ReplyId } from '@main/domain/replies/reply';
+import { ReplyId } from '@main/domain/replies/entities/reply';
 
 describe('ThreadDetailsResult', () => {
   describe('ThreadDetails', () => {

@@ -5,7 +5,7 @@ import {
   ThreadDetails,
 } from '@main/application/threads/query/results/thread-details.result';
 import { CommentId } from '@main/domain/comments/comment';
-import { ReplyId } from '@main/domain/replies/reply';
+import { ReplyId } from '@main/domain/replies/entities/reply';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { PG_POOL } from '@main/infrastructure/database/database.module';
 import { PostgresThreadDetailsQueryService } from '@main/infrastructure/persistence/query-services/postgres-thread-details.query-service';

@@ -1,4 +1,4 @@
-import { Reply, ReplyId } from '@main/domain/replies/reply';
+import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { ReplyRepository } from '@main/domain/replies/reply-repository.interface';
 
 export class InMemoryReplyRepository implements ReplyRepository {

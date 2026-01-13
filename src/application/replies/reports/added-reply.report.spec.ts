@@ -1,4 +1,4 @@
-import { Reply, ReplyId } from '@main/domain/replies/reply';
+import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { AddedReplyReport } from './added-reply.report';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { CommentId } from '@main/domain/comments/comment';
