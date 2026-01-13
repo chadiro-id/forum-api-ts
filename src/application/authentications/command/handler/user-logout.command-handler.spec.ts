@@ -1,5 +1,4 @@
 import { AuthenticationRepository } from '@main/domain/authentications/authentication-repository.interface';
-import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
 import { UserLogoutCommandHandler } from './user-logout.command-handler';
 import {
   Authentication,
@@ -8,13 +7,14 @@ import {
 import { UserId } from '@main/domain/users/entities/user';
 import { UserLogoutCommand } from '../user-logout.command';
 import { RefreshTokenNotExistsError } from '../../errors/refresh-token-not-exists.error';
+import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
 
 describe('UserLogoutCommandHandler', () => {
   let mockAuthRepo: AuthenticationRepository;
   let commandHandler: UserLogoutCommandHandler;
 
   beforeAll(() => {
-    mockAuthRepo = new InMemoryAuthenticationRepository();
+    mockAuthRepo = new MockAuthenticationRepository();
     commandHandler = new UserLogoutCommandHandler(mockAuthRepo);
   });
 

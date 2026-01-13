@@ -4,8 +4,6 @@ import { AuthenticationRepository } from '@main/domain/authentications/authentic
 import { UserRepository } from '@main/domain/users/user-repository.interface';
 import { UserLoginCommandHandler } from './user-login.command-handler';
 import { FakeAuthTokenService } from '@main/application/common/tests/security/fake-auth-token-service';
-import { InMemoryAuthenticationRepository } from '@main/application/common/tests/repository/in-memory-authentication-repository';
-import { InMemoryUserRepository } from '@main/application/common/tests/repository/in-memory-user-repository';
 import { FakePasswordHasher } from '@main/application/common/tests/security/fake-password-hasher';
 import { User, UserId } from '@main/domain/users/entities/user';
 import { AuthenticationId } from '@main/domain/authentications/entities/authentication';
@@ -13,6 +11,8 @@ import { UserLoginCommand } from '../user-login.command';
 import { LoggedInUserReport } from '../../reports/logged-in-user.report';
 import { NonExistenceUserLoginError } from '../../errors/non-existence-user-login.error';
 import { InvalidCredentialsError } from '../../errors/invalid-credentials.error';
+import { MockAuthenticationRepository } from '@main/domain/authentications/authentication-repository.spec';
+import { MockUserRepository } from '@main/domain/users/user-repository.spec';
 
 describe('UserLoginCommandHandler', () => {
   let mockAuthRepository: AuthenticationRepository;
@@ -23,8 +23,8 @@ describe('UserLoginCommandHandler', () => {
 
   beforeAll(() => {
     mockAuthTokenService = new FakeAuthTokenService();
-    mockAuthRepository = new InMemoryAuthenticationRepository();
-    mockUserRepository = new InMemoryUserRepository();
+    mockAuthRepository = new MockAuthenticationRepository();
+    mockUserRepository = new MockUserRepository();
     mockPasswordHasher = new FakePasswordHasher();
 
     commandHandler = new UserLoginCommandHandler(
