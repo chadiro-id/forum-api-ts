@@ -1,11 +1,13 @@
-import { AppModule } from '@main/app.module';
 import { Authentication } from '@main/domain/authentications/entities/authentication';
 import { UserId } from '@main/domain/users/entities/user';
-import { PG_POOL } from '@main/infrastructure/database/database.module';
+import { ConfigModule } from '@main/infrastructure/config/config.module';
+import {
+  DatabaseModule,
+  PG_POOL,
+} from '@main/infrastructure/database/database.module';
 import { AuthenticationMapper } from '@main/infrastructure/persistence/mappers/authentication.mapper';
 import { PostgresAuthenticationRepository } from '@main/infrastructure/persistence/repositories/postgres-authentication.repository';
 import Test from '@main/libs/my-app/testing/test-utils';
-import { AUTHENTICATION_REPOSITORY } from '@main/shared/injections.constant';
 import { createUserData } from '@test/helper/data-factory';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { Pool } from 'pg';
@@ -13,10 +15,18 @@ import { Pool } from 'pg';
 let authRepo: PostgresAuthenticationRepository;
 
 beforeAll(async () => {
-  const moduleRef = Test.createTestingModule(AppModule);
+  const moduleRef = Test.createTestingModule({
+    imports: [ConfigModule, DatabaseModule],
+    providers: [
+      {
+        provide: PostgresAuthenticationRepository,
+        useClass: PostgresAuthenticationRepository,
+      },
+    ],
+  });
   const pool = moduleRef.resolve<Pool>(PG_POOL);
 
-  authRepo = moduleRef.resolve(AUTHENTICATION_REPOSITORY);
+  authRepo = moduleRef.resolve(PostgresAuthenticationRepository);
   pgTest.setup(pool);
 
   await pgTest.truncate();

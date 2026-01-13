@@ -1,12 +1,14 @@
-import { AppModule } from '@main/app.module';
 import { CommentId } from '@main/domain/comments/entities/comment';
 import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
-import { PG_POOL } from '@main/infrastructure/database/database.module';
+import { ConfigModule } from '@main/infrastructure/config/config.module';
+import {
+  DatabaseModule,
+  PG_POOL,
+} from '@main/infrastructure/database/database.module';
 import { PostgresReplyRepository } from '@main/infrastructure/persistence/repositories/postgres-reply.repository';
 import Test from '@main/libs/my-app/testing/test-utils';
-import { REPLY_REPOSITORY } from '@main/shared/injections.constant';
 import {
   createCommentData,
   createReplyData,
@@ -19,10 +21,15 @@ import { Pool } from 'pg';
 let replyRepository: PostgresReplyRepository;
 
 beforeAll(async () => {
-  const moduleRef = Test.createTestingModule(AppModule);
+  const moduleRef = Test.createTestingModule({
+    providers: [
+      { provide: PostgresReplyRepository, useClass: PostgresReplyRepository },
+    ],
+    imports: [ConfigModule, DatabaseModule],
+  });
   const pool: Pool = moduleRef.resolve(PG_POOL);
 
-  replyRepository = moduleRef.resolve(REPLY_REPOSITORY);
+  replyRepository = moduleRef.resolve(PostgresReplyRepository);
   pgTest.setup(pool);
 
   await pgTest.truncate();

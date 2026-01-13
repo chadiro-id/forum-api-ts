@@ -1,12 +1,14 @@
-import { AppModule } from '@main/app.module';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
-import { PG_POOL } from '@main/infrastructure/database/database.module';
+import { ConfigModule } from '@main/infrastructure/config/config.module';
+import {
+  DatabaseModule,
+  PG_POOL,
+} from '@main/infrastructure/database/database.module';
 import { CommentMapper } from '@main/infrastructure/persistence/mappers/comment.mapper';
 import { PostgresCommentRepository } from '@main/infrastructure/persistence/repositories/postgres-comment.repository';
 import Test from '@main/libs/my-app/testing/test-utils';
-import { COMMENT_REPOSITORY } from '@main/shared/injections.constant';
 import {
   createCommentData,
   createThreadData,
@@ -18,10 +20,18 @@ import { Pool } from 'pg';
 let commentRepository: PostgresCommentRepository;
 
 beforeAll(async () => {
-  const moduleRef = Test.createTestingModule(AppModule);
+  const moduleRef = Test.createTestingModule({
+    providers: [
+      {
+        provide: PostgresCommentRepository,
+        useClass: PostgresCommentRepository,
+      },
+    ],
+    imports: [ConfigModule, DatabaseModule],
+  });
   const pool: Pool = moduleRef.resolve(PG_POOL);
 
-  commentRepository = moduleRef.resolve(COMMENT_REPOSITORY);
+  commentRepository = moduleRef.resolve(PostgresCommentRepository);
 
   pgTest.setup(pool);
   await pgTest.truncate();

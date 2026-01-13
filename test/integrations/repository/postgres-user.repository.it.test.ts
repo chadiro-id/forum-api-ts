@@ -1,20 +1,27 @@
 import { Pool } from 'pg';
-import { AppModule } from '@main/app.module';
-import { PG_POOL } from '@main/infrastructure/database/database.module';
-import { USER_REPOSITORY } from '@main/shared/injections.constant';
+import {
+  DatabaseModule,
+  PG_POOL,
+} from '@main/infrastructure/database/database.module';
 import { PostgresUserRepository } from '@main/infrastructure/persistence/repositories/postgres-user.repository';
 import { UserId, User } from '@main/domain/users/entities/user';
 import Test from '@main/libs/my-app/testing/test-utils';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { createUserData } from '@test/helper/data-factory';
+import { ConfigModule } from '@main/infrastructure/config/config.module';
 
 let userRepository: PostgresUserRepository;
 
 beforeAll(async () => {
-  const moduleRef = Test.createTestingModule(AppModule);
+  const moduleRef = Test.createTestingModule({
+    providers: [
+      { provide: PostgresUserRepository, useClass: PostgresUserRepository },
+    ],
+    imports: [ConfigModule, DatabaseModule],
+  });
   const pool: Pool = moduleRef.resolve(PG_POOL);
 
-  userRepository = moduleRef.resolve(USER_REPOSITORY);
+  userRepository = moduleRef.resolve(PostgresUserRepository);
   pgTest.setup(pool);
 
   await pgTest.truncate();

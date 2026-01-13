@@ -1,4 +1,3 @@
-import { AppModule } from '@main/app.module';
 import {
   CommentDetails,
   ReplyDetails,
@@ -7,10 +6,13 @@ import {
 import { CommentId } from '@main/domain/comments/entities/comment';
 import { ReplyId } from '@main/domain/replies/entities/reply';
 import { ThreadId } from '@main/domain/threads/entities/thread';
-import { PG_POOL } from '@main/infrastructure/database/database.module';
+import { ConfigModule } from '@main/infrastructure/config/config.module';
+import {
+  DatabaseModule,
+  PG_POOL,
+} from '@main/infrastructure/database/database.module';
 import { PostgresThreadDetailsQueryService } from '@main/infrastructure/persistence/query-services/postgres-thread-details.query-service';
 import Test from '@main/libs/my-app/testing/test-utils';
-import { THREAD_DETAILS_QUERY_SERVICE } from '@main/shared/injections.constant';
 import {
   createCommentData,
   createReplyData,
@@ -23,10 +25,20 @@ import { Pool } from 'pg';
 let threadDetailsQueryService: PostgresThreadDetailsQueryService;
 
 beforeAll(async () => {
-  const moduleRef = Test.createTestingModule(AppModule);
+  const moduleRef = Test.createTestingModule({
+    providers: [
+      {
+        provide: PostgresThreadDetailsQueryService,
+        useClass: PostgresThreadDetailsQueryService,
+      },
+    ],
+    imports: [ConfigModule, DatabaseModule],
+  });
   const pool: Pool = moduleRef.resolve(PG_POOL);
 
-  threadDetailsQueryService = moduleRef.resolve(THREAD_DETAILS_QUERY_SERVICE);
+  threadDetailsQueryService = moduleRef.resolve(
+    PostgresThreadDetailsQueryService,
+  );
   pgTest.setup(pool);
 
   await pgTest.truncate();

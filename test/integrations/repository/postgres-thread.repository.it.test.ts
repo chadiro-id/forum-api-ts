@@ -1,21 +1,28 @@
-import { AppModule } from '@main/app.module';
-import { PG_POOL } from '@main/infrastructure/database/database.module';
+import {
+  DatabaseModule,
+  PG_POOL,
+} from '@main/infrastructure/database/database.module';
 import { PostgresThreadRepository } from '@main/infrastructure/persistence/repositories/postgres-thread.repository';
 import Test from '@main/libs/my-app/testing/test-utils';
-import { THREAD_REPOSITORY } from '@main/shared/injections.constant';
 import { Pool } from 'pg';
 import pgTest from '@test/helper/database/postgres-test.helper';
 import { createThreadData, createUserData } from '@test/helper/data-factory';
 import { Thread, ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
+import { ConfigModule } from '@main/infrastructure/config/config.module';
 
 let threadRepository: PostgresThreadRepository;
 
 beforeAll(async () => {
-  const moduleRef = Test.createTestingModule(AppModule);
+  const moduleRef = Test.createTestingModule({
+    providers: [
+      { provide: PostgresThreadRepository, useClass: PostgresThreadRepository },
+    ],
+    imports: [ConfigModule, DatabaseModule],
+  });
   const pool: Pool = moduleRef.resolve(PG_POOL);
 
-  threadRepository = moduleRef.resolve(THREAD_REPOSITORY);
+  threadRepository = moduleRef.resolve(PostgresThreadRepository);
 
   pgTest.setup(pool);
   await pgTest.truncate();
