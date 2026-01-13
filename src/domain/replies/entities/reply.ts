@@ -1,6 +1,6 @@
 import { DomainEntity, EntityId } from '../../common/domain-entity';
 import { DomainError } from '../../common/domain-error';
-import { CommentId } from '../../comments/comment';
+import { CommentId } from '../../comments/entities/comment';
 import { ThreadId } from '../../threads/entities/thread';
 import { UserId } from '../../users/entities/user';
 

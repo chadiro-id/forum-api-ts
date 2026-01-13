@@ -1,5 +1,5 @@
 import { ThreadId } from '../../../../domain/threads/entities/thread';
-import { CommentId } from '../../../../domain/comments/comment';
+import { CommentId } from '../../../../domain/comments/entities/comment';
 import { ReplyId } from '../../../../domain/replies/entities/reply';
 
 export class ThreadDetails {

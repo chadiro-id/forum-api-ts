@@ -1,4 +1,4 @@
-import { Comment, CommentId } from './comment';
+import { Comment, CommentId } from './entities/comment';
 
 export interface CommentRepository {
   add(comment: Comment): Promise<void>;

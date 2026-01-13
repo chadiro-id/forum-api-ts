@@ -1,5 +1,5 @@
 import { EntityId } from '@main/domain/common/domain-entity';
-import { Comment, CommentId } from '@main/domain/comments/comment';
+import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 
 export class InMemoryCommentRepository implements CommentRepository {

@@ -1,5 +1,5 @@
 import { ApplicationError } from '@main/application/common/errors/application-error';
-import { CommentId } from '../../../domain/comments/comment';
+import { CommentId } from '../../../domain/comments/entities/comment';
 import { ThreadId } from '../../../domain/threads/entities/thread';
 import { UserId } from '../../../domain/users/entities/user';
 

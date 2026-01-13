@@ -1,4 +1,4 @@
-import { Comment } from '../../../domain/comments/comment';
+import { Comment } from '../../../domain/comments/entities/comment';
 
 export class AddedCommentReport {
   constructor(

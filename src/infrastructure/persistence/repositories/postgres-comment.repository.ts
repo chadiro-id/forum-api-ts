@@ -1,4 +1,4 @@
-import { Comment, CommentId } from '../../../domain/comments/comment';
+import { Comment, CommentId } from '../../../domain/comments/entities/comment';
 import { CommentRepository } from '../../../domain/comments/comment-repository.interface';
 import { Pool } from 'pg';
 import {

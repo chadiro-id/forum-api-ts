@@ -1,6 +1,6 @@
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { AddReplyCommand } from './add-reply.command';
-import { CommentId } from '@main/domain/comments/comment';
+import { CommentId } from '@main/domain/comments/entities/comment';
 import { UserId } from '@main/domain/users/entities/user';
 import { ApplicationError } from '@main/application/common/errors/application-error';
 

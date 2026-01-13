@@ -3,7 +3,7 @@ import { DeleteReplyCommandHandler } from './delete-reply.command-handler';
 import { InMemoryReplyRepository } from '@main/application/common/tests/repository/in-memory-reply-repository';
 import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { ThreadId } from '@main/domain/threads/entities/thread';
-import { CommentId } from '@main/domain/comments/comment';
+import { CommentId } from '@main/domain/comments/entities/comment';
 import { UserId } from '@main/domain/users/entities/user';
 import { DeleteReplyCommand } from '../delete-reply.command';
 import { ReplyNotFoundError } from '../../errors/reply-not-found.error';

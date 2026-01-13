@@ -6,7 +6,7 @@ import { InMemoryCommentRepository } from '@main/application/common/tests/reposi
 import { AddCommentCommand } from '../add-comment.command';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
-import { Comment, CommentId } from '@main/domain/comments/comment';
+import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadNotFoundError } from '@main/application/threads/errors/thread-not-found.error';
 import { AddedCommentReport } from '../../reports/added-comment.report';
 

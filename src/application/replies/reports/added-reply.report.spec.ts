@@ -1,7 +1,7 @@
 import { Reply, ReplyId } from '@main/domain/replies/entities/reply';
 import { AddedReplyReport } from './added-reply.report';
 import { ThreadId } from '@main/domain/threads/entities/thread';
-import { CommentId } from '@main/domain/comments/comment';
+import { CommentId } from '@main/domain/comments/entities/comment';
 import { UserId } from '@main/domain/users/entities/user';
 
 describe('AddedReplyReport', () => {

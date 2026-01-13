@@ -1,7 +1,7 @@
 import { ReplyId } from '@main/domain/replies/entities/reply';
 import { DeleteReplyCommand } from './delete-reply.command';
 import { ThreadId } from '@main/domain/threads/entities/thread';
-import { CommentId } from '@main/domain/comments/comment';
+import { CommentId } from '@main/domain/comments/entities/comment';
 import { UserId } from '@main/domain/users/entities/user';
 
 describe('DeleteReplyCommand', () => {

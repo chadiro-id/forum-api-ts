@@ -1,4 +1,4 @@
-import { CommentId } from '@main/domain/comments/comment';
+import { CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadId } from '../../../domain/threads/entities/thread';
 import {
   CommentDetails,
