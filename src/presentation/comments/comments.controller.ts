@@ -7,6 +7,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Put,
   User,
 } from '../../libs/my-app/common/controllers/controllers.decorator';
 import { UseGuards } from '../../libs/my-app/common/guards/guards.decorator';
@@ -14,6 +15,8 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 import { AddCommentCommand } from '../../application/comments/command/add-comment.command';
 import { DeleteCommentCommand } from '../../application/comments/command/delete-comment.command';
 import { AddCommentDto } from './dtos/add-comment.dto';
+import { LikeCommentCommandHandler } from '@main/application/comments/command/handler/like-comment.command-handler';
+import { LikeCommentCommand } from '@main/application/comments/command/like-comment.command';
 
 @UseGuards(AuthGuard)
 @Controller('/threads/:threadId/comments')
@@ -21,6 +24,7 @@ export class CommentsController {
   constructor(
     private addCommentCommandHandler: AddCommentCommandHandler,
     private deleteCommentCommandHandler: DeleteCommentCommandHandler,
+    private likeCommentCommandHandler: LikeCommentCommandHandler,
   ) {}
 
   @HttpCode(201)
@@ -43,7 +47,16 @@ export class CommentsController {
     @User('id') userId: string,
   ) {
     const command = new DeleteCommentCommand(id, threadId, userId);
-
     await this.deleteCommentCommandHandler.handle(command);
+  }
+
+  @Put('/:id/likes')
+  async likeComment(
+    @Param('id') id: string,
+    @Param('threadId') threadId: string,
+    @User('id') userId: string,
+  ) {
+    const command = new LikeCommentCommand(id, threadId, userId);
+    await this.likeCommentCommandHandler.handle(command);
   }
 }
