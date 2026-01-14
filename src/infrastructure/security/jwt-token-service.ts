@@ -3,18 +3,16 @@ import {
   AuthTokenService,
   AuthTokenPayload,
 } from '../../application/common/interfaces/auth-token-service.interface';
-import { Injectable } from '../../libs/my-app/common/injections/injections.decorator';
+import {
+  Inject,
+  Injectable,
+} from '../../libs/my-app/common/injections/injections.decorator';
 import { InvariantError } from '../../shared/errors/invariant-error';
-import { ConfigService } from '../config/config-service';
-import jwtConfig, { JwtConfigType } from '../config/jwt.config';
+import type { JwtConfigType } from '../config/jwt.config';
 
 @Injectable()
 export class JwtTokenService implements AuthTokenService {
-  private config: JwtConfigType;
-
-  constructor(configService: ConfigService) {
-    this.config = configService.get<JwtConfigType>(jwtConfig.key);
-  }
+  constructor(@Inject('JWT_CONFIG') private config: JwtConfigType) {}
 
   private signAsync(
     payload: string | object | Buffer<ArrayBufferLike>,
