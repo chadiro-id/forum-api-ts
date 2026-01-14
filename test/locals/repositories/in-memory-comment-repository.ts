@@ -1,4 +1,3 @@
-import { EntityId } from '@main/domain/common/domain-entity';
 import { Comment, CommentId } from '@main/domain/comments/entities/comment';
 import { CommentRepository } from '@main/domain/comments/comment-repository.interface';
 import { EntityStorage } from '../entity-storage';
@@ -20,33 +19,23 @@ export class InMemoryCommentRepository implements CommentRepository {
   }
 
   async existsBy(criteria: Partial<Comment>): Promise<boolean> {
-    const comment = this.commentList.find((c) => {
-      for (const [k, v] of Object.entries(criteria)) {
-        if (c[k] instanceof EntityId && !c[k].equals(v)) {
-          return false;
-        } else if (c[k] !== v) {
-          return false;
-        }
-      }
-      return true;
-    });
-    return comment !== undefined;
+    const comments = this.commentList.filter((c) =>
+      Object.keys(criteria).every((k) =>
+        c[k].equals ? c[k].equals(criteria[k]) : c[k] === criteria[k],
+      ),
+    );
+    return comments.length > 0;
   }
 
   async softDelete(comment: Comment): Promise<void> {
-    const item = this.commentList.find((c) => c.id.equals(comment.id));
-    if (item) {
-      const newItem = Comment.create(
-        item.id,
-        item.threadId,
-        item.ownerId,
-        item.content,
-        true,
-        item.createdAt,
-      );
-
-      const idx = this.commentList.findIndex((c) => c.equals(item));
-      this.commentList[idx] = newItem;
-    }
+    const idx = this.commentList.findIndex((c) => c.equals(comment));
+    this.commentList[idx] = Comment.create(
+      comment.id,
+      comment.threadId,
+      comment.ownerId,
+      comment.content,
+      true,
+      comment.createdAt,
+    );
   }
 }
