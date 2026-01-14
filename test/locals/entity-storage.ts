@@ -5,6 +5,7 @@ export type StorageKey =
   | 'authentications'
   | 'threads'
   | 'comments'
+  | 'comment_likes'
   | 'replies';
 
 export type EntityStorage = Map<
