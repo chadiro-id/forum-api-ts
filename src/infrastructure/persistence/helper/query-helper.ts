@@ -3,6 +3,7 @@ export type TableName =
   | 'authentications'
   | 'threads'
   | 'comments'
+  | 'comment_likes'
   | 'replies';
 
 export class QueryHelper {
