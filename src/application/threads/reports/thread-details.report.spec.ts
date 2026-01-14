@@ -62,6 +62,7 @@ describe('ThreadDetailsReport', () => {
           content: commentA.content,
           username: commentA.username,
           date: commentA.createdAt.toISOString(),
+          likeCount: commentA.likeCount,
           replies: [],
         },
         {
@@ -69,6 +70,7 @@ describe('ThreadDetailsReport', () => {
           content: '**komentar telah dihapus**',
           username: commentB.username,
           date: commentB.createdAt.toISOString(),
+          likeCount: commentB.likeCount,
           replies: [],
         },
       ]);
@@ -123,6 +125,7 @@ const createCommentDetails = (
     'Sebuah komentar',
     'johndoe',
     isDelete,
+    0,
     new Date(),
   );
 

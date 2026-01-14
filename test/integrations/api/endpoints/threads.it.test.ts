@@ -195,6 +195,7 @@ describe('Threads Endpoint', () => {
           content: commentA.content,
           date: commentA.created_at.toISOString(),
           username: userData.username,
+          likeCount: 0,
           replies: [],
         },
         {
@@ -202,6 +203,7 @@ describe('Threads Endpoint', () => {
           content: '**komentar telah dihapus**',
           date: commentB.created_at.toISOString(),
           username: userData.username,
+          likeCount: 0,
           replies: [],
         },
       ]);
