@@ -29,4 +29,18 @@ describe('HTTP Server', () => {
       message: 'terjadi kegagalan pada server kami',
     });
   });
+
+  describe('GET /', () => {
+    it('should response 200 and hello world', async () => {
+      const serverTest = createServerTest();
+      serverTest.init();
+
+      const response = await serverTest.request().get('/');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toStrictEqual({
+        data: 'hello world',
+      });
+    });
+  });
 });

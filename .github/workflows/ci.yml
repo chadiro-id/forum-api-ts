@@ -7,6 +7,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['22']
+      fail-fast: true
+
     services:
       postgres:
         image: postgres:14
@@ -26,7 +32,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
       
       - name: Install dependencies
@@ -41,6 +47,9 @@ jobs:
         run: npm test # Menjalankan jest -i
         env:
           DATABASE_URL: postgres://test_user:test_password@localhost:5432/forum_api_test
+          ACCESS_TOKEN_KEY: access_token_secret
+          REFRESH_TOKEN_KEY: refresh_token_secret
+          ACCESS_TOKEN_AGE: 3600
 
       - name: Build Check
         run: npm run build # Memastikan kode TS tidak error saat di-compile

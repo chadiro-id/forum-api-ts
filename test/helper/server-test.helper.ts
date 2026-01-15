@@ -10,7 +10,10 @@ export interface ServerTest {
 }
 
 export const createServerTest = () => {
-  const app = createHttpApp(AppModule, { enableError: true });
+  const app = createHttpApp(AppModule, {
+    enableError: true,
+    enableHelloWorld: true,
+  });
 
   return {
     init: () => {

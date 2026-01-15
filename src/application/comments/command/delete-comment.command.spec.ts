@@ -3,6 +3,7 @@ import { DeleteCommentCommand } from './delete-comment.command';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { UserId } from '@main/domain/users/entities/user';
 
+jest.useFakeTimers();
 describe('DeleteCommentCommand', () => {
   it('should correctly initialize data', () => {
     const command = new DeleteCommentCommand(
