@@ -1,0 +1,46 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: forum_api_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Migrations
+        run: npm run migrate up
+        env:
+          DATABASE_URL: postgres://test_user:test_password@localhost:5432/forum_api_test
+
+      - name: Run Tests
+        run: npm test # Menjalankan jest -i
+        env:
+          DATABASE_URL: postgres://test_user:test_password@localhost:5432/forum_api_test
+
+      - name: Build Check
+        run: npm run build # Memastikan kode TS tidak error saat di-compile
