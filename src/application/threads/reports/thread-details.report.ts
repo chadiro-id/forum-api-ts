@@ -9,6 +9,7 @@ interface Comment {
   content: string;
   date: string;
   username: string;
+  likeCount: number;
   replies: Reply[];
 }
 
@@ -43,6 +44,7 @@ export class ThreadDetailsReport {
       content: c.isDelete ? '**komentar telah dihapus**' : c.content,
       username: c.username,
       date: c.createdAt.toISOString(),
+      likeCount: c.likeCount,
       replies: (repliesGroup[c.id.value] || []).map((r) => ({
         id: r.id.value,
         content: r.isDelete ? '**balasan telah dihapus**' : r.content,

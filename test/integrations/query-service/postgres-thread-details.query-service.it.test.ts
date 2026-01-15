@@ -102,6 +102,9 @@ describe('PostgresThreadDetailsQueryService', () => {
       const commentB = await pgTest
         .comments()
         .add({ ...commentData, id: 'comment-002' });
+      await pgTest
+        .commentLikes()
+        .add({ comment_id: commentA.id, user_id: commentA.owner_id });
 
       const id = new ThreadId(threadData.id);
       const commentDetailsA = new CommentDetails(
@@ -109,6 +112,7 @@ describe('PostgresThreadDetailsQueryService', () => {
         commentA.content,
         userData.username,
         commentA.is_delete,
+        1,
         commentA.created_at,
       );
       const commentDetailsB = new CommentDetails(
@@ -116,6 +120,7 @@ describe('PostgresThreadDetailsQueryService', () => {
         commentB.content,
         userData.username,
         commentB.is_delete,
+        0,
         commentB.created_at,
       );
 

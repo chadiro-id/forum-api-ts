@@ -48,18 +48,15 @@ export class PostgresThreadDetailsQueryService implements ThreadDetailsQueryServ
   async getCommentsById(id: ThreadId): Promise<CommentDetails[]> {
     const query = {
       text: `
-      SELECT
-        c.id, c.content, c.created_at, c.is_delete, u.username
-      FROM
-        comments c
-      LEFT JOIN
-        users u
-      ON
-        u.id = c.owner_id
-      WHERE
-        c.thread_id = $1
-      ORDER BY
-        c.created_at ASC
+      SELECT c.id, c.content, c.created_at, c.is_delete, u.username, COUNT(cl.id) as like_count
+      FROM comments c
+      LEFT JOIN users u
+        ON u.id = c.owner_id
+      LEFT JOIN comment_likes cl
+        ON cl.comment_id = c.id
+      WHERE c.thread_id = $1
+      GROUP BY c.id, u.username, cl.comment_id
+      ORDER BY c.created_at ASC
       `,
       values: [id.value],
     };

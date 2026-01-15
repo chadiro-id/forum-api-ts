@@ -29,7 +29,10 @@ describe('CommentRepository', () => {
     const repo = new MockCommentRepository();
     await repo.add(entity);
 
-    const exists = await repo.existsBy({ content: 'Sebuah komentar' });
+    const exists = await repo.existsBy({
+      id: entity.id,
+      content: 'Sebuah komentar',
+    });
     expect(exists).toBe(true);
 
     const found = await repo.findById(new CommentId('comment-001'));

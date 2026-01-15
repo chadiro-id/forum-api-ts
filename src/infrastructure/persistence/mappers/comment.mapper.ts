@@ -44,16 +44,19 @@ export interface CommentDetailsRow {
   content: string;
   username: string;
   is_delete: boolean;
+  like_count: string;
   created_at: Date;
 }
 export class CommentDetailsMapper {
   static toDomain(row: CommentDetailsRow) {
     const id = new CommentId(row.id);
+    const likeCount = parseInt(row.like_count, 10);
     return new CommentDetails(
       id,
       row.content,
       row.username,
       row.is_delete,
+      likeCount,
       row.created_at,
     );
   }

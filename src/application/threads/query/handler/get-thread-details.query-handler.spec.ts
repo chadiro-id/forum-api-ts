@@ -141,6 +141,7 @@ const createCommentDetails = (
     'Sebuah komentar',
     'johndoe',
     isDelete,
+    0,
     new Date(),
   );
 

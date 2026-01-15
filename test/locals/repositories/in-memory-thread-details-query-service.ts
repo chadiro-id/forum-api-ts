@@ -9,17 +9,21 @@ import { ThreadDetailsQueryService } from '../../../src/application/threads/inte
 import { User } from '@main/domain/users/entities/user';
 import { Reply } from '@main/domain/replies/entities/reply';
 import { EntityStorage } from '../entity-storage';
+import { CommentLike } from '@main/domain/comments/entities/comment-like';
 
 export class InMemoryThreadDetailsQueryService implements ThreadDetailsQueryService {
   private userList: Array<User>;
   private threadList: Array<Thread>;
   private commentList: Array<Comment>;
+  private commentLikeList: Array<CommentLike>;
   private replyList: Array<Reply>;
 
   constructor(private storage: EntityStorage) {
     this.userList = this.storage.get('users')! as User[];
     this.threadList = (this.storage.get('threads') as Thread[]) || [];
     this.commentList = (this.storage.get('comments') as Comment[]) || [];
+    this.commentLikeList =
+      (this.storage.get('comment_likes') as CommentLike[]) || [];
     this.replyList = (this.storage.get('replies') as Reply[]) || [];
   }
 
@@ -43,11 +47,15 @@ export class InMemoryThreadDetailsQueryService implements ThreadDetailsQueryServ
 
     return comments.map((c) => {
       const user = this.userList.find((u) => u.id.equals(c.ownerId));
+      const commentLikes = this.commentLikeList.filter((cl) =>
+        cl.commentId.equals(c.id),
+      );
       return new CommentDetails(
         c.id,
         c.content,
         user!.username,
         c.isDelete,
+        commentLikes.length,
         c.createdAt,
       );
     });

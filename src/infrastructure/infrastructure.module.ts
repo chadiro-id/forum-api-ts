@@ -16,10 +16,12 @@ import {
   COMMENT_REPOSITORY,
   REPLY_REPOSITORY,
   THREAD_DETAILS_QUERY_SERVICE,
+  COMMENT_LIKE_REPOSITORY,
 } from '../shared/injections.constant';
 import { nanoid } from 'nanoid';
 import { DatabaseModule } from './database/database.module';
 import { PostgresThreadDetailsQueryService } from './persistence/query-services/postgres-thread-details.query-service';
+import { PostgresCommentLikeRepository } from './persistence/repositories/postgres-comment-like.repository';
 
 @Module({
   providers: [
@@ -54,6 +56,10 @@ import { PostgresThreadDetailsQueryService } from './persistence/query-services/
     {
       provide: COMMENT_REPOSITORY,
       useClass: PostgresCommentRepository,
+    },
+    {
+      provide: COMMENT_LIKE_REPOSITORY,
+      useClass: PostgresCommentLikeRepository,
     },
     {
       provide: REPLY_REPOSITORY,

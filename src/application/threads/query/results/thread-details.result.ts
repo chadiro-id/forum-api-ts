@@ -18,6 +18,7 @@ export class CommentDetails {
     public readonly content: string,
     public readonly username: string,
     public readonly isDelete: boolean,
+    public readonly likeCount: number,
     public readonly createdAt: Date,
   ) {}
 }

@@ -39,6 +39,7 @@ describe('ThreadDetailsResult', () => {
         'Sebuah komentar',
         'johndoe',
         false,
+        0,
         date,
       );
 
@@ -46,6 +47,7 @@ describe('ThreadDetailsResult', () => {
       expect(comment.content).toBe('Sebuah komentar');
       expect(comment.username).toBe('johndoe');
       expect(comment.isDelete).toBe(false);
+      expect(comment.likeCount).toBe(0);
       expect(comment.createdAt).toStrictEqual(date);
     });
   });

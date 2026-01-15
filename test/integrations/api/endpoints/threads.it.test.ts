@@ -183,6 +183,9 @@ describe('Threads Endpoint', () => {
       const commentB = await pgTest
         .comments()
         .add({ ...commentData, id: 'comment-002', is_delete: true });
+      await pgTest
+        .commentLikes()
+        .add({ comment_id: commentA.id, user_id: commentA.owner_id });
 
       const response = await serverTest
         .request()
@@ -195,6 +198,7 @@ describe('Threads Endpoint', () => {
           content: commentA.content,
           date: commentA.created_at.toISOString(),
           username: userData.username,
+          likeCount: 1,
           replies: [],
         },
         {
@@ -202,6 +206,7 @@ describe('Threads Endpoint', () => {
           content: '**komentar telah dihapus**',
           date: commentB.created_at.toISOString(),
           username: userData.username,
+          likeCount: 0,
           replies: [],
         },
       ]);

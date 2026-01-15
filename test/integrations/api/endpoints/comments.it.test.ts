@@ -230,4 +230,63 @@ describe('Comments Endpoint', () => {
       });
     });
   });
+
+  describe('PUT /threads/:threadId/comments/:commentId/likes', () => {
+    const commentData = createCommentData({
+      thread_id: threadData.id,
+      owner_id: userData.id,
+    });
+
+    beforeAll(async () => {
+      await pgTest.comments().add(commentData);
+    });
+
+    afterAll(async () => {
+      await pgTest.comments().cleanup();
+    });
+
+    let accessToken: string;
+    beforeEach(async () => {
+      accessToken = await authTokenService.createAccessToken({
+        id: userData.id,
+        username: userData.username,
+      });
+    });
+
+    it('should response 200 and status "success"', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/${commentData.id}/likes`;
+      const response = await serverTest
+        .request()
+        .put(endpoint)
+        .auth(accessToken, { type: 'bearer' });
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toStrictEqual({ status: 'success' });
+    });
+
+    it('should response 401 when request with no authentication', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/${commentData.id}/likes`;
+      const response = await serverTest.request().put(endpoint);
+
+      expect(response.statusCode).toBe(401);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'Missing authentication',
+      });
+    });
+
+    it('should response 404 when comment not found', async () => {
+      const endpoint = `/threads/${threadData.id}/comments/xxx/likes`;
+      const response = await serverTest
+        .request()
+        .put(endpoint)
+        .auth(accessToken, { type: 'bearer' });
+
+      expect(response.statusCode).toBe(404);
+      expect(response.body).toStrictEqual({
+        status: 'fail',
+        message: 'komentar tidak ditemukan',
+      });
+    });
+  });
 });

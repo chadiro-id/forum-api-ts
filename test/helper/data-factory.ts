@@ -1,4 +1,5 @@
 import { AuthenticationData } from './database/pg-tables/authentications-table';
+import { CommentLikeData } from './database/pg-tables/comment-likes.table';
 import { CommentData } from './database/pg-tables/comments-table';
 import { ReplyData } from './database/pg-tables/replies-table';
 import { ThreadData } from './database/pg-tables/threads-table';
@@ -56,6 +57,17 @@ export function createCommentData(
   };
 }
 
+export function createCommentLikeData(
+  overrides: Partial<CommentLikeData> = {},
+): CommentLikeData {
+  return {
+    id: '1',
+    comment_id: 'comment-003',
+    user_id: 'user-001',
+    ...overrides,
+  };
+}
+
 export function createReplyData(overrides: Partial<ReplyData> = {}): ReplyData {
   const date = new Date();
   return {
@@ -67,4 +79,47 @@ export function createReplyData(overrides: Partial<ReplyData> = {}): ReplyData {
     created_at: date,
     ...overrides,
   };
+}
+
+export function createUserDatas(count: number) {
+  const users: UserData[] = [];
+  for (let i = 0; i < count; i++) {
+    users.push(createUserData({ id: `user-00${i}` }));
+  }
+  return users;
+}
+
+export function composeThreadDetails(options: {
+  id: string;
+  owner_id: string;
+  comments: Array<{
+    id: string;
+    owner_id: string;
+    likes: Array<{ id: string; user_id: string }>;
+    replies: Array<{ id: string; owner_id: string }>;
+  }>;
+}) {
+  const thread = createThreadData({
+    id: options.id,
+    owner_id: options.owner_id,
+  });
+  const comments: CommentData[] = [];
+  const commentLikes: CommentLikeData[] = [];
+  const replies: ReplyData[] = [];
+  for (const comment of options.comments) {
+    comments.push(
+      createCommentData({
+        id: comment.id,
+        thread_id: options.id,
+        owner_id: comment.owner_id,
+      }),
+    );
+    for (const like of comment.likes) {
+      commentLikes.push(createCommentLikeData({ ...like }));
+    }
+    for (const reply of comment.replies) {
+      replies.push(createReplyData({ ...reply }));
+    }
+  }
+  return { thread, comments, commentLikes, replies };
 }

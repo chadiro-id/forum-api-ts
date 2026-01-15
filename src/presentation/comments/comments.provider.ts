@@ -6,7 +6,10 @@ import {
   ID_GENERATOR,
   THREAD_REPOSITORY,
   COMMENT_REPOSITORY,
+  COMMENT_LIKE_REPOSITORY,
 } from '../../shared/injections.constant';
+import { LikeCommentCommandHandler } from '@main/application/comments/command/handler/like-comment.command-handler';
+import { CommentLikeRepository } from '@main/domain/comments/comment-like-repository.interface';
 
 export const AddCommentCommandHandlerProvider = {
   provide: AddCommentCommandHandler,
@@ -28,4 +31,13 @@ export const DeleteCommentCommandHandlerProvider = {
   useFactory: (commentRepo: CommentRepository) =>
     new DeleteCommentCommandHandler(commentRepo),
   inject: [COMMENT_REPOSITORY],
+};
+
+export const LikeCommentCommandHandlerProvider = {
+  provide: LikeCommentCommandHandler,
+  useFactory: (
+    commentRepository: CommentRepository,
+    commentLikeRepository: CommentLikeRepository,
+  ) => new LikeCommentCommandHandler(commentRepository, commentLikeRepository),
+  inject: [COMMENT_REPOSITORY, COMMENT_LIKE_REPOSITORY],
 };
