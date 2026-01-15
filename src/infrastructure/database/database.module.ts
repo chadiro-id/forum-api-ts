@@ -14,12 +14,14 @@ export const PG_POOL = Symbol('PG_POOL');
         const dbConfig = configService.get<DatabaseConfigType>(
           databaseConfig.key,
         );
-        if (dbConfig.url) {
-          console.log('pool connection string', dbConfig.url);
-          const config = parseIntoClientConfig(dbConfig.url);
+        if (dbConfig.pgUrl) {
+          const config = parseIntoClientConfig(dbConfig.pgUrl);
           return new Pool(config);
         }
-        return new Pool(dbConfig);
+        if (dbConfig.pg) {
+          return new Pool(dbConfig.pg);
+        }
+        return new Pool();
       },
       inject: [ConfigService],
     },
