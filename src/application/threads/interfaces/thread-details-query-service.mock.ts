@@ -8,9 +8,15 @@ import {
 import { ThreadDetailsQueryService } from './thread-details-query-service.interface';
 
 export class MockThreadDetailsQueryService implements ThreadDetailsQueryService {
-  private threadDetailsList: Array<ThreadDetails> = [];
-  private commentDetailsList: Array<CommentDetails> = [];
-  private replyDetailsList: Array<ReplyDetails> = [];
+  private threadDetailsList: Array<ThreadDetails>;
+  private commentDetailsList: Array<CommentDetails>;
+  private replyDetailsList: Array<ReplyDetails>;
+
+  constructor(private storage: Map<string, any[]> = new Map()) {
+    this.threadDetailsList = this.storage.get('threads') || [];
+    this.commentDetailsList = this.storage.get('comments') || [];
+    this.replyDetailsList = this.storage.get('replies') || [];
+  }
 
   async getById(id: ThreadId): Promise<ThreadDetails | null> {
     const item = this.threadDetailsList.find((t) => t.id.equals(id));
@@ -23,9 +29,8 @@ export class MockThreadDetailsQueryService implements ThreadDetailsQueryService 
   }
 
   async getRepliesByCommentIds(ids: CommentId[]): Promise<ReplyDetails[]> {
-    const valueIds = ids.map((id) => id.value);
     const replies = this.replyDetailsList.filter((r) =>
-      valueIds.includes(r.commentId.value),
+      ids.some((id) => id.equals(r.commentId)),
     );
     return replies;
   }

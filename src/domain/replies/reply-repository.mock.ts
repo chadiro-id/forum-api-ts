@@ -15,7 +15,6 @@ export class MockReplyRepository implements ReplyRepository {
 
   async softDelete(reply: Reply): Promise<void> {
     const idx = this.replyList.findIndex((r) => r.equals(reply));
-    if (idx < 0) return;
     this.replyList[idx] = Reply.create(
       reply.id,
       reply.threadId,
