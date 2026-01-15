@@ -406,6 +406,15 @@ export class MyExpressApp {
     return this;
   }
 
+  enableHelloWorld(path: string = '/'): this {
+    this.app.get(path, (req, res) => {
+      res.json({
+        data: 'hello world',
+      });
+    });
+    return this;
+  }
+
   enableHealthCheck(path: string = '/health'): this {
     this.app.get(path, (req, res) => {
       res.json({

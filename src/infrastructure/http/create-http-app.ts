@@ -5,7 +5,8 @@ import { WrapResponseInterceptor } from '../interceptors/wrap-response.intercept
 import { ApplicationErrorFilter } from '../filters/application-error.filter';
 
 export type CreateHttpAppOptions = {
-  enableError: boolean;
+  enableError?: boolean;
+  enableHelloWorld?: boolean;
 };
 
 export function createHttpApp(module: any, options?: CreateHttpAppOptions) {
@@ -13,6 +14,10 @@ export function createHttpApp(module: any, options?: CreateHttpAppOptions) {
   app.useGlobalFilters(ApplicationErrorFilter, ClientErrorFilter);
   app.useGlobalPipes(JoiValidationPipe);
   app.useGlobalInterceptors(WrapResponseInterceptor);
+
+  if (options?.enableHelloWorld) {
+    app.enableHelloWorld();
+  }
 
   if (options?.enableError) {
     app.enableErrorCheck();
