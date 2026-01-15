@@ -3,6 +3,7 @@ dotenv.config();
 
 export default {
   db: {
+    url: process.env.DATABASE_URL,
     host: process.env.PG_HOST,
     port: process.env.PG_PORT ? parseInt(process.env.PG_PORT) : 5432,
     user: process.env.PG_USER,
