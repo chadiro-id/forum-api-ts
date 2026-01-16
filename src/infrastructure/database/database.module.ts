@@ -18,9 +18,6 @@ export const PG_POOL = Symbol('PG_POOL');
           const config = parseIntoClientConfig(dbConfig.pgUrl);
           return new Pool(config);
         }
-        if (dbConfig.pg) {
-          return new Pool(dbConfig.pg);
-        }
         return new Pool();
       },
       inject: [ConfigService],
