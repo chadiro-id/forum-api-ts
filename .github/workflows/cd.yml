@@ -21,10 +21,7 @@ jobs:
             git pull origin main
             npm ci --no-audit --no-fund
             
-            export DATABASE_URL=${{ secrets.RDS_URL }}
             npm run migrate up
             npm run build
 
-            npm prune --omit=dev --no-audit --no-fund
-            DATABASE_URL="${{ secrets.RDS_URL }}" pm2 restart forum-api --update-env || \
-            DATABASE_URL="${{ secrets.RDS_URL }}" pm2 start dist/main.js --name forum-api
+            pm2 restart forum-api || pm2 start npm --name forum-api -- run start
