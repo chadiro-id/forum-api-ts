@@ -1,7 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "dist", "migrations", "private"],
-  "watchOptions": {
-    "watchFile": "useFsEvents"
-  }
+  "exclude": ["migrations", "private", "test", "**/*.spec.ts", "./jest.*.ts"],
 }
