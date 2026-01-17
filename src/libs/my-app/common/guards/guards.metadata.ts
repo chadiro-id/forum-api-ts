@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 const GUARDS_CLASS_KEY = Symbol('custom:guards_class');
 const GUARDS_METHOD_KEY = Symbol('custom:guards_method');
 

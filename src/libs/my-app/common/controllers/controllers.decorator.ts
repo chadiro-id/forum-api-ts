@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { normalizePath } from './controllers.util';
 import {
   HttpMethod,
@@ -36,8 +37,6 @@ function createRouteDecorator(method: HttpMethod) {
 
       const routes = Reflect.getMetadata(ROUTE, target.constructor) || [];
       routes.push(routeMetadata);
-      // console.log('[App] create method decorator -> routes:');
-      // console.dir(routes);
 
       Reflect.defineMetadata(ROUTE, routes, target.constructor);
     };

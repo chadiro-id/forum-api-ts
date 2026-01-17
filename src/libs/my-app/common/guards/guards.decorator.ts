@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { PUBLIC_CLASS, PUBLIC_METHOD } from '../../constant/metadata.constant';
 import { setGuardsMetadata } from './guards.metadata';
 

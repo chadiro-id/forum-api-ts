@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { FILTERS_CATCH } from '../../constant/metadata.constant';
 import { setFiltersMetadata } from './filters.metadata';
 
