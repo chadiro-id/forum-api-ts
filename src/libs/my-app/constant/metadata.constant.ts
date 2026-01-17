@@ -1,6 +1,3 @@
-// export const INJECTABLE = Symbol('injectable');
-// export const INJECT = Symbol('inject');
-
 export const CONTROLLER = Symbol('controller');
 export const ROUTE = Symbol('route');
 export const ROUTE_PARAMS = Symbol('route:params');
