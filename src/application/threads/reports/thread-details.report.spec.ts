@@ -48,8 +48,8 @@ describe('ThreadDetailsReport', () => {
 
     it('should handle thread with comments', () => {
       const thread = createThreadDetails('thread-001');
-      const commentA = createCommentDetails('comment-001', false);
-      const commentB = createCommentDetails('comment-002', true);
+      const commentA = createCommentDetails('comment-001', 'thread-001', false);
+      const commentB = createCommentDetails('comment-002', 'thread-001', true);
 
       const report = ThreadDetailsReport.fromQuery(thread, [
         commentA,
@@ -118,10 +118,12 @@ const createThreadDetails = (id: string = 'thread-001') =>
 
 const createCommentDetails = (
   id: string = 'comment-100',
+  threadId: string = 'thread-001',
   isDelete: boolean = false,
 ) =>
   new CommentDetails(
     new CommentId(id),
+    new ThreadId(threadId),
     'Sebuah komentar',
     'johndoe',
     isDelete,

@@ -44,7 +44,7 @@ describe('ThreadDetailsQueryService', () => {
     const qs = new MockThreadDetailsQueryService(storage);
 
     const emptyComments = await qs.getCommentsById(new ThreadId('thread-xxx'));
-    expect(emptyComments).toStrictEqual([commentDetails]);
+    expect(emptyComments).toStrictEqual([]);
 
     const comments = await qs.getCommentsById(new ThreadId('thread-id'));
     expect(comments).toStrictEqual([commentDetails]);
