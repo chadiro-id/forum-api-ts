@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import {
   DI_INJECT_KEY,
   DI_INJECTABLE_KEY,

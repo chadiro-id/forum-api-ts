@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 const FILTERS_CLASS_KEY = Symbol('custom:filters_class');
 const FILTERS_METHOD_KEY = Symbol('custom:filters_method');
 

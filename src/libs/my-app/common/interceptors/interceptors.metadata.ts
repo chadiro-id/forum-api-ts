@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 const INTERCEPTORS_CLASS_KEY = Symbol('custom:interceptors_class');
 const INTERCEPTORS_METHOD_KEY = Symbol('custom:interceptors_method');
 

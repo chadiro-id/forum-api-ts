@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 const PIPES_CLASS_KEY = Symbol('custom:pipes_class');
 const PIPES_METHOD_KEY = Symbol('custom:pipes_method');
 
