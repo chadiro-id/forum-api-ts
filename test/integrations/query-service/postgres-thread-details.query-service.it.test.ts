@@ -109,6 +109,7 @@ describe('PostgresThreadDetailsQueryService', () => {
       const id = new ThreadId(threadData.id);
       const commentDetailsA = new CommentDetails(
         new CommentId(commentA.id),
+        id,
         commentA.content,
         userData.username,
         commentA.is_delete,
@@ -117,6 +118,7 @@ describe('PostgresThreadDetailsQueryService', () => {
       );
       const commentDetailsB = new CommentDetails(
         new CommentId(commentB.id),
+        id,
         commentB.content,
         userData.username,
         commentB.is_delete,

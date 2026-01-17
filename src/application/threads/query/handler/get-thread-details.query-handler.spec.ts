@@ -28,8 +28,8 @@ describe('GetThreadDetailsQueryHandler', () => {
   it('should handle get thread details correctly', async () => {
     const mockValueThread = createThreadDetails('thread-001');
     const mockValueComments = [
-      createCommentDetails('comment-001', true),
-      createCommentDetails('comment-002', false),
+      createCommentDetails('comment-001', 'thread-001', true),
+      createCommentDetails('comment-002', 'thread-001', false),
     ];
     const mockValueReplies = [
       createReplyDetails('reply-001', 'comment-002', true),
@@ -49,8 +49,8 @@ describe('GetThreadDetailsQueryHandler', () => {
     const expectedResult = ThreadDetailsReport.fromQuery(
       createThreadDetails('thread-001'),
       [
-        createCommentDetails('comment-001', true),
-        createCommentDetails('comment-002', false),
+        createCommentDetails('comment-001', 'thread-001', true),
+        createCommentDetails('comment-002', 'thread-001', false),
       ],
       [
         createReplyDetails('reply-001', 'comment-002', true),
@@ -134,10 +134,12 @@ const createThreadDetails = (id: string = 'thread-001') =>
 
 const createCommentDetails = (
   id: string = 'comment-001',
+  threadId: string = 'thread-001',
   isDelete: boolean = false,
 ) =>
   new CommentDetails(
     new CommentId(id),
+    new ThreadId(threadId),
     'Sebuah komentar',
     'johndoe',
     isDelete,

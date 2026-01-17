@@ -32,10 +32,12 @@ describe('ThreadDetailsResult', () => {
   describe('CommentDetails', () => {
     it('should correctly initialize data', () => {
       const id = new CommentId('comment-001');
+      const threadId = new ThreadId('thread-id');
       const date = new Date();
 
       const comment = new CommentDetails(
         id,
+        threadId,
         'Sebuah komentar',
         'johndoe',
         false,

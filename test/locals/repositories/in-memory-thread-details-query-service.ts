@@ -52,6 +52,7 @@ export class InMemoryThreadDetailsQueryService implements ThreadDetailsQueryServ
       );
       return new CommentDetails(
         c.id,
+        id,
         c.content,
         user!.username,
         c.isDelete,

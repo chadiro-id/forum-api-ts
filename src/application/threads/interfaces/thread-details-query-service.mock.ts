@@ -24,7 +24,9 @@ export class MockThreadDetailsQueryService implements ThreadDetailsQueryService 
   }
 
   async getCommentsById(id: ThreadId): Promise<CommentDetails[]> {
-    const comments = this.commentDetailsList.filter((c) => c.id.equals(id));
+    const comments = this.commentDetailsList.filter((c) =>
+      c.threadId.equals(id),
+    );
     return comments;
   }
 

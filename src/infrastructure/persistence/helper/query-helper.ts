@@ -31,36 +31,4 @@ export class QueryHelper {
 
     return { sql, values };
   }
-
-  static buildUpdateQuery(
-    tableName: TableName,
-    criteria: object,
-    data: object,
-  ) {
-    const setClauses: string[] = [];
-    const values: any[] = [];
-    let placeholderIndex = 1;
-
-    for (const [k, v] of Object.entries(data)) {
-      if (v === undefined) continue;
-      setClauses.push(`${k} = $${placeholderIndex++}`);
-      values.push(v);
-    }
-
-    const whereClauses: string[] = [];
-    for (const [k, v] of Object.entries(criteria)) {
-      if (v === undefined) continue;
-      whereClauses.push(`${k} = $${placeholderIndex++}`);
-      values.push(v);
-    }
-
-    const sql = `
-      UPDATE ${tableName}
-      SET ${setClauses.join(', ')}
-      WHERE ${whereClauses.join(' AND ')}
-      RETURNING *
-    `;
-
-    return { sql, values };
-  }
 }

@@ -41,6 +41,7 @@ export class CommentMapper {
 
 export interface CommentDetailsRow {
   id: string;
+  thread_id: string;
   content: string;
   username: string;
   is_delete: boolean;
@@ -50,9 +51,11 @@ export interface CommentDetailsRow {
 export class CommentDetailsMapper {
   static toDomain(row: CommentDetailsRow) {
     const id = new CommentId(row.id);
+    const threadId = new ThreadId(row.thread_id);
     const likeCount = parseInt(row.like_count, 10);
     return new CommentDetails(
       id,
+      threadId,
       row.content,
       row.username,
       row.is_delete,
