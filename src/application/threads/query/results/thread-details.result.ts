@@ -15,6 +15,7 @@ export class ThreadDetails {
 export class CommentDetails {
   constructor(
     public readonly id: CommentId,
+    public readonly threadId: ThreadId,
     public readonly content: string,
     public readonly username: string,
     public readonly isDelete: boolean,
