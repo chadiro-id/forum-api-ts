@@ -10,6 +10,7 @@ import { ReplyDeceptiveAccessError } from '../../errors/reply-deceptive-access.e
 import { ReplyUnauthorizedAccessError } from '../../errors/reply-unauthorized-access.error';
 import { MockReplyRepository } from '@main/domain/replies/reply-repository.mock';
 
+jest.useFakeTimers();
 describe('DeleteReplyCommandHandler', () => {
   let mockReplyRepo: ReplyRepository;
   let commandHandler: DeleteReplyCommandHandler;

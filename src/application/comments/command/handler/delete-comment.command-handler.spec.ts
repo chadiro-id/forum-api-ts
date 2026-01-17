@@ -9,6 +9,7 @@ import { CommentDeceptiveAccessError } from '../../errors/comment-deceptive-acce
 import { CommentUnauthorizedAccessError } from '../../errors/comment-unauthorized-access.error';
 import { MockCommentRepository } from '@main/domain/comments/comment-repository.mock';
 
+jest.useFakeTimers();
 describe('DeleteCommentCommandHandler', () => {
   let mockCommentRepo: CommentRepository;
   let commandHandler: DeleteCommentCommandHandler;
