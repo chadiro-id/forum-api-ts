@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { setPipesMetadata } from './pipes.metadata';
 
 export function UsePipes(...pipes: any[]): ClassDecorator & MethodDecorator {

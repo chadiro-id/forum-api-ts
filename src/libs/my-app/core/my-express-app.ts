@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import express, {
   Application,
   Request,
@@ -241,13 +242,6 @@ export class MyExpressApp {
           methodName,
         );
         const statusCode = parseInt(`${statusCodeMeta}`) || 200;
-        // const headers = Reflect.getMetadata(
-        //   RES_HEADER_METHOD,
-        //   controllerInstance,
-        //   methodName,
-        // );
-        // console.log('HTTP headers', headers);
-        // Handle response
         if (result === undefined || result === null) {
           console.log('result undefined', res.get('status'));
           res.status(204).end();
@@ -401,7 +395,6 @@ export class MyExpressApp {
   }
 
   async enableCors(options?: CorsOptions): Promise<this> {
-    // const cors = await import('cors');
     this.app.use(cors(options));
     return this;
   }
