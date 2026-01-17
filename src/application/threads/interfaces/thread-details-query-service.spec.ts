@@ -1,15 +1,30 @@
 import { CommentId } from '@main/domain/comments/entities/comment';
 import { ThreadId } from '@main/domain/threads/entities/thread';
 import { MockThreadDetailsQueryService } from './thread-details-query-service.mock';
-import { ReplyDetails } from '../query/results/thread-details.result';
+import {
+  ReplyDetails,
+  ThreadDetails,
+} from '../query/results/thread-details.result';
 import { ReplyId } from '@main/domain/replies/entities/reply';
 
 describe('ThreadDetailsQueryService', () => {
   it('should enforce getById method', async () => {
-    const qs = new MockThreadDetailsQueryService();
+    const storage = new Map<string, any[]>();
+    const threadDetails = new ThreadDetails(
+      new ThreadId('thread-id'),
+      'title',
+      'body',
+      'username',
+      new Date(),
+    );
+    storage.set('threads', [threadDetails]);
+    const qs = new MockThreadDetailsQueryService(storage);
+
+    const nonExistThread = await qs.getById(new ThreadId('thread-xxx'));
+    expect(nonExistThread).toBeNull();
 
     const thread = await qs.getById(new ThreadId('thread-id'));
-    expect(thread).toBeNull();
+    expect(thread).toStrictEqual(threadDetails);
   });
 
   it('should enforce getCommentsByIds method', async () => {
