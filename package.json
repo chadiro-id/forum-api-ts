@@ -16,8 +16,8 @@
     "test:integration": "ts-node ./node_modules/jest/bin/jest --config ./jest.integration.config.ts -i",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "migrate": "node-pg-migrate -j ts",
-    "migrate:test": "node-pg-migrate -j ts --envPath .env.test"
+    "migrate": "node-pg-migrate",
+    "migrate:test": "node-pg-migrate --envPath .env.test"
   },
   "keywords": [],
   "author": "",
