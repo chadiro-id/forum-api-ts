@@ -1,6 +1,9 @@
-import { MigrationBuilder } from 'node-pg-migrate';
-
-export async function up(pgm: MigrationBuilder): Promise<void> {
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @param run {() => void | undefined}
+ * @returns {Promise<void> | void}
+ */
+exports.up = (pgm) => {
   pgm.createTable('comment_likes', {
     id: {
       type: 'SERIAL',
@@ -37,11 +40,16 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
   pgm.addConstraint('comment_likes', 'comment_likes_comment_id_user_id_key', {
     unique: ['comment_id', 'user_id'],
   });
-}
+};
 
-export async function down(pgm: MigrationBuilder): Promise<void> {
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @param run {() => void | undefined}
+ * @returns {Promise<void> | void}
+ */
+exports.down = (pgm) => {
   pgm.dropConstraint('comment_likes', 'comment_likes_comment_id_user_id_key');
   pgm.dropConstraint('comment_likes', 'comment_likes_user_id_fkey');
   pgm.dropConstraint('comment_likes', 'comment_likes_comment_id_fkey');
   pgm.dropTable('comment_likes');
-}
+};
