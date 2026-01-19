@@ -35,10 +35,11 @@ export class ThreadDetailsReport {
     comments: CommentDetails[] = [],
     replies: ReplyDetails[] = [],
   ) {
-    const repliesGroup = Object.groupBy(
-      replies,
-      ({ commentId }) => commentId.value,
-    );
+    const repliesGroup = replies.reduce((acc, r) => {
+      (acc[r.commentId.value] ||= []).push(r);
+      return acc;
+    }, {});
+
     const commentList: Array<Comment> = comments.map((c) => ({
       id: c.id.value,
       content: c.isDelete ? '**komentar telah dihapus**' : c.content,
